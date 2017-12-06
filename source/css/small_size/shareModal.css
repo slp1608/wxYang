@@ -1,0 +1,12 @@
+div.modal-backdrop{
+    background-color: rgba(0,0,0,.6);
+}
+.shareModal{
+    height: auto;
+    min-height: 0;
+    background-color: transparent;
+}
+
+.shareModal img{
+    width: 100%;
+}

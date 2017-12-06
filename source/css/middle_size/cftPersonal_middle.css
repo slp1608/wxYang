@@ -1,0 +1,201 @@
+/*
+ 适配手机
+*/
+
+/*第一部分个人用户信息*/
+.person_content{
+    background-color: #eeeeee;
+    font-family: "Microsoft YaHei";
+}
+/*body{*/
+    /*background:#eeeeee ;*/
+/*}*/
+.person_Info{
+    width:100%;
+    height:10.4rem;
+    display: flex;
+    background-color: white;
+    border-bottom:.2rem solid #eeeeee;
+}
+/*个人头像盒子*/
+.person_imgBox{
+
+    padding-left:1.35rem;
+    width: 24%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*个人头像盒子照片*/
+.person_imgBox>img{
+    width:7.5rem;
+    height: 7.5rem;
+}
+/*个人名字盒子*/
+.person_InfoNameBox{
+    height:100%;
+    margin-left:2rem;
+    width:76%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+/*个人名字*/
+.person_InfoNameBox>p{
+     font-size: 1.5rem;
+    margin-bottom:1.5rem;
+    color:#333333;
+ }
+/*积分*/
+.person_InfoNameBox>span{
+    font-size: 1.2rem;
+    color:#333;
+    font-family: "Microsoft YaHei";
+}
+
+/*第二部分 订单与收藏*/
+.person_orderCollect{
+    width:100%;
+    height:7.7rem;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+/*订单*/
+
+.person_order{
+    width:49%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+/*订单图标*/
+.person_order>img{
+     width:2rem;
+     height:2.55rem;
+
+ }
+/*订单文字*/
+.person_order>span{
+
+    font-size: 1.4rem;
+    color: #333;
+    margin-top:.9rem;
+
+}
+/*分界线*/
+.person_orderCollect>div:nth-child(2){
+    width:.1rem;
+    height:5.2rem ;
+    background-color: #CACACA;
+}
+/*收藏块*/
+.person_collect{
+    width:50%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+/*收藏图标*/
+.person_collect>img{
+    width:2.25rem;
+    height:2.25rem;
+
+}
+/*收藏文字*/
+.person_collect>span{
+
+    font-size: 1.4rem;
+    color: #333;
+    margin-top:.9rem;
+
+
+}
+/*分界线*/
+.person_hr{
+    width:100%;
+    height:1rem;
+    background-color: #eeeeee;
+}
+.person_hrBold{
+    width:100%;
+    height:1rem;
+    /*background-color: #eeeeee;*/
+}
+/*功能栏*/
+.person_funBlock{
+    width:100%;
+    height:5.1rem;
+    background-color: white;
+    display: flex;
+   align-items: center;
+    border-bottom:.1rem solid #eeeeee;
+}
+
+.person_funImageBox{
+    height:100%;
+    width:7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.person_shopIcon{
+   width:2.15rem;
+    height:2.1rem;
+}
+
+.person_funBlock_text{
+    width:80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.person_funBlock_text>span{
+
+    font-size: 1.6rem;
+    color: #333;
+}
+.person_numsArrow{
+    width:.95rem;
+    height: 1.6rem;
+    margin-right:1rem;
+}
+.person_creditIcon{
+    margin-left: 1.75rem;
+    margin-right: 1.25rem;
+    width: 2.2rem;
+    height:1.95rem;
+
+}
+.person_addressIcon{
+    width: 1.55rem;
+    height:2.3rem;
+
+}
+.person_payIcon{
+    width: 2.4rem;
+    height:2.1rem;
+
+}
+.person_concernIcon{
+    width: 2.1rem;
+    height:1.85rem;
+}
+.person_funBlock_note{
+    display: flex;
+    align-items: center
+}
+.person_funBlock_note>span:nth-child(1){
+    margin-right:.65rem;
+    font-size: 1.55rem;
+    color: #666;
+    font-family: "Microsoft YaHei";
+}

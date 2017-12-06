@@ -1,0 +1,30 @@
+
+
+<ion-view>
+
+    <ion-content class="mainColor">
+
+        <div class="totalScore_total">
+            <div class="score">总计积分：{{scoreObj.scoreListDatas[0].totalIntegral}}积分</div>
+            <div class="exchange" ng-click="goExchange()">兑换</div>
+        </div>
+
+        <div class="totalScore-detail">
+            <ul class="list">
+                <li class="item self_item">
+                    <p class="inDetail">积分收入明细</p>
+                </li>
+                <li class="item self_item" ng-repeat="obj in scoreObj.scoreListDatas">
+                    <p class="give">
+                        <span class="text">{{obj.title}}</span>
+                        <span class="num">+{{obj.integral}}</span>
+                    </p>
+                    <p class="date">{{obj.addTime}}</p>
+                </li>
+            </ul>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

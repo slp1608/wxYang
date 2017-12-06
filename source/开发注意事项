@@ -1,0 +1,27 @@
+本项目使用gulp构建 如需开发可在项目下运行npm install 会自动安装package.json内的依赖
+本项目会自动压缩检查js 自动刷新浏览器 请打开dist文件下的index.html 运行
+
+1.git仓库地址https://git.coding.net/zaq5278/Comfortable97.git
+2.命名规范
+    1.方法以具体功能大致意思命名 如：getUserInfo();
+    2.文件以模块功能命名 如：personal.html
+    3.控制器以模块功能命名 如：personalController
+    4.工厂或者服务以功能命名 如：GetDataFactory
+    5.各控制器中变量命名要符合语义
+3.项目结构规范
+   1.各控制中使用变量必须以当前模块名(可简写) 为对象，变量为对象的一个属性的写法来写 比如: $scope.home = {name:’zaq’,dataArray:[]};的形式来写
+   2.使用方法的时候建议以方法名为value的形式，用function来声明函数，如:$scope.home = {doSome:doSome};function doSome (){};
+  3.复杂的或者课重用的功能和逻辑拆分到服务中
+  4.可重用的组件使用自定义指令封装
+  5.尽量减少操作DOM,需要频繁操作的，使用自定义指令
+  6.代码注释要简明并且清晰，注释要完善
+4.设计模式规范
+  1、代码要严格按照MVVM的设计模式
+  2、坚持多封装不可过度封装的原则
+  3、所有界面间传值使用params，避免暴露到url
+5.代码交付规范
+  1.代码类型按文件和功能类型放置
+  2.代码运行和交付要压缩
+  3.保证代码的完美程度是当前技术水平的极限
+  4.保证bug完美修复
+  5.kk

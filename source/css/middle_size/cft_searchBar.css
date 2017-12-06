@@ -1,0 +1,32 @@
+.ctf-search-view {
+    margin-right: 10px;
+    margin-left: 4px;
+    position: relative !important;
+    display: flex;
+    width: 80%;
+}
+.item-input {
+    height: 26px;
+    border-radius: 15px;
+    padding-right: 10px;
+    width: 100%;
+    z-index: 0 !important;
+}
+.item-input .cft-textField {
+    padding-top: 3px;
+    line-height:normal;
+    height: 26px;
+}
+.ctf-search-btn {
+    background: url('../../images/search.png') no-repeat center;
+    background-size: contain;
+    height: 16px !important;
+    width: 16px;
+    border: none;
+    right: 1.1rem;
+    position: absolute;
+    top: .35rem;
+    z-index: 100;
+    min-height: 0!important;
+
+}

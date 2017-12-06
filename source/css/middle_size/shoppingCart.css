@@ -1,0 +1,156 @@
+
+
+#shoppingCart{
+    background-color: rgb(238,238,238);
+}
+
+/*是否全选s*/
+#shoppingCart .ifSelectAll{
+    position: relative;
+}
+#shoppingCart .ifSelectAll .selectBtn span{
+    display: block;
+    position: absolute;
+    top: 0;  left: 0;bottom: 0;right: 0;
+    margin: auto;
+    border: 1px solid rgb(160,160,160);
+    border-radius: 50%;
+}
+#shoppingCart .ifSelectAll .selectBtn span i{
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    background-color: red;
+}
+#shoppingCart .ifSelectAll span{
+    position: absolute;
+}
+
+/*购物车列表*/
+#shoppingCart .shoppingList{
+    width: 100%;
+    background-color: #FFFFFF;
+    display: flex;
+    position: relative;
+    border: .1rem solid #E2E2E2;
+}
+
+/*有商品的样式*/
+
+/*复选框和失效标识*/
+#shoppingCart .listCheck,.loseShopping{
+    position: relative;
+    height: 100%;
+}
+#shoppingCart .shoppingList .listCheck label{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    font-weight: 500;
+}
+/*把原生的radio移开*/
+#shoppingCart .shoppingList .listCheck .radio input{
+    position: absolute;
+    left: -999rem;
+}
+#shoppingCart .shoppingList .listCheck .radio .littleRedCount{
+    display: block;
+    position: absolute;
+    top: 0;  left: 0;bottom: 0;right: 0;
+    margin: auto;
+    border: 1px solid rgb(160,160,160);
+    border-radius: 50%;
+}
+#shoppingCart .shoppingList .listCheck .radio input:checked+.littleRedCount{
+    border-color: rgb(160,160,160);
+}
+#shoppingCart .shoppingList .listCheck .radio input+.littleRedCount:after{
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    background-color: red;
+    opacity: 0;
+}
+#shoppingCart .shoppingList .listCheck .radio input:checked+.littleRedCount:after{
+    opacity: 1;
+}
+
+
+
+
+/*商品图片*/
+#shoppingCart .shoppingList .listPic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#shoppingCart .shoppingList .listContent{
+    position: relative;
+}
+/*右侧操作栏*/
+#shoppingCart .shoppingList  .listRightThree{
+    position: absolute;
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-end;
+}
+#shoppingCart .shoppingList  .listRightThree div:first-child{
+    color: #E80516;
+}
+#shoppingCart .shoppingList  .listRightThree div:nth-of-type(2){
+    color: #666;
+    text-align: right;
+}
+#shoppingCart .shoppingList  .listRightThree .listRightThreeDelt{
+    width: 100%;
+    text-align: right;
+}
+#shoppingCart .shoppingList .listRightThree .listRightThreeDelt img{
+    height: 100%;
+}
+
+
+/*已售罄的商品样式*/
+#shoppingCart .shoppingLoseList{
+    background-color: #ddd;
+}
+#shoppingCart .shoppingList .loseShopping>div{
+    background-color: #666666;
+    text-align: center;
+    position: absolute;
+    color: #FFF;
+}
+#shoppingCart .shoppingList .listContent .shoppingRemarks{
+    font-family: 微软雅黑;
+    color: #E80516;
+    position: absolute;
+    left: 0;
+}
+
+
+
+
+
+
+/*底部栏*/
+#shoppingCartBottom{
+    padding: 0;
+    box-shadow: 1rem 1rem 1rem 1rem gray;
+}
+#shoppingCartBottom .shoppingCartBottom_left p{
+    font-family: '微软雅黑';
+    line-height: .9rem;
+}
+#shoppingCartBottom .shoppingCartBottom_left p span:first-child{
+    color: #E80516;
+}
+#shoppingCartBottom .shoppingCartBottom_right button{
+    margin: 0;
+    height: 100%;
+    background-color:rgba(232,5,22,.8);
+    font-family: '微软雅黑';
+}
+
+

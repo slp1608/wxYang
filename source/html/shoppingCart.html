@@ -1,0 +1,112 @@
+<ion-view>
+
+
+    <ion-content id="shoppingCart" style="font-family: 微软雅黑" overflow-scroll="true">
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="shoppingCart.doRefresh()">
+        </ion-refresher>
+        <!--全选-->
+        <div class="ifSelectAll" ng-click="shoppingCart.ifSelectAll()">
+
+            <div class="selectBtn">
+                <span>
+                    <i ng-if="!shoppingCart.SelectAll"></i>
+                </span>
+            </div>
+            <span>全选</span>
+        </div>
+
+        <p ng-if="!shoppingCart.CartList.length" style="text-align: center">{{shoppingCart.emptyShopCarStr}}</p>
+        <!--购物车商品展示-->
+        <div ng-repeat="shoppinglist in shoppingCart.CartList">
+            <!--没有售罄的商品-->
+            <div class="shoppingList" ng-if = "!shoppinglist.isHave">
+
+                <!--复选框-->
+                <div class="listCheck" ng-click="shoppingCart.ifSelect($index)">
+                    <label class="radio"><input name="shoppingList" type="checkbox"><i class="littleRedCount"></i></label>
+                </div>
+
+                <!--商品图片-->
+                <div class="listPic" ng-click="lookGoodDetail($index)">
+                    <img ng-src='http://www.sunnyshu.cn{{shoppinglist.litpic}}' alt="">
+                </div>
+
+                <!--商品内容-->
+                <div class="listContent" ng-click="lookGoodDetail($index)">
+                    <span>{{shoppinglist.title}}</span>
+                </div>
+
+                <!--右侧商品操作栏-->
+                <div class="listRightThree">
+
+                    <div>￥{{shoppinglist.price | number:2}}</div>
+                    <div>&times;{{shoppinglist.num}}</div>
+                    <!--删除按钮-->
+
+                    <div class="listRightThreeDelt" ng-click="shoppingCart.confirmDelete($index)">
+                        <img ng-src="images/wastebin.png" alt="">
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!--已经售罄的商品-->
+            <div class="shoppingList shoppingLoseList" ng-if = "shoppinglist.isHave">
+
+                <!--失效框-->
+                <div class="loseShopping">
+                    <div>失效</div>
+                </div>
+
+                <!--商品图片-->
+                <div class="listPic">
+                    <img ng-src="http://www.sunnyshu.cn{{shoppinglist.litpic}}" alt="">
+                </div>
+
+                <!--商品内容-->
+                <div class="listContent">
+                    <span>{{shoppinglist.title}}</span>
+                    <span class="shoppingRemarks" style="font-family: 微软雅黑">对不起，该商品已售罄</span>
+                </div>
+
+
+                <!--右侧商品操作栏-->
+                <div class="listRightThree">
+                    <div>￥{{shoppinglist.price |number:2}}</div>
+                    <div>&times;{{shoppinglist.num}}</div>
+                    <div class="listRightThreeDelt" ng-click="shoppingCart.confirmDelete($index)">
+                        <a><img ng-src="images/wastebin.png" alt=""></a>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <ion-infinite-scroll on-infinite="shoppingCart.loadMore()"  distance="5%" ng-if="shoppingCart.isShowInfinite" immediate-check="true"></ion-infinite-scroll>
+
+    </ion-content>
+
+    <ion-footer-bar id="shoppingCartBottom">
+
+        <div style="width: 63%;" class="shoppingCartBottom_left">
+            <p  style="font-family: 微软雅黑">总价:
+                <span>{{shoppingCart.CartMoney | currency:'￥'}}</span>
+                <span >（共{{shoppingCart.CartCount}}件，不含运费）</span>
+            </p>
+        </div>
+        <div style="width: 37%;height: 100%" class="shoppingCartBottom_right" >
+            <button class="button button-full button-assertive" ng-click="shoppingCart.goToSettlement()" style="font-family: 微软雅黑">去结算（{{shoppingCart.CartCount}}）</button>
+        </div>
+
+    </ion-footer-bar>
+
+
+
+
+</ion-view>

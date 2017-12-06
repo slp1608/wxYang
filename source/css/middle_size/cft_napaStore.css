@@ -1,0 +1,97 @@
+.napaStore-content{
+    background-color: rgb(238,238,238);
+}
+.store-location {
+    position: fixed!important;
+    height: 2.6rem;
+    width: 100%;
+    background-color: white;
+    top:0;
+    opacity: 0.6;
+    z-index: 100;
+}
+.store-location p {
+    width: 100%;
+    text-align: center;
+    line-height: 2.6rem;
+}
+.store-location .loc-icon {
+    margin-right: .5rem;
+    font-size: 1.3rem;
+}
+.ctf-store-view {
+    padding: 0;
+    border: 0;
+    margin-top: 1.2rem;
+    background-color: white;
+}
+.napaStore-content .ctf-store-view:first-child {
+    margin-top: 0;
+}
+.ctf-store-view p.store-place {
+    margin-top: .3rem;
+}
+.store-icon {
+    height: 15rem;
+    width: 100%;
+}
+.store-des-wrapper .store-name {
+    color: #E70012;
+    font-size: 1.3rem;
+}
+.store-des-wrapper {
+    padding: 1rem 1rem;
+}
+.store-des-wrapper>p {
+    padding: 0;
+    margin: 0;
+}
+.store-place {
+    color: #666666;
+    font-size: 1.1rem !important;
+}
+.store-tel {
+    margin-top: .5rem;
+    color: #666666;
+    font-size: 1.1rem !important;
+    /*margin-bottom: 1rem !important;*/
+}
+
+
+/*扫码支付页面*/
+.scanCodePayTitle {
+    text-align: center;
+    border: none;
+    margin-top: 1rem;
+}
+#scanCodePayLabel{
+    height: 8rem;
+    border: none;
+    border-bottom: solid .1rem #dddddd;
+    border-radius: 0;
+    width: 94%;
+    margin-left: 3%;
+}
+#scanCodePayLabel input{
+    font-size: 3rem;
+    margin-left: 1rem;
+}
+#scanCodePayLabel ::-webkit-input-placeholder{
+    font-size: 2rem;
+    display: block;
+    margin-top: -1rem;
+}
+.scanCodePayRMB{
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+.scanCodePayTipSpan{
+    color: #8f8f8f;
+    margin: 1rem;
+}
+.scanCodePayBtn{
+    width: 95%;
+    margin-top: 1rem;
+    margin-left: 2.5%;
+    min-height: 0;
+}

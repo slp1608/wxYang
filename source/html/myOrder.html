@@ -1,0 +1,78 @@
+<ion-view class="my_order">
+    <ion-header-bar>
+        <div class="nav_list">
+            <ul ng-click="myOrder.navData($event)">
+                <li class="active">全&nbsp;部</li>
+                <li>待付款</li>
+                <li>待发货</li>
+                <li>待收货</li>
+                <li>待评价</li>
+            </ul>
+        </div>
+    </ion-header-bar>
+    <ion-content overflow-scroll="false" delegate-handle="orderScroll">
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="myOrder.doRefresh()">
+        </ion-refresher>
+        <div style="height: .1rem"></div>
+        <!--<p class="order_emptyMsg" ng-if="!myOrder.orderDatas.length">{{myOrder.emptyMsg}}</p>-->
+        <div class="order_list" ng-click="myOrder.goOrderDetail(order)" ng-repeat="order in myOrder.orderDatas">
+            <div class="order_num">
+                <span>订单编号&nbsp;{{order.ordercode}}</span>
+                <span>{{myOrder.stateInfos[order["state"]]}}</span>
+            </div>
+            <div class="order_item" ng-repeat="order_item in order.goods_data">
+                <img ng-src="{{myOrder.IconRootURL + order_item.goods_introduction[0]}}">
+                <div class="order_text">
+                    <p>{{order_item.goods_name}}</p>
+                    <div class="price">
+                        <span style="color: black">¥{{order_item.goods_price}}</span>
+                        <span class="span_origin">¥{{order_item.market_price}}</span>
+                        <span>×{{1}}</span>
+                    </div>
+                </div>
+            </div>
+            <!--<div ng-if="order.type == 1" class="order_item">-->
+                <!--<img ng-src="{{myOrder.IconRootURL + order.goods_introduction[0]}}">-->
+                <!--<div class="order_text">-->
+                    <!--<p>{{order.goods_name}}</p>-->
+                    <!--<div class="price">-->
+                        <!--<span>¥{{order.integral}}</span>-->
+                        <!--<span class="span_origin">¥{{order.goods_price}}</span>-->
+                        <!--<span>×{{1}}</span>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div ng-if="order.type == 0" class="order_total">
+                <span>共{{order.totalNum}}件商品&nbsp;合计：
+                    <span>¥{{order.totalPrice}}</span>
+                    ( 含运费：{{order.disPrice}} )
+                </span>
+            </div>
+            <div ng-if="order.type == 1" class="order_total">
+                <span>共{{1}}件商品&nbsp;合计：
+                    <span>{{order.integral}} 积分</span>
+                    ( 含运费：{{0}} )
+                </span>
+            </div>
+            <div class="order_footer" ng-if="order.state=='0'">
+                <button class="btn" ng-click="myOrder.cancelBill($event,$index)">取消订单</button>
+                <button class="btn lone" ng-click="myOrder.payment(order,$event)">付款</button>
+            </div>
+            <div class="order_footer" ng-if="order.state=='1' && order.type == 0">
+                <button class="btn lone" ng-click="myOrder.refund($event,$index)">申请退款</button>
+            </div>
+            <div class="order_footer" ng-if="order.state=='2'">
+                <button class="btn" ng-if="order.type == 0" ng-click="myOrder.refund($event,$index)">申请退款</button>
+                <button class="btn lone" ng-click="myOrder.confirm($event,$index)">确认收货</button>
+            </div>
+            <div class="order_footer" ng-if="order.state=='3'&& !items.isAppraise">
+                <button class="btn lone" ng-click="myOrder.appraise(order,$event)">评价</button>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="!myOrder.moredata" on-infinite="myOrder.loadMore()" distance="1%" ></ion-infinite-scroll>
+        <p class="nomore_text" ng-if="myOrder.moredata">没有更多订单...</p>
+    </ion-content>
+</ion-view>

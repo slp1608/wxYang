@@ -1,0 +1,121 @@
+
+/*是否全选*/
+#shoppingCart .ifSelectAll{
+    height: 3.45rem;
+    width: 3.45rem;
+}
+#shoppingCart .ifSelectAll .selectBtn span{
+    width: 1.25rem;
+    height: 1.25rem;
+}
+#shoppingCart .ifSelectAll .selectBtn span i{
+    top: 2px;
+    left: 2px;
+    width: .65rem;
+    height: .65rem;
+}
+#shoppingCart .ifSelectAll span{
+    left: 4.25rem;
+    top: .7rem;
+    width: 8rem;
+    font-size: 1.5rem;
+}
+/*购物车列表*/
+#shoppingCart .shoppingList{
+    margin-bottom: .8rem;
+    height: 9.5rem;
+}
+/*复选框和失效标识*/
+#shoppingCart .listCheck,.loseShopping{
+    width: 3.45rem;
+}
+#shoppingCart .shoppingList .listCheck label{
+    line-height: 1.8rem;
+    font-size: 2.1rem;
+}
+#shoppingCart .shoppingList .listCheck .radio .littleRedCount{
+    width: 1.25rem;
+    height: 1.25rem;
+}
+#shoppingCart .shoppingList .listCheck .radio input+.littleRedCount:after{
+    top: 2px;
+    left: 2px;
+    width: .65rem;
+    height: .65rem;
+}
+/*失效字体*/
+#shoppingCart .shoppingList .loseShopping>div{
+    width: 2.8rem;
+    line-height: 1.25rem;
+    top: 4.1rem;
+    left: .3rem;
+}
+/*商品图片*/
+#shoppingCart .shoppingList .listPic{
+    width: 7.05rem;
+    height: 7rem;
+    margin-top: 1.2rem;
+}
+#shoppingCart .shoppingList .listContent{
+    width: 17.05rem;
+    margin-top: 1.7rem;
+    margin-left: 1.05rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+}
+/*右侧商品操作栏*/
+#shoppingCart .shoppingList  .listRightThree{
+    right: 1.2rem;
+    top: 1.8rem;
+}
+#shoppingCart .shoppingList  .listRightThree div:first-child{
+    font-size: 1.3rem;
+    line-height: 1rem;
+}
+#shoppingCart .shoppingList  .listRightThree div:nth-of-type(2){
+    font-size: 1.2rem;
+    line-height: .9rem;
+    margin-top: .9rem;
+}
+#shoppingCart .shoppingList  .listRightThree .listRightThreeDelt{
+    height: 1.7rem;
+    margin-top: 1.75rem;
+}
+/*已售罄的商品样式*/
+#shoppingCart .shoppingList .loseShopping>div{
+    border-radius: 1rem;
+    font-size: .9rem;
+}
+#shoppingCart .shoppingList .listContent .shoppingRemarks{
+    font-size: .9rem;
+    bottom: .8rem;
+}
+
+/*底部栏*/
+#shoppingCartBottom{
+    height: 5.2rem;
+}
+#shoppingCartBottom .shoppingCartBottom_left p{
+    margin: 2rem 0 1.9rem 1.15rem;
+    font-size: 1.2rem;
+}
+#shoppingCartBottom .shoppingCartBottom_left p span:first-child{
+    font-size: 1.5rem;
+    line-height: 18px;
+}
+#shoppingCartBottom .shoppingCartBottom_left p span:last-child{
+    font-size: .9rem;
+    color: #666666;
+    margin-left: 1.2rem;
+}
+#shoppingCartBottom .shoppingCartBottom_right button{
+    font-size: 1.5rem
+}
+/*底部运费说明*/
+#shoppingCartBottom .shoppingCartBottom_left p span:last-child{
+    font-size: .9rem;
+    color: #666666;
+    margin-left: .1rem;
+    line-height: .9rem;
+}
+

@@ -1,0 +1,54 @@
+<ion-modal-view class="modal" id="shopCard" >
+
+    <div id="card">
+        <div class="shopCard_top">
+            <img ng-src="{{modal.IconRootURL + modal.goodsData.goods_introduction[0]}}" alt="">
+            <div>
+                <div class="shopModal_title">
+                    <!--|limitTo:18-->
+                    <span class="span_title">{{modal.goodsData.goods_name}}</span>
+                    <p><span>￥</span>{{modal.goodsData.shop_price}}/件</p>
+                </div>
+
+                <div class="shopCard_topBottom">
+                    <span>库存{{modal.goodsData.goods_number}}件</span>
+                    <span>数量 {{collect.val}}</span>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div  class="shopCard_TopHr"></div>
+
+        <div class="shopCard_center" >
+
+
+            <div class="shopCard_centerBox">
+                <div class="shopCard_center_left">
+                    <span>数量</span>
+                </div>
+                <div   class="shopCard_addAndReduce">
+                    <div class="icon ion-minus"  ng-click="collect.reduce()"></div>
+                    <div >{{collect.val}}</div>
+                    <div class=" icon ion-plus" ng-click="collect.add()"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="shopCard_bottom"  >
+
+            <button ng-click="addToShoppingCar()">
+                加入购物车
+            </button>
+            <button ng-click="goToConfirmOrder()">
+                立即购买
+            </button>
+        </div>
+    </div>
+
+</ion-modal-view>

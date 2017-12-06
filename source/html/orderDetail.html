@@ -1,0 +1,114 @@
+<ion-view>
+    <ion-content class="orderDetail-content">
+
+        <!--订单状态-->
+        <div class="order-num-wrapper row">
+            <p class="order-num">订单编号 ：{{orderDetail.orderData.ordercode}}</p>
+            <p class="order-status">{{orderDetail.stateInfos[orderDetail.orderData.state]}}</p>
+        </div>
+
+        <!--用户信息-->
+        <div class="personal-info-wrapper">
+            <div class="icon-address" style="background: url('images/address.png') no-repeat center;background-size: contain"></div>
+            <div class="user_info_wrapper">
+                <div>
+                    <span>{{orderDetail.orderData.vname}}</span>
+                    <span>{{orderDetail.orderData.tel}}</span>
+                </div>
+                <p>{{orderDetail.orderData.province + orderDetail.orderData.city+orderDetail.orderData.address}}</p>
+            </div>
+        </div>
+        <!--买家留言-->
+        <div class="consumerMsg">
+            <p>买家留言:</p>
+            <p>尽快发货哦 尽快发货哦 尽快发货哦 尽快发货哦 尽快发货哦 尽快发货哦 尽快发货哦</p>
+        </div>
+        <!--订单信息-->
+        <div class="my_order">
+            <div class="order_list">
+
+                <!--ng-if="orderDetail.orderData.type == 0"-->
+                <div  class="order_item" ng-repeat="orderItem in orderDetail.orderData.goods_data">
+                    <img class="order-goods-icon" ng-src="{{orderDetail.IconRootURL + orderItem.goods_introduction[0]}}">
+                    <div class="order_text">
+                        <p>{{orderItem.goods_name}}</p>
+                        <div ng-if="orderDetail.orderData.type == 0" class="price">
+                            <span>¥{{orderItem.goods_price}}</span>
+                            <span class="span_origin">¥{{orderItem.market_price}}</span>
+                            <span>×{{1}}</span>
+                        </div>
+                        <div ng-if="orderDetail.orderData.type == 1" class="price">
+                            <span style="color: red" ng-if="orderDetail.orderData.type == 1">{{orderDetail.orderData.integral}} 积分</span>
+                            <span class="span_origin">¥{{orderDetail.orderData.goods_price}}</span>
+                            <span>×{{1}}</span>
+                        </div>
+                    </div>
+                </div>
+                <!--<div ng-if="orderDetail.orderData.type == 1" class="order_item">-->
+                    <!--<img class="order-goods-icon" ng-src="{{orderDetail.IconRootURL + orderDetail.orderData.goods_introduction[0]}}">-->
+                    <!--<div class="order_text">-->
+                        <!--<p>{{orderDetail.orderData.goods_name}}</p>-->
+                        <!--<div class="price">-->
+                            <!--<span style="color: red" ng-if="orderDetail.orderData.type == 1">{{orderDetail.orderData.integral}} 积分</span>-->
+                            <!--<span class="span_origin">¥{{orderDetail.orderData.market_price}}</span>-->
+                            <!--<span>×{{1}}</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div class="order_total">
+                <span ng-if="orderDetail.orderData.type == 0">共{{orderDetail.orderData.length}}件商品&nbsp;合计：
+                    <span>¥{{orderDetail.orderData.totalPrice}}</span>
+                    <!--填写运费-->
+                    ( 含运费：{{orderDetail.orderData.disPrice | number:2}} )
+                </span>
+                    <span ng-if="orderDetail.orderData.type == 1">共{{orderDetail.orderData.length}}件商品&nbsp;合计：
+                    <span>{{orderDetail.orderData.integral}} 积分</span>
+                        <!--填写运费-->
+                    ( 含运费：{{0}} )
+                </span>
+                </div>
+                <div class="order_footer" ng-if="orderDetail.orderData.state=='0'">
+                    <button class="btn" ng-click="orderDetail.cancelBill('1')">取消订单</button>
+                    <button class="btn lone" ng-click="orderDetail.payment('1')">付款</button>
+                </div>
+                <div class="order_footer" ng-if="orderDetail.orderData.state=='1'">
+                    <button class="btn lone" ng-click="orderDetail.refund('1')">申请退款</button>
+                </div>
+                <div class="order_footer" ng-if="orderDetail.orderData.state=='2'">
+                    <button class="btn" ng-click="orderDetail.refund('1')">申请退款</button>
+                    <button class="btn lone" ng-click="orderDetail.confirm('1')">确认收货</button>
+                </div>
+                <div class="order_footer" ng-if="orderDetail.orderData.state=='3'">
+                    <button class="btn lone" ng-click="orderDetail.appraise('1')">评价</button>
+                </div>
+            </div>
+        </div>
+        <!--订单价格 运费-->
+        <div class="order_price_wrapper">
+            <p>
+                <span>运费</span>
+                <span>￥{{orderDetail.orderData.disPrice | number:2}}</span>
+            </p>
+            <p class="goods_price">
+                <span>商品金额</span>
+                <span>￥<span>{{(orderDetail.orderData.totalPrice - orderDetail.orderData.disPrice) | number:2}}</span></span>
+            </p>
+            <p>
+                <span>实付款</span>
+                <span>￥<span>{{orderDetail.orderData.totalPrice}}</span></span>
+            </p>
+        </div>
+        <div class="order_logistics">
+            <p ng-if="1">物流名称 : 圆通快递</p>
+            <p ng-if="1">物流单号 ：2365989561465126345646</p>
+            <p ng-if="1">提交时间 ：<span>2016-09-28 10:23:11</span></p>
+            <p ng-if="1">付款时间 ：<span>2016-09-28 10:23:11</span></p>
+            <p ng-if="1">发货时间 ：<span>2016-09-28 10:23:11</span></p>
+            <p ng-if="1">成交时间 ：<span>2016-09-28 10:23:11</span></p>
+            <p ng-if="1">交易关闭时间 ：<span>2016-09-28 10:23:11</span></p>
+            <p ng-if="1">申请退款时间 ：<span>2016-09-28 10:23:11</span></p>
+            <p ng-if="1">退款成功时间 ：<span>2016-09-28 10:23:11</span></p>
+
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cftApp">
+<head>
+    <meta charset="UTF-8">
+    <!--设置移动端适配-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name = "format-detection" content = "telephone=no">
+    <title></title>
+    <!--ionic css库-->
+    <link rel="stylesheet" href="../lib/css/RongIMWidget.min.css">
+    <link rel="stylesheet" href="../lib/css/ionic.min.css">
+    <!--中等-->
+    <link rel="stylesheet" href="../css/middle_size/addressModal.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_goodsDetail.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_homePage.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_napaStore.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_orderDetail.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_searchBar.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_sortedGoods.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_tabs.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cftCollectionPager_middle.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cftPersonal_middle.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/choiceAddressModal_middle.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/confirmOrderModal.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/deliveryAddStyle.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/myOrder.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/shareModal.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/shopCardModal_middle.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/shoppingCart.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/shoppingCart_middle.css" media="all and (max-width: 750px)">
+    <link rel="stylesheet" href="../css/middle_size/cft_confirmOrder.css" media="all and (max-width: 750px)">
+
+    <!--大屏-->
+    <link rel="stylesheet" href="../css/max_size/addressModal.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cft_goods_detail.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cft_home_view.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cft_napaStore.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cft_order_detail.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cft_search_bar.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cft_sortedGoods.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cft_tabs.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cftCollectionPager_max.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/cftPersonal_max.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/choiceAddressModal_max.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/confirmOrderModal.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/deliveryAddStyle_large.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/shareModal.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/shopCardModal_max.css" media="all and (min-width: 750px)">
+    <link rel="stylesheet" href="../css/max_size/shoppingCart_max.css" media="all and (min-width: 750px)">
+    <!--小屏-->
+    <link rel="stylesheet" href="../css/small_size/addressModal.css" media="all and (max-width: 321px)">
+    <link rel="stylesheet" href="../css/small_size/choiceAddressModal_small.css" media="all and (max-width: 321px)">
+    <link rel="stylesheet" href="../css/small_size/confirmOrderModal.css" media="all and (max-width: 321px)">
+    <link rel="stylesheet" href="../css/small_size/myOrder.css" media="all and (max-width: 321px)">
+    <link rel="stylesheet" href="../css/small_size/shareModal.css" media="all and (max-width: 321px)">
+    <link rel="stylesheet" href="../css/small_size/shoppingCart.css" media="all and (max-width: 321px)">
+    <link rel="stylesheet" href="../css/small_size/shoppingCart_small.css" media="all and (max-width: 321px)">
+
+
+
+
+</head>
+<body>
+
+    <!--承载项目页面-->
+    <ion-nav-view></ion-nav-view>
+
+</body>
+</html>
+<!--ionic js库-->
+<script src="../lib/js/ionic.bundle.js"></script>
+<script src="../lib/js/RongIMWidget.tidy.min.js"></script>
+<!--压缩后汇总-->
+<script src="../js/app.js"></script>
+<script src="../js/services/storageFactory.js"></script>
+<script src="../js/services/factories.js"></script>
+<script src="../js/services/searchDirective.js"></script>
+<script src="../js/services/slideBoxDirective.js"></script>
+<script src="../js/services/tools.js"></script>
+<script src="../js/controllers/receiptAddressController.js"></script>
+<script src="../js/controllers/collectionPagerController.js"></script>
+<script src="../js/controllers/goodsDetailController.js"></script>
+<script src="../js/controllers/homePageController.js"></script>
+<script src="../js/controllers/integralDetailController.js"></script>
+<script src="../js/controllers/integralStoreController.js"></script>
+<script src="../js/controllers/myOrderController.js"></script>
+<script src="../js/controllers/napaStoresController.js"></script>
+<script src="../js/controllers/orderDetailController.js"></script>
+<script src="../js/controllers/payRecordController.js"></script>
+<script src="../js/controllers/personalController.js"></script>
+<script src="../js/controllers/shoppingCartController.js"></script>
+<script src="../js/controllers/sortedGoodsController.js"></script>
+<script src="../js/controllers/sortedIGController.js"></script>
+<script src="../js/controllers/tabsController.js"></script>
+<script src="../js/controllers/totalScoreController.js"></script>
+<script src="../js/controllers/confirmOrderController.js"></script>

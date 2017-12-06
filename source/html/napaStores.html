@@ -1,0 +1,20 @@
+<!--加盟店-->
+<ion-view>
+    <div class="store-location">
+        <p ng-click="modal.show()">
+            <span class="loc-icon" style="background: url('images/location.png') no-repeat center;background-size: contain;">&nbsp;&nbsp;
+            </span>
+            <span>{{napaStores.text}}</span>
+        </p>
+    </div>
+    <ion-content class="napaStore-content">
+        <div class="ctf-store-view" ng-repeat="item in napaObj.storesData">
+            <div class="store-icon" style="background: url(http://www.sunnyshu.cn{{item.litpic}}) no-repeat;background-size: 100% 100%"></div>
+            <div class="store-des-wrapper">
+                <p class="store-name" style="color: red;font-size: 12px">{{item.title}}</p>
+                <p class="store-place" style="font-size: 9px">{{item.province+item.city+item.district+item.address}}</p>
+                <p class="store-tel">电话：<span>{{item.mobile}}</span></p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

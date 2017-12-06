@@ -1,0 +1,16 @@
+<ion-modal-view class="choiceAddModal">
+            <ion-header-bar class="address_modal_header">
+                请选择
+            </ion-header-bar>
+            <ion-content direction="y" scrollbar-y="false">
+
+                <div ng-repeat="province in napaObj.provinces" ng-click="modal.hide()">
+                    <ion-radio ng-model="napaStores.text" ng-value="province.name" class="address_checkbox">
+                        <div class="address_checkbox_div"></div>
+                        {{province.name}}
+                    </ion-radio>
+
+                </div>
+            </ion-content>
+
+</ion-modal-view>

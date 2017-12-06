@@ -1,0 +1,92 @@
+<ion-view >
+    <ion-content class="confirmOrder_content">
+        <div ng-if="!confirmObj.hasDefaultAddress" class="order_address_wrapper order_same_wrapper" ng-click="confirmObj.goReceiptAddress()">
+            <img ng-src="images/address.png" alt="">
+            <span>请填写收货地址</span>
+            <img class="arrow" ng-src="images/numsArrow.png" alt="">
+        </div>
+        <div ng-if="confirmObj.hasDefaultAddress" class="default_address_wrapper" ng-click="confirmObj.goReceiptAddress()">
+            <img class="addressIMG" ng-src="images/address.png" alt="">
+            <div class="default_address_msg">
+                <p class="user_name">收货人：{{confirmObj.defaultAddress.vname}}</p>
+                <p class="user_address">收货地址：{{confirmObj.defaultAddress.totalAddress}}</p>
+                <span class="user_tel">{{confirmObj.defaultAddress.tel}}</span>
+            </div>
+            <img class="arrowIMG" ng-src="images/numsArrow.png" alt="">
+        </div>
+        <div class="order_list_wrapper">
+            <div class="orderList_title">
+                <img ng-src="images/orderList.png" alt="">
+                <span>购物清单</span>
+            </div>
+            <div class="order_item" ng-repeat="item in confirmObj.goodsArray track by $index">
+                <img ng-src="{{confirmObj.IconROOTURL + (item.goods_introduction ? item.goods_introduction[0] : item.litpic)}}">
+                <div class="order_text">
+                    <p>{{item.goods_name ? item.goods_name : item.title}}</p>
+                    <div class="price">
+
+                        <span ng-if="item.is_integral == 0">¥{{item.shop_price ? item.shop_price : item.price}}</span>
+                        <span ng-if="item.is_integral == 1">¥{{item.integral}}</span>
+                        <span class="span_origin">¥{{item.market_price}}</span>
+                        <span>×{{item.is_integral == 0 ? item.goodsNum : '1'}}</span>
+                    </div>
+                </div>
+            </div>
+            <p>共<span>{{confirmObj.goodsNum_all}}</span>件商品</p>
+        </div>
+        <div class="order_input_wrapper">
+            <textarea
+                    ng-model="confirmObj.inputMsg"
+                    maxlength="100"
+                    draggable="false"
+                    placeholder="买家留言 : 点击给商家留言"
+                    ></textarea>
+            <!--ng-change="confirmObj.inputChange()"-->
+            <span class="input_msg_nums">{{confirmObj.inputMsg.length}}/100</span>
+        </div>
+        <div class="order-sendMsg_wrapper order_same_wrapper">
+            <img ng-src="images/sendMethod.png" alt="">
+            <span>配送方式</span>
+            <span>普通快递</span>
+        </div>
+        <div class="order_price_wrapper order_same_wrapper order_price">
+            <span>商品金额</span>
+            <span ng-if="confirmObj.is_integral == 0">{{"￥" + confirmObj.totalPrice}}</span>
+            <span ng-if="confirmObj.is_integral == 1">{{confirmObj.totalIngegralNum}} 积分</span>
+        </div>
+        <!--普通运费-->
+        <div ng-if="confirmObj.is_integral == 0" class="order_roadPrice_wrapper order_same_wrapper order_price">
+            <span>商品运费</span>
+            <span>￥{{confirmObj.freight | number:2}}</span>
+        </div>
+        <!--积分运费-->
+        <div ng-if="confirmObj.is_integral == 1" class="order_roadPrice_wrapper order_same_wrapper order_price integral_roadPrice">
+            <span>商品运费</span>
+            <span>￥0</span>
+        </div>
+        <div class="order_buyMethod_wrapper order_same_wrapper" ng-if="confirmObj.is_integral == 0">
+            <span>支付方式</span>
+            <div class="wechat_wrapper">
+                <img ng-src="images/wechat.png" alt="">
+                <span>微信支付</span>
+            </div>
+
+        </div>
+    </ion-content>
+    <ion-footer-bar class="confirmOrder_bottom">
+        <div ng-if="confirmObj.is_integral == 0">
+            <span>实付&nbsp;:&nbsp;</span>
+            <span class="price">
+                <span><span>￥</span>{{confirmObj.totalPrice + confirmObj.freight}}</span>
+            </span>
+            <button ng-click="confirmObj.buyNow()">确认购买</button>
+        </div>
+        <div ng-if="confirmObj.is_integral == 1">
+            <span>积分余额&nbsp;:&nbsp;</span>
+            <span class="price">
+                {{confirmObj.userIntegral}} 积分
+            </span>
+            <button ng-click="confirmObj.convertNow()">确认兑换</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

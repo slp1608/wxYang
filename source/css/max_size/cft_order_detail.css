@@ -1,0 +1,128 @@
+
+.orderDetail-content {
+    padding: 0;
+    color: #333333;
+    font-size: 2.2rem;
+    background-color: rgb(238,238,238);
+}
+.order-num-wrapper{
+    position: relative;
+    height: 5rem;
+    background-color: white;
+    padding: 0 11px;
+
+}
+.order-num-wrapper p {
+    line-height: 5rem;
+}
+.order-num-wrapper .order-status {
+    position: absolute;
+    right: 1.5rem;
+    color: #EA1E2D;
+}
+
+/*个人信息*/
+.personal-info-wrapper {
+    background-color: white;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    display: flex;
+}
+/*.personal-info-wrapper .row {*/
+    /*padding: 0 1.2rem;*/
+    /*!*padding-left: 12px;*!*/
+/*}*/
+.personal-info-wrapper  .icon-address {
+    height: inherit;
+    width: 2rem;
+    margin-left: 1.5rem;
+
+}
+.personal-info-wrapper .user_info_wrapper {
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-right: 1.5rem;
+}
+.personal-info-wrapper .user_info_wrapper div>span:first-child{
+
+}
+.personal-info-wrapper .user_info_wrapper p {
+    line-height: 3rem;
+
+    margin-top: 1.5rem;
+    color: #333333;
+}
+.personal-info-wrapper .user_info_wrapper .personal-name {
+    margin-left: 1rem;
+}
+.personal-info-wrapper .user_info_wrapper .personal-tel {
+    margin-left: 3.2rem;
+}
+.personal-info-wrapper .personal-address {
+    margin-left: 30px;
+    margin-top: 10px;
+    color: #333333;
+}
+/*买家留言*/
+.consumerMsg {
+    background-color: white;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+
+}
+.consumerMsg p:last-child {
+    margin-top: 2rem;
+    line-height: 2.4rem;
+}
+
+/*商品金额信息*/
+.order_price_wrapper {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: white;
+
+    padding-top: 1rem;
+}
+.order_price_wrapper p{
+    width: 100%;
+    position: relative;
+    padding-left: 1rem;
+
+}
+.order_price_wrapper p>span:last-child{
+    position: absolute;
+    right: 1rem;
+}
+.order_price_wrapper>p:first-child {
+    padding-bottom: 2rem;
+}
+.order_price_wrapper>p.goods_price {
+    padding-bottom: 1.2rem;
+    border-bottom: 0.09rem solid #dcdcdc;
+}
+.order_price_wrapper>p:last-child {
+    padding-top: 1.1rem;
+    padding-bottom: 1.3rem;
+}
+.order_price_wrapper p>span:last-child{
+    color: #EA1E2D;
+}
+.order_logistics {
+    background-color: white;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 20px;
+}
+.order_logistics p {
+    font-size: 2.2rem;
+
+    padding: 0;
+    margin-bottom: 1rem;
+    color: #999999;
+}
+.order_logistics p:first-child {
+    color: #333;
+}

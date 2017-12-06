@@ -1,0 +1,290 @@
+/*商品简介*/
+.detail-view {
+    background-color: rgb(238,238,238);
+    bottom: 5rem!important;
+}
+.goods-detail-wrapper {
+    position: relative;
+    padding-left: 10px;
+}
+.goods-detail-wrapper .goods-title p.detai-title {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /*line-height: 1.2em;*/
+    -webkit-box-orient: vertical;
+    margin-right: 81px;
+    line-height: 1.4em;
+    height: 2.8em;
+    /*overflow : hidden;*/
+    /*text-overflow: ellipsis;*/
+    font-size: 15px;
+
+}
+.collect-wrapper {
+    position: absolute;
+    right: 10px;
+    /*background-color: #0a9dc7;*/
+    text-align: center;
+
+}
+.goods-selects-wrapper .selection-content {
+    margin-bottom: 4.5rem;
+}
+.goods-title .collect .collect-icon{
+    background: url("../../images/redStar.png") no-repeat center;
+    width: 50px;
+    height: 16px;
+    background-size: contain;
+    margin-bottom: 5px;
+}
+.collect-wrapper .collect-icon {
+    width: 50px;
+    height: 16px;
+    background: url("../../images/collectStar.png") no-repeat center;
+    background-size: contain;
+    margin-bottom: 5px;
+}
+.collect-wrapper p {
+    font-size: 10px;
+    color: #666666;
+}
+
+.verLine {
+    width: 1px;
+    height: 40px;
+    background: url("../../images/verLine.png") no-repeat;
+    margin-right: 10px;
+    position: absolute;
+    right: 55px;
+}
+
+.goods-detail-wrapper .goods-price {
+    font-size: 15px;
+    color: #E60012;
+    padding: 0;
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+.goods-price .prePrice {
+    margin-left: .6rem;
+    font-size: .9rem;
+    text-decoration: line-through;
+    color: #666666;
+
+}
+
+.relatedMsg {
+    font-size: 12px;
+    color: #666666;
+    padding: 0;
+}
+.relatedMsg div.col {
+    margin: 0;
+    padding: 0;
+}
+.relatedMsg .goods-saleVolumes {
+    text-align: center;
+}
+.relatedMsg .shop-place {
+    text-align: right;
+    padding-right: 14px;
+}
+
+/*商品数量*/
+.goods-valumes {
+    height: 34px;
+    background-color: white;
+    position: relative;
+    margin-top: 5px;
+}
+.goods-valumes p {
+    line-height: 24px;
+    margin-left: 5px;
+    font-size: 13px;
+    color: #333333;
+}
+.goods-valumes .change-arrow {
+    background: url("../../images/numsArrow.png") no-repeat center;
+    height: 15px;
+    width: 9px;
+    background-size: contain;
+    margin-top: 4.5px;
+    position: absolute;
+    right: 12px;
+
+}
+    /*商品详情按钮菜单*/
+.goods-selects-wrapper {
+    position: relative;
+    margin-top: 10px;
+}
+.goods-selects-wrapper .selectionsBar {
+    padding: 0;
+    background-color: white;
+    height: 36px;
+    border-bottom: 1px solid #dcdcdc;
+}
+.goods-selects-wrapper .selectionsBar .col{
+    padding: 0;
+}
+.goods-selects-wrapper .selectionsBar p {
+    text-align: center;
+    font-size: 14px;
+    color: #666666;
+    line-height: 36px;
+}
+.goods-selects-wrapper .selectionsBar p.goods-params {
+    border-left: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+}
+.goods-selects-wrapper .slider-line {
+    position: absolute;
+    height: 2px;
+    width: 24%;
+    background-color: #E80516;
+    left: 4.7%;
+    margin-top: -2px;
+    transition: left 0.2s linear;
+    -webkit-transition: left 0.2s linear;
+}
+.selectionsBar .col .infoActive{
+
+    color: #E80516;
+}
+.selectionsBar .col .paramActive {
+    color: #E80516;
+}
+.selectionsBar .col .assessActive {
+    color: #E80516;
+}
+.assess-item {
+    background-color: white;
+    padding-bottom: 18px;
+}
+.assess-item .text-content {
+    margin-left: 11px;
+    margin-right: 11px;
+    background-color: #EEEEEE;
+    border-top: 1px solid #d3d3d3;
+    color: #666666;
+    padding: 11px;
+}
+
+/*评价头部*/
+.assess-head {
+    height: 70px !important;
+    padding-left: 20px !important;
+    position: relative;
+}
+div.assess-head .row{
+    margin-top: 0!important;
+}
+/*用户头像*/
+.assess-head .user-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    box-shadow: 2px 2px 8px gray;
+    margin-top: 13px;
+    position: absolute;
+
+}
+.assess-head p {
+    line-height: 70px;
+    margin-left: 60px;
+    margin-right: 190px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*position: absolute;*/
+}
+/*评价五角星*/
+.assess-stars {
+    display: flex;
+    position: absolute;
+    right: 20px;
+    height: 100%;
+}
+
+.assess-stars .star{
+    width: 21px;
+    height: 100%;
+    margin-left: 12px;
+}
+.assess-stars .assess-redStar {
+    background: url('../../images/redStar.png') no-repeat center;
+    background-size: contain;
+
+}
+.assess-stars .assess-grayStar {
+    background: url('../../images/grayStar.png') no-repeat center;
+    background-size: contain;
+}
+/*普通商品详情底部按钮栏*/
+.detail-bottom-bar {
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    height: 5rem;
+    width: 100%;
+    /*background-color: red;*/
+}
+.detail-bottom-bar .row {
+    margin: 0;
+    padding: 0;
+    height: 100% !important;
+}
+.detail-bottom-bar .tab-item {
+    font-size: 11px;
+}
+.detail-bottom-bar .tab-item i {
+
+}
+.detail-bottom-bar .tab-item .icon {
+    background-size: contain;
+    height: 22px;
+    width: 19px;
+    margin-top: 1rem;
+    margin-bottom: 4px;
+}
+.detail-bottom-bar .cft-home {
+    background: url("../../images/shomepage.png") no-repeat center;
+}
+.detail-bottom-bar .cft-shopcar {
+    background: url("../../images/sshopcar.png") no-repeat center;
+}
+.detail-bottom-bar .takeShorpping {
+    background-color: rgb(232,127,137);
+}
+.detail-bottom-bar .nowBuy {
+    background-color: rgb(218,0,29);
+}
+.detail-bottom-bar .col {
+    padding: 0;
+
+    width: 100%;
+
+    text-align: center;
+}
+.detail-bottom-bar .col a {
+    color: rgb(50,50,50);
+}
+.detail-bottom-bar .col p{
+    line-height: 5rem;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+/*积分商品底部按钮*/
+.integral_bottom_wrapper button.lijiConvert{
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: rgb(231,50,64);
+    color: white;
+    font-size: 1.6rem;
+    font-weight: bold;
+}

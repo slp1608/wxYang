@@ -1,0 +1,25 @@
+<ion-view>
+    <ion-content>
+        <div class="evaluate_list_wrapper">
+            <div class="goods_msg_wrapper">
+                <img ng-src="images/storeTestIcon.png" alt="goods_icon">
+                <div class="msg_title_wrapper">
+                    <p>澄阳湖大虾</p>
+                    <div class="assess-stars">
+                        <div class="star assess-redStar evaluate_star" ng-repeat="red in rednums track by $index"></div>
+                        <div class="star assess-grayStar evaluate_star" ng-repeat="gray in graynums track by $index"></div>
+                     </div>
+                </div>
+            </div>
+            <div class="order_input_wrapper">
+            <textarea
+                    ng-model="confirmObj.inputMsg"
+                    maxlength="100"
+                    draggable="false"
+                    placeholder="请您写下您的购买体会和对我们商品的评价"
+                    ng-change=""></textarea>
+                <span class="input_msg_nums"><span>{{confirmObj.inputNums}}</span>/100</span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

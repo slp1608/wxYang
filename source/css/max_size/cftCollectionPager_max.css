@@ -1,0 +1,88 @@
+
+/*顶部 分界线*/
+.collect_topHr{
+    width:100%;
+    height:2rem;
+}
+
+/*物品块*/
+.collect_block{
+    width:100%;
+    height:18.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom:2rem solid #eeeeee;
+}
+/*商品图片*/
+.collect_Image{
+    width: 14rem;
+    /*height:14rem;*/
+    margin-left:1.2rem;
+
+}
+/*图片右边的内容*/
+.collect_blockRight{
+    height:100%;
+    width:78%;
+    margin-left:1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+/*商品详情标题*/
+.blockRight_title{
+    overflow : hidden;
+
+    width:100%;
+    height:5.4rem;
+    line-height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+
+}
+.blockRight_describe>span{
+    font-family: MicrosoftYaHei;
+    font-size:2.4rem;
+    color:#333333;
+}
+/*右边价格的样式*/
+.blockRight_titlePrice{
+    margin-right: 1.2rem;
+    font-size:2.4rem;
+    width: 24rem;
+    font-family: MicrosoftYaHei;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: #333333;
+
+}
+
+
+.blockRight_titlePrice>span:nth-child(2){
+    margin-top: .6rem;
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    text-decoration: line-through;
+    color:#666666;
+}
+
+.btnBlock>button{
+    width:17.6rem;
+    height:5rem;
+    font-size:2.4rem ;
+    border: .2rem solid #999999;
+    border-radius:.4rem;
+    background-color: transparent;
+    float: right;
+    margin-right: 2rem;
+}
+.btnBlock>button:nth-child(1){
+
+    border: .2rem solid #EA1E2D;
+    color: #EA1E2D;
+
+
+}

@@ -1,0 +1,132 @@
+/*首页 右菜单按钮*/
+.item-input-inset {
+    height: 4.6rem;
+}
+.top-right-menu {
+    margin-right: .5rem;
+    margin-top: 1rem;
+}
+.top-right-menu a{
+    width: 2.2rem;
+    height: 1.4rem;
+    background: url("../../images/sidelist.png") no-repeat center top;
+    background-size: contain;
+
+}
+.home_content{
+    background-color: rgb(238,238,238);
+}
+/*与积分商品共用*/
+.goods_list_wrapper {
+    padding: .5rem 0;
+    background-color: rgb(238,238,238);
+}
+.goods_list_wrapper .home_recommend {
+    background: url('../../images/Recommend.png') no-repeat center;
+    background-size: contain;
+    height: 1.5rem;
+    margin: .3rem 0;
+    width: 100%
+}
+.goods_cell {
+    background-color: rgb(238,238,238);
+    padding: .25rem;
+}
+.goods_cell .cell_wrapper {
+    padding-top: .5rem;
+    background-color: white;
+}
+.goods_cell .cell_wrapper .goods_cell_icon {
+    /*padding-top: .5rem;*/
+    /*width: 100%;*/
+    height: 8rem;
+    background: no-repeat center center;
+    background-size: contain;
+}
+.goods_cell .goods_cell_bottom {
+    position: relative;
+}
+.goods_cell .bottom_des {
+    width: 100%;
+    padding: 0 1rem .8rem 1rem;
+}
+.bottom_des>p {
+
+    padding: 0;
+    margin:0;
+    font-size: 1.2rem;
+    color: #E60012;
+
+}
+.bottom_des>p.home_goods_price {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 1.4rem;
+}
+.bottom_des>p.des_title {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-height: 1.4rem;
+    height: 2.7rem;
+    -webkit-box-orient: vertical;
+    color: #333333;
+    padding-bottom: .5rem;
+    /*margin-bottom: .5rem;*/
+    /*margin-right: 2.2rem;*/
+}
+
+.bottom_des .des_prePrice {
+    margin-left: 6px;
+    font-size: 1.4rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-decoration: line-through;
+    color: #666666;
+}
+p span.stamp {
+    font-size: .9rem;
+}
+
+.goods_cell_bottom .shopping_btn_has {
+    position: absolute;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: 0;
+    border-radius: 50%;
+    right: 1rem;
+    bottom: .8rem;
+    background: url('../../images/shopIcon.png') no-repeat center/100%;
+    background-size: contain;
+}
+.goods_cell_bottom .shopping_btn_none {
+    position: absolute;
+    width: 4rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 1.05rem;
+    right: 1rem;
+    bottom: .8rem;
+    background: url('../../images/sellout.png') no-repeat center bottom;
+    background-size: contain;
+}
+/*积分商品*/
+.convert_btn {
+    position: absolute;
+    width: 2.1rem;
+    height: 2.7rem;
+    border: 0;
+    border-radius: 50%;
+    right: 1rem;
+    bottom: 1rem;
+    background: url('../../images/exchange.png') no-repeat center/100%;
+}
+.integral_convert {
+    background: url('../../images/goodsConvert.png') no-repeat center;
+    background-size: contain;
+    height: 1.4rem;
+    margin: .3rem 0;
+    width: 100%
+}
+

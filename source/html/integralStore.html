@@ -1,0 +1,64 @@
+<!--积分商城-->
+
+<ion-view>
+
+    <ion-header-bar class="item-input-inset">
+        <!--logo-->
+        <img ng-src="images/logo.png" alt="home-logo" style="height: 25px">
+        <!--search bar directive by jc-->
+        <div class="ctf-search-view">
+            <label class="item item-input">
+                <input class="cft-textField" ng-model="searchValue" type="text" placeholder="例：大闸蟹">
+            </label>
+            <button class="ctf-search-btn" style="height: 1.6rem" ng-click="integralObj.goSearch(searchValue)"></button>
+        </div>
+        <div class="tabs-icon-top padding-left top-right-menu">
+            <a class="tab-item" ng-click="integralObj.toggleRight()" >
+                <i class="home-right-menu"></i>
+            </a>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="home_content">
+
+        <!--source-array="homeObj.slideData"-->
+        <mg-slide-box source-data="integralObj.slideData"></mg-slide-box>
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="integralObj.doRefresh()">
+        </ion-refresher>
+        <div class="goods_list_wrapper">
+            <!--推荐-->
+            <div class="integral_convert"></div>
+
+            <div class="row row-wrap">
+
+                <div class="col col-50 goods_cell" ng-repeat="item in integralObj.goodsData track by $index" ng-click="integralObj.goDetail(item)">
+
+                    <div class="cell_wrapper">
+                        <div class="goods_cell_icon" style="background: url(http://www.sunnyshu.cn{{item.goods_introduction[0]}}) no-repeat center;background-size: contain">
+                        </div>
+                        <div class="goods_cell_bottom">
+                            <div class="bottom_des">
+                                <p class="des_title" ng-bind="item.goods_name"></p>
+                                <p class="home_goods_price">
+                                    <span class="stamp">￥</span>{{item.integral}}
+                                    <span class="des_prePrice">
+                                    <span class="stamp">￥</span>{{item.market_price}}
+                                    </span>
+                                </p>
+                            </div>
+                            <!--立即兑换-->
+                            <button class="convert_btn" ng-if="item.goods_number > 0"  ng-click="integralObj.convertOption($event,item)"></button>
+                            <div class="shopping_btn_none" ng-if="item.goods_number <= 0"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="!integralObj.moredata" on-infinite="integralObj.loadMore()" distance="1%" ></ion-infinite-scroll>
+        <p class="nomore_text" ng-if="integralObj.noneOfMoreData">没有更多商品...</p>
+    </ion-content>
+
+</ion-view>
+

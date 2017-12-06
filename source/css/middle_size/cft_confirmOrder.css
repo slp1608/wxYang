@@ -1,0 +1,283 @@
+.confirmOrder_content {
+    background-color: rgb(238,238,238);
+    bottom: 5rem!important;
+}
+
+/*收货地址*/
+
+/*单元格相同部分*/
+.order_same_wrapper {
+    display: flex;
+    padding: 0 !important;
+    height: 3.5rem;
+    width: 100%;
+    background-color: white;
+    position: relative;
+}
+.order_same_wrapper span {
+    height: 3.5rem;
+    line-height: 3.5rem;
+    margin-left: 1rem;
+    font-size: 1.3rem;
+    display: block;
+    color: #666666;
+}
+
+.order_address_wrapper img{
+    margin-top: 1rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+}
+.order_address_wrapper img.arrow {
+    position: absolute;
+    right: 1.2rem;
+}
+/*默认地址*/
+.default_address_wrapper {
+    background-color: white;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.default_address_wrapper .addressIMG {
+    position: absolute;
+    height: 1.6rem;
+    top: 50%;
+    margin-top: -.8rem;
+    left: 1rem;
+}
+.default_address_wrapper .arrowIMG {
+    position: absolute;
+    height: 1.6rem;
+    top: 50%;
+    margin-top: -.8rem;
+    right: 1.2rem;
+}
+.default_address_wrapper .default_address_msg{
+    padding: .8rem 0;
+    position: relative;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    color: #666;
+    font-size: 1.2rem;
+}
+.default_address_wrapper .default_address_msg>p {
+    margin: 0 0 .5rem 0;
+}
+.default_address_wrapper .default_address_msg .user_tel{
+    position: absolute;
+    top: .8rem;
+    right: 0;
+}
+.default_address_wrapper .default_address_msg .user_address {
+    margin-bottom: 0;
+}
+/*购物清单*/
+.order_list_wrapper {
+
+}
+
+.order_list_wrapper .orderList_title {
+    margin-top: 1rem;
+    height: 2.8rem;
+    width: 100%;
+    background-color: white;
+    border-bottom: 0.1rem solid rgb(238,238,238);
+    display: flex;
+}
+.order_list_wrapper .orderList_title img {
+    margin-top: .65rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+}
+.order_list_wrapper .orderList_title span {
+    height: 2.8rem;
+    line-height: 2.8rem;
+    display: block;
+    margin-left: 1rem;
+    font-size: 1.3rem;
+}
+/*.order_item商品信息 包含：图片，描述，单价，和数量*/
+.order_list_wrapper .order_item{
+    display: flex;
+    /*justify-content: space-between;*/
+    /*flex-flow: row nowrap;*/
+    width: 100%;
+    /*background: #EEE;*/
+    height: 8.6rem;
+    padding: 0 1.1rem;
+    background-color: white;
+}
+.order_list_wrapper .order_item+.order_item{
+    /*margin-top: .5rem;*/
+    border-top: .1rem solid rgb(238,238,238);
+}
+
+.order_list_wrapper .order_item .order_text{
+    /*display: flex;*/
+    position: relative;
+    /*left: 8.5rem;*/
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.order_list_wrapper .order_item img{
+    width: 7rem;
+    /*height: 7rem;*/
+    margin: .7rem 1rem .9rem 0;
+}
+.order_list_wrapper .order_item p{
+    /*width: 18.75rem;*/
+    padding-right: .5rem;
+    line-height: 1.5rem;
+    font-size: 1.2rem;
+    margin: 1.2rem 0 0 0;
+    color: #333;
+}
+
+.order_list_wrapper .order_item .price{
+    /*position: absolute;*/
+    right: .5rem;
+    /*line-height: 100%;*/
+    display: flex;
+    /*justify-content: center;*/
+    flex-flow: column;
+    align-items: flex-end;
+    color: #333;
+    margin-top: 1.45rem;
+}
+.order_list_wrapper .order_item .price span{
+    font-size: 1.3rem;
+    height: 1.3rem;
+
+}
+.order_list_wrapper .order_item .price span:first-child {
+    color: #E80516;
+}
+.order_list_wrapper .order_item .price span~span{
+    font-size: 1.2rem;
+    height: 1.2rem;
+    margin-top: .9rem;
+    color: #666;
+}
+.order_list_wrapper .order_item .span_origin{
+    text-decoration: line-through;
+}
+.order_list_wrapper>p {
+    width: 100%;
+    height: 4.3rem;
+    line-height: 4.3rem;
+    text-align: right;
+    padding-right: 1rem;
+    background-color: white;
+    margin: 0;
+    border-top: .1rem solid rgb(238,238,238);
+}
+
+/*买家留言*/
+.order_input_wrapper{
+    margin-top: 1rem;
+    position: relative;
+}
+.order_input_wrapper textarea {
+    width: 100%;
+    height: 10rem;
+    padding: 1rem;
+    resize: none;
+    overflow:hidden;
+}
+.order_input_wrapper .input_msg_nums {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    color: #666666;
+}
+/*配送方式*/
+.order-sendMsg_wrapper {
+    margin-top: 1rem;
+}
+.order-sendMsg_wrapper img{
+    margin-top: 1rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+}
+
+.order-sendMsg_wrapper span:last-child {
+    position: absolute;
+    right: 1rem;
+}
+
+.confirmOrder_content .order_price span:last-child {
+    position: absolute;
+    right: 1rem;
+    color: #E80516;
+}
+.order_price_wrapper {
+
+    margin-bottom: 0!important;
+    border-bottom: .1rem solid rgb(238,238,238);
+}
+.order_roadPrice_wrapper {
+    margin-top: 0;
+    /*margin-bottom: 2.5rem;*/
+}
+.integral_roadPrice {
+    margin-bottom: 2.5rem;
+}
+
+/*支付方式*/
+.order_buyMethod_wrapper {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+.order_buyMethod_wrapper .wechat_wrapper {
+    display: flex;
+    width: 10rem;
+    white-space: nowrap;
+    position: absolute;
+    right: .5rem;
+
+}
+.wechat_wrapper img {
+    height: 1.6rem;
+    margin-top: .95rem;
+}
+.wechat_wrapper>span {
+    margin-left: .6rem;
+}
+
+.confirmOrder_bottom {
+    height: 5rem;
+    padding: 0!important;
+}
+.confirmOrder_bottom>div {
+    height: 5rem;
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.confirmOrder_bottom>div>span {
+    display: block;
+    height: 5rem;
+    line-height: 5rem;
+}
+.confirmOrder_bottom>div>span:first-child {
+    margin-left: 1rem;
+}
+
+.confirmOrder_bottom .price {
+    color: #E80516;
+}
+.confirmOrder_bottom .price_icon {
+    font-size: 1rem;
+}
+.confirmOrder_bottom div>button {
+    height: 5rem;
+    position: absolute;
+    right: 0;
+    background-color: #E80516;
+    color: white;
+    font-size: 1.6rem;
+    border: 0;
+    width: 13.5rem;
+    font-weight: bold;
+}

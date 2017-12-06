@@ -1,0 +1,168 @@
+
+div.modal-backdrop{
+
+    background-color:rgba(0,0,0,.6);
+}
+
+
+/*ion-modal-view 的样式*/
+#shopCard{
+    position:fixed;
+    height: auto;
+    top: auto;
+    bottom:0;
+    left: 0;
+    min-height: inherit;
+    width: 100%;
+
+}
+
+
+/*加入购物车的全部内容*/
+#card{
+    width:100%;
+    height:41.7rem;
+}
+/*购物车内容 第一部分 商品和详情*/
+.shopCard_top{
+    height:20.3rem;
+    width: 100%;
+    display:flex;
+    justify-content:space-between ;
+    align-items: center;
+
+}
+/*第一部分左边图片*/
+.shopCard_top>img{
+    /*width:29.2rem;*/
+    margin-left:3rem;
+    height:15.4rem;
+}
+/*card 头部右边的内容*/
+.shopCard_top>div{
+    margin-left: 2.6rem;
+    height:15.4rem;
+    margin-right: 2rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+/*第一部分右边标题详情*/
+.shopModal_title .span_title{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    height: 5.4rem;
+    line-height: 2.8rem;
+    -webkit-box-orient: vertical;
+    margin: 0;
+    padding: 0;
+    /*height:6.2rem;*/
+    font-size:2.6rem ;
+    color:#333333;
+}
+/*商品价钱*/
+.shopModal_title>p{
+    margin: 0;
+    padding: 0;
+    margin-top:1.4rem;
+    color:#E80516 ;
+    font-family: 微软雅黑;
+    font-size: 3rem;
+
+}
+/*价钱符号*/
+.shopModal_title>p>span{
+    font-size: 2.4rem;
+}
+.shopCard_topBottom{
+    display: flex;
+    width:90%;
+    font-size: 2.2rem;
+    color: #666666;
+    font-family: 微软雅黑;
+    justify-content: space-between;
+}
+/*第一部分与第二部分分界线*/
+.shopCard_TopHr{
+    width:95%;
+    margin: 0 auto;
+    height:.2rem;
+    background-color:#E2E2E2;
+}
+/*第二部分 数量操作样式*/
+.shopCard_center{
+
+    height:10.8rem;
+    width: 100%;
+
+}
+/*第二部分 数量操作样式内容*/
+.shopCard_centerBox{
+    display: flex;
+    justify-content: space-between;
+    width:90%;
+    align-items: center;
+    height:100%;
+    margin: 0 auto;
+}
+/*左边数量的样式*/
+.shopCard_center_left{
+    font-size: 2.4rem;
+    vertical-align: top;
+    display: inline-block;
+    font-family: 微软雅黑;
+    color: #333333;
+}
+.shopCard_addAndReduce{
+    display: flex;
+}
+/*加减按钮中间的input的样式*/
+.shopCard_addAndReduce>div:nth-child(odd){
+    width:7.7rem;
+    height:4.2rem;
+    background-color:#b9b8b8;
+    text-align: center;
+    color: white;
+    font-size: 4rem;
+}
+/*加减按钮的样式*/
+.shopCard_addAndReduce>div:nth-child(even){
+    width:7.7rem;
+    height:4.2rem;
+    font-size: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#333333;
+    border:.1rem solid gray;
+    text-align: center;
+}
+
+/*第三部分按钮样式*/
+.shopCard_bottom{
+    height:10.3rem;
+    width: 100%;
+    font-size: 0;
+    display: flex;
+}
+/*最下面的按钮*/
+
+.shopCard_bottom>button{
+    width:50%;
+    height:100%;
+    background-color: #e60012;
+    border: 0;
+    padding: 0;
+    color: white;
+
+    font-family: 微软雅黑;
+    font-size: 3rem;
+}
+.shopCard_bottom>button:nth-child(1){
+    background-color: #f27f88;
+}
+
+

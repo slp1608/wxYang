@@ -1,0 +1,33 @@
+<ion-view style="background-color:#eeeeee ">
+
+    <ion-content>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="collect.doRefresh()"></ion-refresher>
+        <div class="collect_topHr"></div>
+        <p ng-if="!collect.collectionData.length" style="text-align: center">{{collect.emptyShopCarStr}}</p>
+        <div class="collect_block" ng-repeat="item in collect.collectionData track by $index"  ng-click="collect.goToGoodsDetail($index)">
+            <img class="collect_Image" ng-src="{{collect.IconROOT_URL+item.litpic}}" alt="">
+            <div class="collect_blockRight">
+                <div class="blockRight_title">
+                    <div class=" blockRight_describe">
+                        <span>{{item.title}}</span>
+                    </div>
+                    <div class="blockRight_titlePrice">
+                        <span >￥{{item.price}}</span>
+                        <span >￥68</span>
+                    </div>
+                </div>
+                <div class="btnBlock">
+
+                    <button ng-if="item.is_integral == 0" ng-click="shopCardShow($index,$event)">加入购物车</button>
+                    <button ng-if="item.is_integral == 1" ng-click="collect.goToExchangeNow($index,$event)">立即兑换</button>
+                    <button ng-click="collect.deleteCollect($event,item,$index)">删除</button>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll
+                on-infinite="collect.loadMore()"
+                spinner="ios"
+                ng-if="collect.isShowInfinite">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

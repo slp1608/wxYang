@@ -1,0 +1,238 @@
+
+.mainColor{
+    background-color: rgb(238,238,238);
+    margin-bottom: 1.5rem;
+}
+
+/*管理收货地址页面*/
+/*收货地址列表*/
+.deliveryAdd_add1{
+    position: relative;
+    background-color: #FFFFFF;
+    height: 21.3rem;
+    margin-bottom: 2rem;
+}
+.deliveryAdd_add1 .deliveryAdd_name{
+    width: 100%;
+    margin:0;
+    padding-top: 2.3rem;
+    font-family: MicrosoftYaHei;
+    font-size: 3rem
+}
+.deliveryAdd_add1 .deliveryAdd_name .name{
+    position: absolute;
+    left: 4.6rem;
+    color: #333333
+}
+.deliveryAdd_add1 .deliveryAdd_name .tel{
+    position: absolute;
+    right: 5.2rem;
+    color:#666666
+}
+.deliveryAdd_add1 .deliveryAdd_address{
+    margin: 4rem 4.2rem 1.2rem 4.2rem;
+    margin-top:6.8rem;
+    padding-bottom: 1.2rem;
+    border-bottom: solid .2rem #C0BFBF;
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    color:#666666
+}
+.deliveryAdd_add1 .deliveryAdd_options{
+    margin: .8rem 4.4rem;
+    height: 3.8rem
+}
+.deliveryAdd_add1 .deliveryAdd_options .react{
+    width: 3.8rem;
+    height: 3.8rem
+}
+.deliveryAdd_add1 .deliveryAdd_options .default{
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    margin-left: 2rem;
+}
+.deliveryAdd_add1 .deliveryAdd_options .deliveryAdd_pop{
+    float: right
+}
+.deliveryAdd_add1 .deliveryAdd_options .deliveryAdd_pop .editImg{
+    width: 3.2rem;
+    height: 3.2rem
+}
+.deliveryAdd_add1 .deliveryAdd_options .deliveryAdd_pop .editText{
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    color:#666666;
+    margin-right: 2.4rem
+}
+.deliveryAdd_add1 .deliveryAdd_options .deliveryAdd_pop .deleteImg{
+    width: 2.2rem;
+    height: 3.4rem
+}
+.deliveryAdd_add1 .deliveryAdd_options .deliveryAdd_pop .deleteText{
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    color:#666666
+}
+
+/*底部footer新增地址*/
+.deliveryAdd_footer{
+    background-color: #E80516;
+    height: 10.4rem
+}
+.deliveryAdd_footer .title{
+    color: #FFFFFF;
+    line-height: 10.4rem;
+    font-family:  MicrosoftYaHei;
+    font-size: 3rem;
+    letter-spacing: 4rem;
+    overflow: inherit;
+}
+
+
+
+
+/*我的积分页面*/
+.totalScore_total{
+    position: relative;
+    background-color: #FFFFFF;
+    height: 12rem;
+    margin-bottom: 1.6rem;
+    display: flex
+}
+.totalScore_total .score{
+    position: absolute;
+    left: 2.6rem;
+    font-family: MicrosoftYaHei;
+    font-size: 3.4rem;
+    color: #EB1E2D;
+    line-height: 12rem
+}
+.totalScore_total .exchange{
+    position: absolute;
+    right: 2.6rem;
+    width: 10rem;
+    height: 4.6rem;
+    border: solid .2rem #ED3743;
+    border-radius: .4rem;
+    font-family: MicrosoftYaHei;
+    font-size: 2.6rem;
+    color: #ED3743;
+    margin-top: 4rem;
+    padding-top: .9rem;
+    text-align: center;
+}
+.totalScore-detail{
+    position: relative;
+    background-color: #FFFFFF;
+    /*height: 50.8rem;*/
+    margin-bottom: 1.6rem
+}
+.totalScore-detail .list .item .inDetail{
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    color: #666666
+}
+.totalScore-detail .list .item .give{
+    position: relative;
+    margin: 0
+}
+.totalScore-detail .list .item .give .text{
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    color: #666666
+}
+.totalScore-detail .list .item .give .num{
+    position: absolute;
+    right: 2rem;
+    font-family: MicrosoftYaHei;
+    font-size: 2.6rem;
+    color: #EB1E2D
+}
+.totalScore-detail .list .item .date{
+    font-family: MicrosoftYaHei;
+    font-size: 1.8rem;
+    color: #999999
+}
+
+
+/*交易记录*/
+.payRecord{
+    position: relative;
+    background-color: #FFFFFF;
+    height: 50.8rem;
+    margin-bottom: 1.6rem;
+}
+.payRecord .list .item{
+    padding-left: 1.5rem
+}
+.payRecord .list .item .payRecord_total{
+    position: relative;
+    padding-top: .5rem;
+    margin: .5rem 0
+}
+.payRecord .list .item .payRecord_total .text{
+    font-family: MicrosoftYaHei;
+    font-size: 2.4rem;
+    color: #666666
+}
+.payRecord .list .item .payRecord_total .num{
+    position: absolute;
+    right: 2rem;
+    font-family: MicrosoftYaHei;
+    font-size: 2.6rem;
+    color: #666666
+}
+.payRecord .list .item .payRecord_total .data{
+    font-family: Tahoma;
+    font-size: 1.8rem;
+    color: #999999
+}
+.payRecord .list .item .payRecord_total .case{
+    position: absolute;
+    right: 2rem;
+    font-family: Tahoma;
+    font-size: 2rem;
+    color: #666666
+}
+
+
+/*弹窗样式*/
+.popup-container .popup{
+    width: 60rem;
+    height: 25rem;
+    border-radius: 1rem;
+}
+.popup-container .popup .confirmText{
+    text-align: center;
+    padding: 40px;
+    color: #333333;
+    font-family: MicrosoftYaHei;
+    font-size: 30px
+}
+.popup-buttons{
+    border-top: solid .4rem #ACABAB;
+    padding: 2rem;
+    min-height: 0;
+}
+.button.button-dark.button-clear{
+    border-right: solid .2rem #ACABAB;
+    color:#666666;
+    font-size: 3rem;
+
+}
+.button.button-assertive.button-clear{
+    color:#E80516;
+    font-size: 3rem;
+
+}
+/*列表样式*/
+.self_item{
+    padding: 1.2rem 1.3rem;
+    border: solid .1rem #BDBDBD;
+}
+.noneOFAdrress {
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+    color: gray;
+}

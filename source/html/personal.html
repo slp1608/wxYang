@@ -1,0 +1,83 @@
+<ion-view view-title="个人中心">
+
+    <ion-content class="person_content">
+        <div class="person_Info">
+            <div class="person_imgBox">
+                <img ng-src="{{personal.headimgurl}}" alt="">
+            </div>
+            <div class="person_InfoNameBox">
+                <p>{{personal.userName}}</p>
+                <span>{{personal.creditNum}}积分</span>
+            </div>
+        </div>
+
+        <div class="person_orderCollect">
+            <div class="person_order" ng-click="personal.showOrder()">
+                <img src="images/order.png" alt="">
+                <span>我的订单</span>
+            </div>
+            <div></div>
+            <div class="person_collect" ng-click="personal.showCollect()">
+                <img src="images/star.png" alt="">
+                <span>我的收藏</span>
+            </div>
+        </div>
+        <div class="person_hr"></div>
+
+        <div class="person_funBlock" ng-click="personal.showShoppingCar()">
+            <div class="person_funImageBox">
+                <img src="images/shoppingCar.png" alt="" class="person_shopIcon">
+            </div>
+            <div class="person_funBlock_text">
+                <span>我的购物车</span>
+                <img src="images/numsArrow.png" class="person_numsArrow">
+            </div>
+
+        </div>
+
+        <div class="person_hr"></div>
+
+        <div class="person_funBlock" ng-click="personal.showCredit()">
+            <div class="person_funImageBox">
+                <img src="images/credit.png" alt="" class="person_creditIcon">
+            </div>
+            <div class="person_funBlock_text">
+                <span>我的积分</span>
+                <img src="images/numsArrow.png" class="person_numsArrow">
+            </div>
+        </div>
+
+        <div class="person_funBlock" ng-click="personal.showAddress()">
+            <div class="person_funImageBox">
+                <img src="images/address.png" alt="" class="person_addressIcon">
+            </div>
+            <div class="person_funBlock_text">
+                <span>收货地址</span>
+                <img src="images/numsArrow.png" class="person_numsArrow">
+            </div>
+        </div>
+        <div class="person_funBlock" ng-click="personal.showPay()">
+            <div class="person_funImageBox">
+                <img src="images/pay.png" alt="" class="person_payIcon">
+            </div>
+            <div class="person_funBlock_text">
+                <span>支付记录</span>
+                <img src="images/numsArrow.png" class="person_numsArrow">
+            </div>
+        </div>
+        <div class="person_hrBold"></div>
+        <div class="person_funBlock" ng-click="personal.showAttention()">
+            <div class="person_funImageBox">
+                <img src="images/concern.png" alt="" class="person_concernIcon">
+            </div>
+            <div class="person_funBlock_text" ng-click="personal.share()">
+                <span>推荐关注</span>
+                <div  class="person_funBlock_note">
+                    <span>推荐好友关注送积分</span>
+                    <img src="images/numsArrow.png" class="person_numsArrow">
+                </div>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

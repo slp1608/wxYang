@@ -1,0 +1,42 @@
+<ion-modal-view class="address_modal">
+    <div class="header_list">
+        <p>
+            {{addressOptionObj.title}}
+            <i class="icon ion-close-round" ng-click="addressObj.cancelAdd()"></i>
+        </p>
+
+    </div>
+    <div class="list_item">
+        <label class="address_list_msg" for="address_name">收货人</label>
+        <input type="text" placeholder="姓名" ng-model="addressOptionObj.vname" id="address_name">
+    </div>
+    <div class="list_item">
+        <label class="address_list_msg" for="address_phone">联系电话</label>
+        <input type="text" placeholder="联系电话" ng-model="addressOptionObj.tel" id="address_phone">
+    </div>
+    <div class="list_item">
+        <label class="address_list_msg">选择地址</label>
+        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('省份')">{{addressObj.selectedProvince ? addressObj.selectedProvince :"请选择省份"}}
+            <!--<select ng-change="addressObj.selectedChange(addressObj.selectedProvince)" ng-model="addressObj.selectedProvince" ng-options="province.name as province.name for province in addressObj.provinces">-->
+                <!--<option value="">请选择</option>-->
+            <!--</select>-->
+        </label>
+
+        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('城市')">{{addressObj.selectedCity ? addressObj.selectedCity :"请选择城市"}}
+            <!--<select ng-model="addressObj.selectedCity" ng-options="city.name as city.name for city in addressObj.cities">-->
+                <!--<option value="">请选择</option>-->
+            <!--</select>-->
+        </label>
+    </div>
+    <div class="list_item">
+        <label class="address_list_msg" for="address_adr">详细地址</label>
+        <input type="text" placeholder="街道门牌，无需重复地区信息" ng-model="addressOptionObj.address" id="address_adr">
+    </div>
+    <div class="list_item">
+        <label class="address_list_msg" for="address_code">邮政编码</label>
+        <input type="text" placeholder="邮政编码(选填)" ng-model="addressOptionObj.code" id="address_code">
+    </div>
+    <div class="last_list" ng-click="addressObj.saveAddress(addressOptionObj)">
+        <div>保&nbsp;存</div>
+    </div>
+</ion-modal-view>

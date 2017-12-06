@@ -1,0 +1,63 @@
+<!--首页-->
+<ion-view>
+
+    <ion-header-bar class="item-input-inset">
+        <!--logo-->
+        <img ng-src="images/logo.png" alt="home-logo" style="height: 25px">
+        <!--search bar directive by jc-->
+        <div class="ctf-search-view">
+            <label class="item item-input">
+                <input class="cft-textField" ng-model="searchValue" type="text" placeholder="例：羊腿子">
+            </label>
+            <button class="ctf-search-btn" style="height: 1.6rem" ng-click="homeObj.goSearch(searchValue)"></button>
+        </div>
+        <!--<div class="button button-clear top-right-menu" ng-click="homeObj.toggleRight()" >-->
+            <!--<a class="tab-item">-->
+                <!--<i class="home-right-menu"></i>-->
+            <!--</a>-->
+        <!--</div>-->
+    </ion-header-bar>
+
+    <ion-content class="home_content" overflow-scroll="false">
+
+        <mg-slide-box source-data="homeObj.slideData"></mg-slide-box>
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="homeObj.doRefresh()">
+        </ion-refresher>
+        <div class="goods_list_wrapper">
+            <!--推荐-->
+            <div class="home_recommend" style=""></div>
+
+            <div class="row row-wrap">
+
+                <div class="col col-50 goods_cell" ng-repeat="item in homeObj.goodsDatas track by $index" ng-click="homeObj.goDetail(item)">
+
+                    <div class="cell_wrapper">
+                        <div class="goods_cell_icon" style="background-image: url({{homeObj.PicROOT_URL+item.Pic}});">
+                        </div>
+                        <div class="goods_cell_bottom">
+                            <div class="bottom_des">
+                                <p class="des_title" ng-bind="item.Name"></p>
+                                <p class="home_goods_price">
+                                    <span class="stamp">￥</span>{{item.UnitPrice}}
+                                    <span class="">
+                                        <!--des_prePrice-->
+                                        <span class="stamp">销量：</span>{{item.SaleNum}}
+                                    </span>
+                                </p>
+                            </div>
+                            <!--购买-->
+                            <button ng-if="item.StockNum > 0" class="shopping_btn_has" ng-click="homeObj.takeShorpping($event,item)"></button>
+                            <button ng-if="item.StockNum == 0" class="shopping_btn_none" ng-click="homeObj.sellOut($event)" ></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="!homeObj.moredata" on-infinite="homeObj.loadMore()" distance="1%" ></ion-infinite-scroll>
+        <p class="nomore_text" ng-if="homeObj.noneOfMoreData">没有更多商品...</p>
+    </ion-content>
+
+</ion-view>

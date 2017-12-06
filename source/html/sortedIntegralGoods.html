@@ -1,0 +1,60 @@
+<ion-view view-title="{{sortedGoodsObj.viewTitle}}">
+
+    <ion-header-bar class="search_header_bar cft_search_bar">
+        <div class="search_bar">
+            <div class="ctf-search-view search_textFiled">
+                <label class="item item-input">
+                    <input class="cft-textField" ng-model="searchStr" type="text" placeholder="例：大闸蟹">
+                </label>
+                <button class="ctf-search-btn" style="height: 1.6rem" ng-click="sortedGoodsObj.goSearch(searchStr)"></button>
+            </div>
+        </div>
+
+    </ion-header-bar>
+    <ion-header-bar class="bar-subheader cft_search_bar">
+        <div class="sort_menus">
+            <ul ng-click="sortedGoodsObj.sortAction($event)">
+                <li class="active">综合</li>
+                <li>销量<img ng-src="images/xiaoArrow.png" alt="0" ></li>
+                <li>价格<img ng-class="{true: 'priceHeigh', false: 'inPriceHeigh'}[sortedGoodsObj.isPriceHeigh]" ng-src="{{sortedGoodsObj.arrowImg}}" alt="0" ></li>
+                <li ng-click="sortedGoodsObj.toggleSorted()">筛选<img ng-src="images/xiaoArrow.png" alt="0" ></li>
+            </ul>
+        </div>
+    </ion-header-bar>
+    <ion-content class="sortedGoods_content" style="margin-top: 0">
+        <p class="data_is_null" ng-if="sortedGoodsObj.dataIsNull">没有此类商品哦...</p>
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="sortedGoodsObj.doRefresh()">
+        </ion-refresher>
+
+        <div class="goods_list_wrapper">
+            <div class="row row-wrap">
+
+                <div class="col col-50 goods_cell" ng-repeat="item in sortedGoodsObj.goodsDatas" ng-click="sortedGoodsObj.goDetail(item)">
+                    <div class="cell_wrapper">
+                        <div class="goods_cell_icon" style="background: url(http://www.sunnyshu.cn{{item.goods_introduction[0]}}) no-repeat center;background-size: contain">
+                        </div>
+                        <div class="goods_cell_bottom">
+                            <div class="bottom_des">
+                                <p class="des_title" ng-bind="item.goods_name"></p>
+                                <p class="home_goods_price">
+                                    <span class="stamp">￥</span>{{item.shop_price}}
+                                    <span class="des_prePrice">
+                                    <span class="stamp">￥</span>{{item.market_price}}
+                                    </span>
+                                </p>
+                            </div>
+                            <!--购买-->
+                            <button ng-show="item.goods_number" class="convert_btn" ng-click="convertNow($event,item)"></button>
+                            <button class="shopping_btn_none" ng-hide="item.goods_number"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <ion-infinite-scroll ng-if="!sortedGoodsObj.moredata" on-infinite="sortedGoodsObj.loadMore()" distance="1%" ></ion-infinite-scroll>
+        <p class="nomore_text" ng-if="sortedGoodsObj.noneOfMoreData">没有更多商品了...</p>
+    </ion-content>
+</ion-view>

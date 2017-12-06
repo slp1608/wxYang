@@ -1,0 +1,60 @@
+
+<ion-view>
+
+    <ion-content class="mainColor">
+        <!--下拉刷新-->
+        <ion-refresher
+                pulling-text="下拉刷新..."
+                on-refresh="addressObj.doRefresh()">
+        </ion-refresher>
+        <div style="height: 1rem"></div>
+        <p style="text-align: center;margin-top: 5px;font-size: 1.5rem" ng-if="!addressObj.adreessListDatas.length">{{addressObj.emptyPromptStr}}</p>
+        <div class="deliveryAdd_add1" ng-repeat="list in addressObj.adreessListDatas" ng-click="addressObj.selectAddress_user($index)">
+            <div class="deliveryAdd_name">
+                <span class="name">{{list.vname}}</span>
+                <span class="tel">{{list.tel}}</span>
+            </div>
+            <div class="deliveryAdd_address">
+                {{list.province}}{{list.city}}{{list.address}}
+            </div>
+
+            <div class="deliveryAdd_options">
+                    <span  ng-click="addressObj.changeDefault($index,list,$event)">
+                         <span ng-if="list.setdefault == 1">
+                            <img class="react" ng-src="images/address_chooseRed.png">
+                            <span class="default" style="color:#E80516">默认地址</span>
+                         </span>
+                        <span ng-if="list.setdefault == 0">
+                            <img class="react" ng-src="images/address_chooseGray.png">
+                            <span class="default" style="color:#666666">默认地址</span>
+                        </span>
+                    </span>
+
+                <div class="deliveryAdd_pop">
+                        <span ng-click="addressObj.openModal('edit',list,$event)">
+                            <img class="editImg" ng-src="images/addressEdit.png">
+                            <span class="editText">编辑</span>
+                        </span>
+                    <span ng-click="addressObj.showConfirm($index,list,$event)">
+                            <img class="deleteImg" ng-src="images/addressDelete.png">
+                            <span class="deleteText">删除</span>
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <!--上拉加载-->
+        <ion-infinite-scroll
+                ng-if="!addressObj.moredata"
+                on-infinite="addressObj.loadMore()"
+                distance="1%" >
+        </ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="deliveryAdd_footer" align-title="center" ng-click="addressObj.openModal('add')">
+
+        <h1 class="title">新增地址</h1>
+
+    </ion-footer-bar>
+
+</ion-view>
+

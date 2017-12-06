@@ -1,0 +1,113 @@
+.choiceAddModal{
+    width: 25rem;
+    height: 36rem;
+    min-height: 0;
+    left: 0;right: 0;top: 0;bottom: 0;
+    margin: auto;
+    border: 1px solid lightgray;
+    font-size: 2.1rem;
+    background-color: white;
+}
+.address_modal_header {
+    color: #333333;
+    left: 1rem;
+    line-height: 3rem;
+}
+.address_checkbox {
+    border: none;
+}
+.address_checkbox .item-complex .item-content, .item-radio .item-content span{
+    padding-left: 30px;
+}
+.item-radio .radio-icon{
+    position: absolute;
+    left: .1rem;
+    top: -.1rem;
+}
+.address_checkbox .ion-checkmark:before{
+    /*font-size: 10rem;*/
+    /*color: red;*/
+    content: "";
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background-color: red;
+    border-radius: 50%;
+}
+.address_checkbox_div {
+    width: 1.6rem;
+    height: 1.6rem;
+    position: absolute;
+    top: 1rem;
+    border: solid 1px darkgray;
+    border-radius: 50%;
+}
+.item-complex .item-content, .item-radio .item-content{
+    padding: 6px 19px 6px 12px;
+}
+/*.choiceAddressModal{*/
+    /*width: 25rem;*/
+    /*height: 36rem;*/
+    /*background-color: white;*/
+/*}*/
+/*.choiceAddressModal .scroll-view.scroll-y{*/
+    /*overflow-y: hidden;*/
+/*}*/
+
+
+/*.choiceAddressModal .choiceAddress{*/
+    /*border-bottom: 1px lightgray solid;*/
+/*}*/
+/*.choiceAddressModal span{*/
+    /*margin-left:14%;*/
+    /*line-height: 4rem;*/
+/*}*/
+/*.choiceAddressModal .ShoppingAddress{*/
+    /*margin-left: 5%;*/
+    /*height: 31rem;*/
+/*}*/
+
+
+/*.choiceAddressModal .ShoppingAddress label{*/
+    /*width: 100%;*/
+    /*margin: .5rem 0 1.5rem;*/
+    /*height: 2rem;*/
+    /*position: relative;*/
+    /*display: block;*/
+    /*padding-left: 10%;*/
+    /*font-size: 1.8rem;*/
+/*}*/
+
+/*.choiceAddressModal .ShoppingAddress .radio input{*/
+    /*position: absolute;*/
+    /*left: -9999px;*/
+/*}*/
+/*.choiceAddressModal .ShoppingAddress .radio i{*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*top: .5rem;*/
+    /*left: 0;*/
+    /*width: 1.5rem;*/
+    /*height: 1.5rem;*/
+    /*outline: 0;*/
+    /*border: 1px solid black;*/
+    /*background: white;*/
+    /*border-radius: 50%;*/
+/*}*/
+/*.choiceAddressModal .ShoppingAddress .radio input:checked+i{*/
+    /*border-color: black;*/
+/*}*/
+/*.choiceAddressModal .ShoppingAddress .radio input+i:after{*/
+    /*position: absolute;*/
+    /*content: '';*/
+    /*top: .2rem;*/
+    /*left: .2rem;*/
+    /*width: .9rem;*/
+    /*height: .9rem;*/
+    /*border-radius: 50%;*/
+    /*background-color: red;*/
+    /*opacity: 0;*/
+/*}*/
+/*.choiceAddressModal .ShoppingAddress .radio input:checked+i:after{*/
+    /*opacity: 1;*/
+/*}*/

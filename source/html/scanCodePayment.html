@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SUNNY SHU官方商城</title>
+    <link rel="stylesheet" href="lib/css/ionic.min.css">
+    <style>
+        /*html{*/
+            /*font-size: 62.5%;*/
+        /*}*/
+        /*加载动画*/
+        .selfSpinner svg {
+            width: 36px;
+            height: 36px;
+            stroke: white;
+            fill: #444;
+        }
+        /*扫码支付页面*/
+        .scanCodePayTitle {
+            text-align: center;
+            border: none;
+            margin-top: 1rem;
+        }
+        #scanCodePayLabel{
+            height: 8rem;
+            border: none;
+            border-bottom: solid .1rem #dddddd;
+            border-radius: 0;
+            width: 94%;
+            margin-left: 3%;
+        }
+        #scanCodePayLabel input{
+            font-size: 3rem;
+            /*display: block;*/
+            height: 4rem;
+            line-height: 4rem;
+            margin-left: 1rem;
+        }
+        #scanCodePayLabel ::-webkit-input-placeholder{
+            font-size: 2rem;
+            /*!*display: block;*!*/
+            /*!*margin-top: -1rem;*!*/
+        }
+        .scanCodePayRMB{
+            font-size: 2rem;
+            /*margin-top: 1rem;*/
+        }
+        .scanCodePayTipSpan{
+            color: #8f8f8f;
+            margin: 1rem;
+        }
+        .scanCodePayBtn{
+            width: 95%;
+            margin-top: 1rem;
+            margin-left: 2.5%;
+            min-height: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <!--<ion-nav-view>-->
+        <ion-view ng-controller="scanCodePaymentController">
+
+
+            <ion-content class="mainColor">
+                <div class="item mainColor scanCodePayTitle">
+                    <h2 style="font-size: 1.5rem">sunnyshu加盟店</h2>
+                    <!--<p>****加盟店</p>-->
+                </div>
+                <div class="list card">
+                    <div style="height: 1rem"></div>
+
+                    <span class="scanCodePayTipSpan">消费总额</span>
+
+                    <label class="item item-input" id="scanCodePayLabel">
+                        <span class="scanCodePayRMB">¥</span>
+                        <input type="text" placeholder="请输入" ng-model="scanCodeObj.price">
+                    </label>
+                    <div style="height: 1rem"></div>
+                    <span class="scanCodePayTipSpan">可询问店家您的消费总额</span>
+                    <div style="height: 1rem"></div>
+
+                </div>
+
+                <button class="button button-balanced scanCodePayBtn" ng-click="scanCodeObj.confirmPayment()">确认付款</button>
+
+
+
+
+            </ion-content>
+
+
+        </ion-view>
+    <!--</ion-nav-view>-->
+
+</body>
+</html>
+<script src="lib/js/ionic.bundle.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="lib/js/angular-cookies.min.js"></script>
+<script>
+    angular.module('myApp',['ionic','ngCookies']).controller('scanCodePaymentController',['$scope','$cookies','$ionicLoading','$http',function ($scope,$cookies,$ionicLoading,$http) {
+        //全局提示的弹窗
+        $scope.popTipsShow = function (msg) {
+            $ionicLoading.show({
+                template: msg,
+                duration: 1000,
+                noBackdrop: true
+            }).then(function(){
+//                console.log("打开提示弹窗");
+            });
+        };
+        //全局加载中提示
+        $scope.loadingShow = function (str) {
+            str = str ? str : "加载中...";
+            $ionicLoading.show({
+                template: '<ion-spinner class="selfSpinner">' + str + '</ion-spinner>',
+                noBackdrop:true
+            });
+        };
+        //提示隐藏
+        $scope.loadingOrPopTipsHide = function(){
+            $ionicLoading.hide();
+        };
+        $scope.scanCodeObj = {
+            price:null,
+            confirmPayment:confirmPayment
+
+        };
+        console.log(location.href);
+        //微信jsAPI接入
+        $http({
+            method:'GET',
+            url:'http://www.sunnyshu.cn/sunny/wap/api/getSign',
+            timeout:20000,
+            params:{
+                url:location.href
+            }
+        }).then(function (result) {
+            console.log(result);
+            result = result.data;
+            wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: result.appId, // 必填，公众号的唯一标识
+                timestamp: result.timestamp, // 必填，生成签名的时间戳
+                nonceStr: result.nonceStr, // 必填，生成签名的随机串
+                signature: result.signature,// 必填，签名，见附录1
+                jsApiList: ["chooseWXPay"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            });
+        });
+        function confirmPayment() {
+            if ($scope.scanCodeObj.price == 0 || !$scope.scanCodeObj.price){
+                $scope.popTipsShow("请输入您要付款的金额!");
+                return;
+            }
+            $scope.loadingShow();
+            $http({
+                method:'POST',
+                url:'http://www.sunnyshu.cn/sunny/wap/api/wxFranchise',
+                params:{
+                    sessid:'',
+                    franchise_id:$cookies.get('napaid'),
+                    price:$scope.scanCodeObj.price
+                },
+                timeout:20000
+            }).then(function (result) {
+                console.log(result);
+                result = result.data;
+                $scope.loadingOrPopTipsHide();
+                if (result.status == 0){
+                    result = result.parameters;
+                    wx.chooseWXPay({
+                        timestamp: result.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                        nonceStr: result.nonceStr, // 支付签名随机串，不长于 32 位
+                        package: result.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                        signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                        paySign: result.paySign, // 支付签名
+                        success: function (res) {
+                            // 支付成功后的回调函数
+                            if(res.errMsg == "chooseWXPay:ok"){
+                                $scope.popTipsShow("支付成功!");
+                            }else {
+                                $scope.popTipsShow("支付出错!");
+                            }
+                        }
+                    });
+                }else {
+                    $scope.popTipsShow(result.desc);
+                }
+            },function (err) {
+
+            });
+        }
+    }])
+</script>
+
