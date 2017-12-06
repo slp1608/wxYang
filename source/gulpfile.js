@@ -5,8 +5,6 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin'), //html压缩
     imagemin = require('gulp-imagemin'),//图片压缩
     pngcrush = require('imagemin-pngcrush'),
-    // sass = require('gulp-ruby-sass'),//scss编译
-    // sass = require('gulp-sass'),//scss编译
     autoprefixer = require('gulp-autoprefixer'),//css3代码自动补全插件
     minifycss = require('gulp-minify-css'),//css压缩
     jshint = require('gulp-jshint'),//js检测
@@ -32,17 +30,6 @@ gulp.task('js', function() {
         .pipe(gulp.dest('../js'))
         .pipe(notify({ message: 'js task ok' }));
 });
-//编译并压缩scss
-// gulp.task('scss', function() {
-//     return gulp.source('source/scss/*.scss')
-//         .pipe(sass({ style: 'expanded' }))
-//         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-//         .pipe(gulp.dest('dist/css'))
-//         .pipe(rename({suffix: '.min'}))
-//         .pipe(minifycss())
-//         .pipe(gulp.dest('dist/css'))
-//         .pipe(notify({ essage: 'Styles task complete' }));
-// });
 // 合并、压缩、重命名css
 gulp.task('small_css', function() {
     return gulp.src('css/small_size/*.css')
@@ -73,7 +60,7 @@ gulp.task('max_size', function() {
 });
 // 压缩图片
 gulp.task('img', function() {
-    return gulp.src('html/images/*')
+    return gulp.src('images/*.{png,jpg,gif,ico}')
         .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
