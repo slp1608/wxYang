@@ -9,7 +9,7 @@
             <label class="item item-input">
                 <input class="cft-textField" ng-model="searchValue" type="text" placeholder="例：羊腿子">
             </label>
-            <button class="ctf-search-btn" style="height: 1.6rem" ng-click="homeObj.goSearch(searchValue)"></button>
+            <button class="ctf-search-btn" ng-click="homeObj.goSearch(searchValue)"></button>
         </div>
         <!--<div class="button button-clear top-right-menu" ng-click="homeObj.toggleRight()" >-->
             <!--<a class="tab-item">-->
@@ -30,7 +30,6 @@
             <div class="home_recommend"></div>
 
             <div class="row row-wrap">
-
                 <div class="col col-50 goods_cell" ng-repeat="item in homeObj.goodsDatas track by $index" ng-click="homeObj.goDetail(item)">
 
                     <div class="cell_wrapper">
@@ -50,7 +49,6 @@
                             <!--购买-->
                             <button ng-if="item.StockNum > 0" class="shopping_btn_has" ng-click="homeObj.takeShorpping($event,item)"></button>
                             <button ng-if="item.StockNum == 0" class="shopping_btn_none" ng-click="homeObj.sellOut($event)" ></button>
-
                         </div>
                     </div>
                 </div>
