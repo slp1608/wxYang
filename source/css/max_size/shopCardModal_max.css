@@ -36,7 +36,7 @@ div.modal-backdrop{
 .shopCard_top>img{
     /*width:29.2rem;*/
     margin-left:3rem;
-    height:15.4rem;
+    height: 70%;
 }
 /*card 头部右边的内容*/
 .shopCard_top>div{

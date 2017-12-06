@@ -124,10 +124,3 @@
 #shoppingCartBottom .shoppingCartBottom_right button{
     font-size: 1.5rem
 }
-/*第一部分左边图片*/
-.shopCard_top>img{
-    /*width:14.6rem;*/
-    margin-left:1.5rem;
-    width: 50%;
-    height:6.7rem;
-}

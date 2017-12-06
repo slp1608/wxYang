@@ -4,6 +4,7 @@ html{
 }
 body,.scroll{
     -webkit-user-select:auto;
+    font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 .cft-tabs ion-tab a{
     padding: 0;
@@ -30,7 +31,6 @@ body,.scroll{
 .bar-home-on {
     background: url("../../images/homeselected.png") no-repeat center top;
     background-size: contain;
-
 }
 .bar-home-off {
     background: url("../../images/shomepage.png") no-repeat center top;

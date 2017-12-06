@@ -2,17 +2,17 @@
 
     <div id="card">
         <div class="shopCard_top">
-            <img ng-src="{{modal.IconRootURL + modal.goodsData.goods_introduction[0]}}" alt="">
+            <img ng-src="{{modal.PicROOT_URL + modal.goodsData.Pic}}" alt="">
             <div>
                 <div class="shopModal_title">
                     <!--|limitTo:18-->
-                    <span class="span_title">{{modal.goodsData.goods_name}}</span>
-                    <p><span>￥</span>{{modal.goodsData.shop_price}}/件</p>
+                    <span class="span_title">{{modal.goodsData.Name}}</span>
+                    <p><span>￥</span>{{modal.goodsData.UnitPrice}}/件</p>
                 </div>
 
                 <div class="shopCard_topBottom">
-                    <span>库存{{modal.goodsData.goods_number}}件</span>
-                    <span>数量 {{collect.val}}</span>
+                    <span>库存{{modal.goodsData.StockNum}}件</span>
+                    <span>已选{{collect.val}}</span>
                 </div>
 
 

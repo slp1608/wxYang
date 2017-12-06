@@ -27,6 +27,7 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
 }]).controller('goodsDetailController',['$scope','$ionicScrollDelegate','$location','$stateParams','$state','$ionicViewSwitcher','$ionicModal','HttpFactory','$rootScope','$timeout',function ($scope,$ionicScrollDelegate,$location,$stateParams,$state,$ionicViewSwitcher,$ionicModal,HttpFactory,$rootScope,$timeout) {
     
     $scope.goodsObj = {
+        PicROOT_URL: PicROOT_URL,
         //商品id
         goods_id: $stateParams.goods_id,
         //是否售罄
@@ -92,6 +93,7 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
         //显示加载动画
         $scope.loadingShow();
         HttpFactory.getData("/GetProductInfo",params).then(function (result) {
+            console.log(result[0]);
             var data = result[0];
             $scope.loadingOrPopTipsHide();
             if (data.status === 10001){
@@ -123,7 +125,6 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
         //    $scope.goodsObj.collectName = "已收藏";
         //    var collectParams = {
         //        goods_id: goods_id,
-        //        is_integral: "0",
         //        sessid:SESSID
         //    };
         //    HttpFactory.getData("/api/ucollection",collectParams,"POST").then(function (result) {
@@ -169,7 +170,6 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
     var slideLine = document.getElementById('slideLine');
     
     function selectInfo() {
-        
         $scope.goodsObj.isInfoActive = true;
         $scope.goodsObj.isParamActive = false;
         $scope.goodsObj.isAssessActive = false;
@@ -178,7 +178,6 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
         $ionicScrollDelegate.resize();
     }
     function selectParam() {
-        
         $scope.goodsObj.isInfoActive = false;
         $scope.goodsObj.isAssessActive = false;
         $scope.goodsObj.isParamActive = true;
@@ -186,20 +185,17 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
         $scope.goodsObj.selection='goodsParam';
         $ionicScrollDelegate.resize();
         setTimeout(function () {
-        
             $ionicScrollDelegate.resize();
         },200);
 
     }
     function selectAssess() {
-        
         $scope.goodsObj.isInfoActive = false;
         $scope.goodsObj.isParamActive = false;
         $scope.goodsObj.isAssessActive = true;
         slideLine.style.left = "71.4%";
         $scope.goodsObj.selection='goodsAssess';
         $ionicScrollDelegate.resize();
-        
     }
 
     //点击底部的购物车按钮

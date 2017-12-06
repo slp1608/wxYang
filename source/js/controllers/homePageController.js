@@ -1,7 +1,3 @@
-/**
-/**
- * Created by qingyun on 16/11/30.
- */
 angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($stateProvider) {
     $stateProvider.state('tabs.homePage',{
         url:'/homePage',
@@ -21,7 +17,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
            bannerData: [],
            ishome: 0
        },
-       PicROOT_URL: '',
+       PicROOT_URL: PicROOT_URL,
        //通过tab 获得侧边栏数据
        cateData: {},
        //当前页数
@@ -49,7 +45,6 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
        goSearch: goSearch
     };
     console.log("homepage");
-    $scope.homeObj.PicROOT_URL = PicROOT_URL;
     var params = {
         classId: 1,
         pageNum: 1
@@ -73,7 +68,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
         },300)
     });
     
-    //侧栏菜单按钮
+    // //侧栏菜单按钮
     function toggleRight() {
         $scope.sideMenuObj.sideMenuOnOpened(0,0);
         $ionicSideMenuDelegate.toggleRight();
@@ -82,7 +77,6 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     //进入商品详情
     function goDetail(item) {
         // $rootScope.hideTabs = true;
-
         $state.go('tabs.goodsDetail',{goods_id: item.id});
         $ionicViewSwitcher.nextDirection('forward');
     }
@@ -95,11 +89,11 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
             }
         },
         add:function () {
-            if($scope.collect.val > $scope.modal.goodsData.goods_number){
+            if($scope.collect.val > ($scope.modal.goodsData.StockNum - 1) ){
                 $scope.popTipsShow("抱歉,您添加的商品数量大于库存量");
                 return;
             }
-            $scope.collect.val ++;
+            $scope.collect.val++;
         }
     };
     //加入购物车的模态窗口
@@ -156,8 +150,9 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     function takeShorpping($event,item) {
         $event.stopPropagation();
         $scope.openModal();
+        console.log(item);
         $scope.modal.goodsData = item;
-        $scope.modal.IconRootURL = IconROOT_URL;
+        $scope.modal.PicROOT_URL = PicROOT_URL;
     }
     //下拉刷新
     function doRefresh() {
@@ -220,7 +215,6 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
             .then(
                 loadMoreData.success,
                 loadMoreData.error);
-        
     }
 
 }]);

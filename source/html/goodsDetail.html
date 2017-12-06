@@ -2,7 +2,6 @@
     <!--hide-tabs-->
     <ion-content class="detail-view" overflow-scroll="false" on-scroll="goodsObj.scollOption()">
         <mg-slide-box source-data="goodsObj.slideData"></mg-slide-box>
-        <!--<mg-slide-box source-array="home.adsArray"></mg-slide-box>-->
         <!--商品相关信息展示-->
         <div class="goods-detail-wrapper">
             <div class="goods-title row">
@@ -15,8 +14,8 @@
                 </div>
             </div>
             <p class="goods-price">
-                <span ng-if="goodsObj.goodsData.is_integral == '0'" class="stamp">￥</span>
-                <span ng-if="goodsObj.goodsData.is_integral == '0'">{{goodsObj.goodsData.UnitPrice}}</span>
+                <span class="stamp">￥</span>
+                <span>{{goodsObj.goodsData.UnitPrice}}</span>
                 <span class="prePrice">原价 : {{goodsObj.goodsData.MarketPrice}}</span>
             </p>
             <div class="row relatedMsg">
@@ -57,15 +56,14 @@
             <div class="selection-content" ng-switch on="goodsObj.selection">
                 <!--商品详情-->
                 <div ng-switch-when="goodsInfo">
-                    <img ng-src="http://www.sunnyshu.cn{{iconUrl}}" alt="ingo-image" style="width: 100%;padding-top: 12px;padding-bottom: 8px" ng-repeat="iconUrl in goodsObj.goodsData.goods_details">
+                    <img ng-src="{{PicROOT_URL+iconUrl}}" alt="ingo-image" style="width: 100%;padding-top: 12px;padding-bottom: 8px" ng-repeat="iconUrl in goodsObj.goodsData.goods_details">
                 </div>
                 <!--商品参数-->
                 <div ng-switch-when="goodsParam">
-                    <img ng-src="http://www.sunnyshu.cn{{goodsObj.goodsData.goods_spec[0]}}" style="width: 100%;padding-top: 12px;padding-bottom: 8px" alt="param-image">
+                    <img ng-src="{{PicROOT_URL+goodsObj.goodsData.goods_spec[0]}}" style="width: 100%;padding-top: 12px;padding-bottom: 8px" alt="param-image">
                 </div>
                 <!--商品评价列表-->
                 <div ng-switch-when="goodsAssess">
-
                     <div class="assess-item">
                         <div class="assess-head row">
                             <div class="user-icon" style="background: url('images/meinvTestIcon.png') no-repeat center"></div>
@@ -86,7 +84,7 @@
     </ion-content>
     <!--底部 按钮（tab）菜单-->
     <div class="detail-bottom-bar">
-        <div class="row common_bottom_wrapper" ng-if="goodsObj.is_integral == '0'">
+        <div class="row common_bottom_wrapper">
             <div class="col col-20">
                 <a class="tab-item" href="#">
                     <i class="icon cft-home"></i>
@@ -97,12 +95,11 @@
                 <a class="tab-item" ng-click="goodsObj.goShoppingCar()">
                     <i class="icon cft-shopcar"></i>
                     购物车
-
                 </a>
                 <span class="badge badge-assertive" style="position: absolute;top: 0;margin-left: .5rem;font-size: 1rem">{{user_Car_Num}}</span>
             </div>
             <div class="col col-60">
-                <div class="row" ng-if="goodsObj.goodsData.goods_number > 0">
+                <div class="row" ng-if="goodsObj.goodsData.StockNum > 0">
                     <div class="col takeShorpping" ng-click="goodsObj.putinShoppingCar()">
                         <p>加入购物车</p>
                     </div>
@@ -110,22 +107,12 @@
                         <p>立即购买</p>
                     </div>
                 </div>
-                <div class="row" ng-if="goodsObj.goodsData.goods_number == 0">
+                <div class="row" ng-if="goodsObj.goodsData.StockNum <= 0">
                     <div class="col takeShorpping" style="background-color: #666">
                         <p>已售罄</p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row integral_bottom_wrapper" ng-if="goodsObj.is_integral == '1'">
-            <div class="col col-20">
-                <a class="tab-item" href="#/tabs/homePage">
-                    <i class="icon cft-home"></i>
-                    首页
-                </a>
-            </div>
-            <button ng-if="goodsObj.goodsData.goods_number > 0" class="lijiConvert" ng-click="goodsObj.convertOption()">立 即 兑 换</button>
-            <button ng-if="goodsObj.goodsData.goods_number == 0" class="lijiConvert" style="background-color: #666">已 售 罄</button>
         </div>
     </div>
 
