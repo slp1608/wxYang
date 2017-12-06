@@ -28,7 +28,7 @@
     background-size: contain;
     height: 2.8rem;
     margin: .3rem 0;
-    width: 100%
+    width: 100%;
 }
 .goods_cell {
     background-color: rgb(238,238,238);
@@ -54,12 +54,10 @@
 }
 
 .bottom_des>p {
-
     padding: 0;
     margin:0;
     font-size: 1.2rem;
     color: #E60012;
-
 }
 .bottom_des>p.home_goods_price {
     height: 2.8rem;
@@ -132,5 +130,5 @@ p span.stamp {
     background-size: contain;
     height: 2.8rem;
     margin: .3rem 0;
-    width: 100%
+    width: 100%;
 }
