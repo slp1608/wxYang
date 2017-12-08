@@ -55,9 +55,9 @@ angular.module('cftApp.personal',[]).config(['$stateProvider',function ($statePr
         $state.go('tabs.totalScore');
     }
     //进入购物车页面
-    function showShoppingCar() {
-        $state.go('tabs.shoppingCart');
-    }
+    //function showShoppingCar() {
+    //    $state.go('tabs.shoppingCart');
+    //}
     //进入收货地址
     function showAddress() {
         MainData.isFromPersonToReceiptAddress = true;

@@ -25,14 +25,10 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
        sideObj: {},
        //商品数据
        goodsDatas: [],
-       //是否加载更多
-       moredata: false,
        //是否有更多数据
        noneOfMoreData: false,
        //已售罄
        sellOut: sellOut,
-       //切换侧边栏
-       toggleRight: toggleRight,
        //进入商品详情页
        goDetail: goDetail,
        //加入购物车
@@ -59,19 +55,6 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
         $rootScope.hideTabs = true;
         $scope.sideMenuObj.isSearch = true;
         $ionicViewSwitcher.nextDirection('forward');
-    }
-    //首页跳转全部商品分类
-    $scope.$on("home_sortedView",function (event,data) {
-        setTimeout(function () {
-            $state.go("tabs.sortedGoods",{searchStr:'',cate_id: data});
-            $ionicViewSwitcher.nextDirection('forward');
-        },300)
-    });
-    
-    // //侧栏菜单按钮
-    function toggleRight() {
-        $scope.sideMenuObj.sideMenuOnOpened(0,0);
-        $ionicSideMenuDelegate.toggleRight();
     }
 
     //进入商品详情
@@ -114,8 +97,8 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
         
         var params = {
             goods_id: $scope.modal.goodsData.goods_id,
-            num:$scope.collect.val,
-            sessid:SESSID
+            num: $scope.collect.val,
+            sessid: SESSID
         };
         HttpFactory.getData("/api/ushoppingCart",params,"POST").then(function (result) {
             
@@ -156,18 +139,14 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     }
     //下拉刷新
     function doRefresh() {
+        console.log("doRefresh success");
         $scope.homeObj.currentpage = 1;
-        params.page = $scope.homeObj.currentpage;
-
+        params.pageNum = $scope.homeObj.currentpage;
         var getData = {
             success: function (result) {
                 console.log(result);
-                if (result.length >= 10){
-                    $scope.homeObj.moredata = false;
-                }
                 $scope.homeObj.slideData.bannerData = result["bannerData"];
-                $scope.homeObj.goodsDatas = result["goodsData"];
-                $scope.sideMenuObj.sortedSecondClassObj = result["cateData"];
+                $scope.homeObj.goodsDatas = result;
                 $scope.homeObj.currentpage++;
                 $scope.$broadcast('scroll.refreshComplete');
             },
@@ -180,18 +159,15 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
                 getData.success,
                 getData.error);
     }
-
     //上拉加载
     function loadMore() {
         var loadMoreData = {
             success: function (result) {
-                console.log("success");
+                console.log("loadMore success");
                 console.log(result);
                 if (result.length > 0){
-                    $scope.homeObj.moredata = false;
                     $scope.homeObj.noneOfMoreData = false;
                 }else {
-                    $scope.homeObj.moredata = true;
                     $scope.homeObj.noneOfMoreData = true;
                 }
                 if ($scope.homeObj.currentpage == 1)

@@ -21,9 +21,9 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         }
     });
 }]).controller('shoppingCartController',['$scope','$rootScope','$state','$ionicPopup','$timeout','$ionicViewSwitcher','HttpFactory','MainData',function ($scope,$rootScope,$state,$ionicPopup,$timeout,$ionicViewSwitcher,HttpFactory,MainData) {
-    $scope.$on('$ionicView.beforeEnter', function () {
-        $rootScope.hideTabs = true;
-    });
+    //$scope.$on('$ionicView.beforeEnter', function () {
+    //    $rootScope.hideTabs = true;
+    //});
 
     // 收到数据
     $scope.shoppingCart = {

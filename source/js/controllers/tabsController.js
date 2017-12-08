@@ -113,19 +113,19 @@ angular.module('cftApp.tabs',[])
         // });
 
         $rootScope.$on('$stateChangeStart',function (evt,current,previous) {
-            var self_kf_btn = angular.element(document.getElementById("self_kf_btn"));
-            if (current.url == "/personal" || current.url == "/myOrder" || current.url == "/collectionPager" || current.url == "/shoppingCart" || current.url == "/totalScore" || current.url == "/receiptAddress" || current.url == "/payRecord" || current.url == "/scanCodePayment"){
-                self_kf_btn.css("display",'none');
-            }else {
-                self_kf_btn.css("display",'');
-                if (current.url == '/napaStores'){
-                    is_KF_scanQRCode = '扫码';
-                    self_kf_btn.css("background","url('images/paymoney.png') no-repeat center/100%");
-                }else {
-                    is_KF_scanQRCode = '';
-                    self_kf_btn.css("background","url('images/service1.png') no-repeat center/100%");
-                }
-            }
+            //var self_kf_btn = angular.element(document.getElementById("self_kf_btn"));
+            //if (current.url == "/personal" || current.url == "/myOrder" || current.url == "/collectionPager" || current.url == "/shoppingCart" || current.url == "/totalScore" || current.url == "/receiptAddress" || current.url == "/payRecord" || current.url == "/scanCodePayment"){
+            //    self_kf_btn.css("display",'none');
+            //}else {
+            //    self_kf_btn.css("display",'');
+            //    if (current.url == '/napaStores'){
+            //        is_KF_scanQRCode = '扫码';
+            //        self_kf_btn.css("background","url('images/paymoney.png') no-repeat center/100%");
+            //    }else {
+            //        is_KF_scanQRCode = '';
+            //        self_kf_btn.css("background","url('images/service1.png') no-repeat center/100%");
+            //    }
+            //}
             var update_wx_title = function(title) {
                 var body = document.getElementsByTagName('body')[0];
                 document.title = title;
@@ -196,6 +196,10 @@ angular.module('cftApp.tabs',[])
         //进去积分商城的方法
         $scope.clickHome = function () {
             $state.go("tabs.integralStore");
+        };
+        //进入购物车的方法
+        $scope.clickShoppingCart = function () {
+            $state.go("tabs.shoppingCart");
         };
         //进入个人中心的方法
         $scope.clickPersonal = function () {

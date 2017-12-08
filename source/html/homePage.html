@@ -7,15 +7,10 @@
         <!--search bar directive by jc-->
         <div class="ctf-search-view">
             <label class="item item-input">
-                <input class="cft-textField" ng-model="searchValue" type="text" placeholder="例：羊腿子">
+                <input class="cft-textField" ng-model="searchValue" type="text" placeholder="例：羊肉卷">
             </label>
             <button class="ctf-search-btn" ng-click="homeObj.goSearch(searchValue)"></button>
         </div>
-        <!--<div class="button button-clear top-right-menu" ng-click="homeObj.toggleRight()" >-->
-            <!--<a class="tab-item">-->
-                <!--<i class="home-right-menu"></i>-->
-            <!--</a>-->
-        <!--</div>-->
     </ion-header-bar>
 
     <ion-content class="home_content" overflow-scroll="false">
@@ -39,11 +34,8 @@
                             <div class="bottom_des">
                                 <p class="des_title" ng-bind="item.Name"></p>
                                 <p class="home_goods_price">
-                                    <span class="stamp">￥</span>{{item.UnitPrice}}
-                                    <!--<span class="">-->
-                                        <!--des_prePrice-->
-                                        <span class="stamp">销量：</span>{{item.SaleNum}}
-                                    <!--</span>-->
+                                    <span class="stamp">￥{{item.UnitPrice}}</span>
+                                    <span class="stamp">销量：{{item.SaleNum}}</span>
                                 </p>
                             </div>
                             <!--购买-->
