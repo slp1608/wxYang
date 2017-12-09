@@ -21,7 +21,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
        //通过tab 获得侧边栏数据
        cateData: {},
        //当前页数
-       currentpage: 1,
+       pageNum: 1,
        sideObj: {},
        //商品数据
        goodsDatas: [],
@@ -43,7 +43,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     console.log("homepage");
     var params = {
         classId: 1,
-        pageNum: 1
+        pageNum: $scope.homeObj.pageNum
     };
     $scope.$on('$ionicView.beforeEnter', function () {
         $rootScope.hideTabs = false;
@@ -102,8 +102,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
         };
         HttpFactory.getData("/api/ushoppingCart",params,"POST").then(function (result) {
             
-            if (result.status == 0) {
-                
+            if ( !result.status ) {
                 user_car_num += 1;
                 $scope.user_Car_Num += user_car_num;
                 $scope.modal.hide();

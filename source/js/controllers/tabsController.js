@@ -3,7 +3,7 @@
  * Created by qingyun on 16/11/30.
  */
 angular.module('cftApp.tabs',[])
-    .controller('tabsController',['$scope','$rootScope','$ionicViewSwitcher','$location','$state','$ionicLoading','$ionicGesture','$document','HttpFactory','WebIMWidget','RongCustomerService','CftStore',function ($scope, $rootScope, $ionicViewSwitcher, $location, $state, $ionicLoading, $ionicGesture, $document, HttpFactory,WebIMWidget,RongCustomerService, CftStore) {
+    .controller('tabsController',['$scope','$rootScope','$ionicViewSwitcher','$location','$state','$ionicLoading','$ionicGesture','$document','HttpFactory','CftStore',function ($scope, $rootScope, $ionicViewSwitcher, $location, $state, $ionicLoading, $ionicGesture, $document, HttpFactory, CftStore) {
         var sideMenuObj = $scope.sideMenuObj = {
             //是否是积分商品 0 普通商品 1 积分商品
             is_integral: 0,
