@@ -93,21 +93,21 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
         //显示加载动画
         $scope.loadingShow();
         HttpFactory.getData("/GetProductInfo",params).then(function (result) {
-            console.log(result[0]);
-            var data = result[0];
+            console.log(result);
+            var data = result;
             $scope.loadingOrPopTipsHide();
-            if (data.status === 10001){
-                $scope.popTipsShow("抱歉,该商品未上架!");
-                $timeout(function () {
-                    window.history.back();
-                },1000)
-            }
+            //if (data.status === 10001){
+            //    $scope.popTipsShow("抱歉,该商品未上架!");
+            //    $timeout(function () {
+            //        window.history.back();
+            //    },1000)
+            //}
             if (data.StockNum == 0){
                 $scope.goodsObj.isSellOut = true;
             }
-            $scope.goodsObj.slideData.bannerData = data["goods_introduction"];
+            $scope.goodsObj.slideData.bannerData = data["Pic"];
+            $scope.goodsObj.slideData.ClassId = data["id"]+'/mainPic/';
             $scope.goodsObj.goodsData = data;
-            
             if ($scope.goodsObj.goodsData.is_coll == 1){
                 $scope.goodsObj.isCollect = true;
                 $scope.goodsObj.collectName = "已收藏";

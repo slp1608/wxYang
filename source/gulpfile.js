@@ -59,16 +59,16 @@ gulp.task('max_size', function() {
         .pipe(notify({ message: 'css task ok' }));
 });
 // 压缩图片
-gulp.task('img', function() {
-    return gulp.src('images/*.{png,jpg,gif,ico}')
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngcrush()]
-        }))
-        .pipe(gulp.dest('../images'))
-        .pipe(notify({ message: 'img task ok' }));
-});
+//gulp.task('img', function() {
+//    return gulp.src('images/*.{png,jpg,gif,ico}')
+//        .pipe(imagemin({
+//            progressive: true,
+//            svgoPlugins: [{removeViewBox: false}],
+//            use: [pngcrush()]
+//        }))
+//        .pipe(gulp.dest('../images'))
+//        .pipe(notify({ message: 'img task ok' }));
+//});
 // 压缩html
 gulp.task('html', function() {
     return gulp.src('html/*.html')

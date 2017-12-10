@@ -56,11 +56,11 @@
             <div class="selection-content" ng-switch on="goodsObj.selection">
                 <!--商品详情-->
                 <div ng-switch-when="goodsInfo">
-                    <img ng-src="{{PicROOT_URL+iconUrl}}" alt="ingo-image" style="width: 100%;padding-top: 12px;padding-bottom: 8px" ng-repeat="iconUrl in goodsObj.goodsData.goods_details">
+                    <img ng-src="{{goodsObj.PicROOT_URL+goodsObj.goodsData.id+'/mainPic/'+iconUrl}}" alt="ingo-image" style="width: 100%;" ng-repeat="iconUrl in goodsObj.goodsData.DetailPic">
                 </div>
                 <!--商品参数-->
                 <div ng-switch-when="goodsParam">
-                    <img ng-src="{{PicROOT_URL+goodsObj.goodsData.goods_spec[0]}}" style="width: 100%;padding-top: 12px;padding-bottom: 8px" alt="param-image">
+                    <img ng-src="{{goodsObj.PicROOT_URL+goodsObj.goodsData.id+'/mainPic/'+goodsObj.goodsData.DetailPic[0]}}" style="width: 100%;" alt="param-image">
                 </div>
                 <!--商品评价列表-->
                 <div ng-switch-when="goodsAssess">

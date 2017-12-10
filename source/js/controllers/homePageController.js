@@ -96,22 +96,22 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     $scope.addToShoppingCar = function () {
         
         var params = {
-            goods_id: $scope.modal.goodsData.goods_id,
+            productId: $scope.modal.goodsData.id,
             num: $scope.collect.val,
-            sessid: SESSID
+            userId: 1
         };
-        HttpFactory.getData("/api/ushoppingCart",params,"POST").then(function (result) {
-            
-            if ( !result.status ) {
-                user_car_num += 1;
-                $scope.user_Car_Num += user_car_num;
+        console.log(params);
+        HttpFactory.getData("/UpdateShopCart",params,"POST").then(function (result) {
+            console.log("返回的数据");
+            console.log(result);
+            if ( result.returnVal === 'success' ) {
                 $scope.modal.hide();
                 $scope.popTipsShow("加入购物车成功");
             }else {
                 $scope.popTipsShow("加入购物车失败");
             }
         },function (err) {
-            
+
         });
     };
     //模态窗口的立即购买

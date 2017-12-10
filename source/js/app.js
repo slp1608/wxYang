@@ -25,7 +25,7 @@ var ROOT_URL = "http://www.shanghairita.com/mall/public",
     perPageCount = 10,
     user_car_num = '',
     IconROOT_URL = "http://www.shanghairita.com",
-    PicROOT_URL = "http://www.shanghairita.com/mall/public/image/",
+    PicROOT_URL = "http://www.shanghairita.com/mall/public/pic/",
     SESSID = "";
 
 

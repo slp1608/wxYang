@@ -30,19 +30,19 @@
 
                 <!--商品图片-->
                 <div class="listPic" ng-click="lookGoodDetail($index)">
-                    <img ng-src='http://www.sunnyshu.cn{{shoppinglist.litpic}}' alt="">
+                    <img ng-src="{{shoppingCart.PicROOT_URL+shoppinglist.id+'/mainPic/'+shoppinglist.Pic}}" alt="">
                 </div>
 
                 <!--商品内容-->
                 <div class="listContent" ng-click="lookGoodDetail($index)">
-                    <span>{{shoppinglist.title}}</span>
+                    <span>{{shoppinglist.Name}}</span>
                 </div>
 
                 <!--右侧商品操作栏-->
                 <div class="listRightThree">
 
-                    <div>￥{{shoppinglist.price | number:2}}</div>
-                    <div>&times;{{shoppinglist.num}}</div>
+                    <div>￥{{shoppinglist.UnitPrice | number:2}}</div>
+                    <div>&times;{{shoppinglist.Num}}</div>
                     <!--删除按钮-->
 
                     <div class="listRightThreeDelt" ng-click="shoppingCart.confirmDelete($index)">

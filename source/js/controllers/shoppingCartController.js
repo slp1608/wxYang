@@ -22,6 +22,7 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
     });
 }]).controller('shoppingCartController',['$scope','$rootScope','$state','$ionicPopup','$timeout','$ionicViewSwitcher','HttpFactory','MainData',function ($scope,$rootScope,$state,$ionicPopup,$timeout,$ionicViewSwitcher,HttpFactory,MainData) {
     $scope.shoppingCart = {
+        PicROOT_URL: PicROOT_URL,
         pageNum: 1,
         //购物车列表
         CartList : [] ,
@@ -51,29 +52,29 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         goToSettlement:goToSettlement
     };
 
+    console.log("shoppingCart");
     // 上拉加载函数
     function loadMore() {
         var params = {
-            pageNum: $scope.homeObj.pageNum,
-            sessid: SESSID
+            userId: 1
         };
-        $timeout(function () {
-            HttpFactory.getData('/api/ushoppingCart',params).then(function (result) {
+        //$timeout(function () {
+            HttpFactory.getData('/shopCartList',params).then(function (result) {
                 // $scope.loadingOrPopTipsHide();
-                var resultData = result.shoppingCart;
-                if ( resultData.length ){
-                    $scope.shoppingCart.isShowInfinite = true;
-                    $scope.shoppingCart.CartList = $scope.shoppingCart.CartList.concat(resultData);
+                console.log(result);
+                if ( result.length ){
+                    $scope.shoppingCart.isShowInfinite = false;
+                    $scope.shoppingCart.CartList = result;
+                    console.log($scope.shoppingCart)
                 }else {
                     $scope.shoppingCart.emptyShopCarStr = "您的购物车是空的O(∩_∩)O~";
                 }
                 $scope.$broadcast('scroll.infiniteScrollComplete');
-                more++;
             },function (err) {
                 $scope.shoppingCart.isShowInfinite = false;
                 $scope.popTipsShow('获取数据失败');
             });
-        },500);
+        //},500);
     }
 
     // 下拉刷新函数
