@@ -92,9 +92,10 @@ angular.module('cftApp.receiptAddress',[])
             loadMore: loadMore,
             //用户选择一个地址去使用
             selectAddress_user:selectAddress_user,
-            selectAddressModalShow:selectAddressModalShow//打开省份和失去的选择模态窗口
+            selectAddressModalShow:selectAddressModalShow   //打开省份和失去的选择模态窗口
         };
-        console.log($scope.addressObj.moredata);
+        console.log("address");
+        //console.log($scope.addressObj.moredata);
         var currentIndex = 1;
         var isEdit = false;
         $scope.addressOptionObj={};
@@ -292,6 +293,7 @@ angular.module('cftApp.receiptAddress',[])
                 page: currentIndex,
                 sessid:SESSID
             };
+            console.log('loadMore');
             HttpFactory.getData("/api/uAddress",params,"GET").then(function (result) {
                 console.log(result);
                 if (result.status == 0) {

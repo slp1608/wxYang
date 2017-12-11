@@ -28,7 +28,7 @@ angular.module('cftApp.personal',[]).config(['$stateProvider',function ($statePr
         //进入收藏
         showCollect:showCollect,
         //进入购物车
-        showShoppingCar:showShoppingCar,
+        //showShoppingCar:showShoppingCar,
         //进入积分页面
         showCredit:showCredit,
         //进入收货地址页面

@@ -1,48 +1,101 @@
-
+#shoppingCart{
+    background-color: rgb(238,238,238);
+}
 /*是否全选*/
 .ifSelectAll{
+    position: relative;
     height: 3.45rem;
     width: 3.45rem;
 }
 .ifSelectAll .selectBtn span{
     width: 1.25rem;
     height: 1.25rem;
+    display: block;
+    position: absolute;
+    top: 0;  left: 0;bottom: 0;right: 0;
+    margin: auto;
+    border: 1px solid rgb(160,160,160);
+    border-radius: 50%;
 }
 .ifSelectAll .selectBtn span i{
     top: 2px;
     left: 2px;
     width: .65rem;
     height: .65rem;
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    background-color: red;
 }
 .ifSelectAll span{
     left: 4.25rem;
     top: .7rem;
     width: 8rem;
     font-size: 1.5rem;
+    position: absolute;
 }
 /*购物车列表*/
 .shoppingList{
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    position: relative;
+    border: .1rem solid #E2E2E2;
+    justify-content: space-between;
     margin-bottom: .8rem;
     height: 9.5rem;
     padding: 1.2rem 0;
 }
 /*复选框和失效标识*/
 .listCheck,.loseShopping{
+    position: relative;
+    height: 100%;
+    flex:none;
     width: 3.45rem;
 }
 .shoppingList .listCheck label{
     line-height: 1.8rem;
     font-size: 2.1rem;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: block;
+    cursor: pointer;
+    font-weight: 500;
+}
+/*把原生的radio移开*/
+.shoppingList .listCheck .radio input{
+    position: absolute;
+    left: -999rem;
 }
 .shoppingList .listCheck .radio .littleRedCount{
     width: 1.25rem;
     height: 1.25rem;
+    display: block;
+    position: absolute;
+    top: 0;  left: 0;bottom: 0;right: 0;
+    margin: auto;
+    border: 1px solid rgb(160,160,160);
+    border-radius: 50%;
+}
+.shoppingList .listCheck .radio input:checked+.littleRedCount{
+      border-color: rgb(160,160,160);
+}
+.shoppingList .listCheck .radio input+.littleRedCount:after{
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    background-color: red;
+    opacity: 0;
 }
 .shoppingList .listCheck .radio input+.littleRedCount:after{
     top: 2px;
     left: 2px;
     width: .65rem;
     height: .65rem;
+}
+.shoppingList .listCheck .radio input:checked+.littleRedCount:after{
+    opacity: 1;
 }
 /*失效字体*/
 .shoppingList .loseShopping>div{
@@ -55,45 +108,79 @@
 .shoppingList .listPic{
     width: 7.05rem;
     height: 7rem;
+    flex:none;
 }
-#shoppingCart .shoppingList .listContent{
+.shoppingList .listPic img{
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+.shoppingList .listContent{
     margin-left: 1.05rem;
     font-size: 1.2rem;
     line-height: 1.5rem;
 }
 /*右侧商品操作栏*/
+.listRightThree{
+   display: flex;
+   flex-direction:column;
+   justify-content:center;
+   margin-right: 1rem;
+}
 .shoppingList  .listRightThree div:first-child{
     font-size: 1.3rem;
     line-height: 1rem;
+    color: #E80516;
 }
 .shoppingList  .listRightThree div:nth-of-type(2){
     font-size: 1.2rem;
     line-height: .9rem;
     margin-top: .9rem;
+    color: #666;
+    text-align: right;
 }
 .shoppingList  .listRightThree .listRightThreeDelt{
     height: 1.7rem;
     margin-top: 1.75rem;
+    width: 100%;
+    text-align: right;
 }
+.shoppingList  .listRightThree .listRightThreeDelt img{
+     height: 100%;
+ }
 /*已售罄的商品样式*/
+.shoppingLoseList{
+    background-color: #ddd;
+}
 .shoppingList .loseShopping>div{
     border-radius: 1rem;
     font-size: .9rem;
+    background-color: #666666;
+    text-align: center;
+    position: absolute;
+    color: #FFF;
 }
 .shoppingList .listContent .shoppingRemarks{
     font-size: .9rem;
     bottom: .8rem;
+    color: #E80516;
+    position: absolute;
+    left: 0;
 }
 
 /*底部栏*/
 #shoppingCartBottom{
     height: 5.2rem;
+    padding: 0;
+    box-shadow: 1rem 1rem 1rem 1rem gray;
 }
 .shoppingCartBottom_left p{
-    margin: 2rem 0 1.9rem 1.15rem;
+    line-height: .9rem;
+    margin: 1rem 0 1.9rem 1.15rem;
     font-size: 1.2rem;
 }
 .shoppingCartBottom_left p span:first-child{
+    color: #E80516;
     font-size: 1.5rem;
     line-height: 18px;
 }
@@ -102,14 +189,15 @@
     color: #666666;
     margin-left: 1.2rem;
 }
-.shoppingCartBottom_right button{
-    font-size: 1.5rem
-}
-/*底部运费说明*/
 .shoppingCartBottom_left p span:last-child{
     font-size: .9rem;
     color: #666666;
     margin-left: .1rem;
     line-height: .9rem;
+}
+.shoppingCartBottom_right button{
+    margin: 0;
+    height: 100%;
+    background-color:rgba(232,5,22,.8);
 }
 

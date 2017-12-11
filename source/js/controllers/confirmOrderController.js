@@ -205,7 +205,7 @@ angular.module('cftApp.confirmOrder',[])
                     mess: $scope.confirmObj.inputMsg,
                     num:JSON.stringify(goodsNumArray),
                     disPrice:$scope.confirmObj.freight,//快递费
-                    sessid:SESSID
+                    userId :SESSID
                 };
                 console.log(params);
                 $scope.loadingShow();
