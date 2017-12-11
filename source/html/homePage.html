@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <ion-infinite-scroll ng-if="!homeObj.moredata" on-infinite="homeObj.loadMore()" distance="1%" ></ion-infinite-scroll>
+        <ion-infinite-scroll ng-if="!homeObj.noneOfMoreData" on-infinite="homeObj.loadMore()" distance="1%" ></ion-infinite-scroll>
         <p class="nomore_text" ng-if="homeObj.noneOfMoreData">没有更多商品...</p>
     </ion-content>
 

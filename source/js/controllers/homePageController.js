@@ -139,14 +139,14 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     //下拉刷新
     function doRefresh() {
         console.log("doRefresh success");
-        $scope.homeObj.currentpage = 1;
-        params.pageNum = $scope.homeObj.currentpage;
+        $scope.homeObj.pageNum = 1;
+        params.pageNum = $scope.homeObj.pageNum;
         var getData = {
             success: function (result) {
                 console.log(result);
                 $scope.homeObj.slideData.bannerData = result["bannerData"];
                 $scope.homeObj.goodsDatas = result;
-                $scope.homeObj.currentpage++;
+                $scope.homeObj.pageNum++;
                 $scope.$broadcast('scroll.refreshComplete');
             },
             error: function (err) {
@@ -164,20 +164,20 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
             success: function (result) {
                 console.log("loadMore success");
                 console.log(result);
-                if (result.length > 0){
+                if (result.length){
                     $scope.homeObj.noneOfMoreData = false;
                 }else {
                     $scope.homeObj.noneOfMoreData = true;
                 }
-                if ($scope.homeObj.currentpage == 1)
-                {
-                    $scope.sideMenuObj.sortedSecondClassObj = result["cateData"];
-                    $scope.homeObj.slideData.bannerData = result["bannerData"];
-                }
+                // if ($scope.homeObj.pageNum == 1)
+                // {
+                //     $scope.sideMenuObj.sortedSecondClassObj = result["cateData"];
+                //     $scope.homeObj.slideData.bannerData = result["bannerData"];
+                // }
                 $scope.homeObj.goodsDatas = $scope.homeObj.goodsDatas.concat(result);
                 //必须放下面
-                $scope.homeObj.currentpage += 1;
-                params.pageNum = $scope.homeObj.currentpage;
+                $scope.homeObj.pageNum += 1;
+                params.pageNum = $scope.homeObj.pageNum;
                 $scope.$broadcast('scroll.infiniteScrollComplete');
 
             },

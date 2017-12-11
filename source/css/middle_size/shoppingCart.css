@@ -33,6 +33,7 @@
     display: flex;
     position: relative;
     border: .1rem solid #E2E2E2;
+    justify-content: space-between;
 }
 
 /*有商品的样式*/
@@ -91,10 +92,10 @@
 }
 /*右侧操作栏*/
 #shoppingCart .shoppingList  .listRightThree{
-    position: absolute;
     display: flex;
     flex-direction:column;
-    justify-content:flex-end;
+    justify-content:center;
+    margin-right: 1rem;
 }
 #shoppingCart .shoppingList  .listRightThree div:first-child{
     color: #E80516;
@@ -123,7 +124,6 @@
     color: #FFF;
 }
 #shoppingCart .shoppingList .listContent .shoppingRemarks{
-    font-family: 微软雅黑;
     color: #E80516;
     position: absolute;
     left: 0;
@@ -140,7 +140,6 @@
     box-shadow: 1rem 1rem 1rem 1rem gray;
 }
 #shoppingCartBottom .shoppingCartBottom_left p{
-    font-family: '微软雅黑';
     line-height: .9rem;
 }
 #shoppingCartBottom .shoppingCartBottom_left p span:first-child{
@@ -150,7 +149,6 @@
     margin: 0;
     height: 100%;
     background-color:rgba(232,5,22,.8);
-    font-family: '微软雅黑';
 }
 
 
