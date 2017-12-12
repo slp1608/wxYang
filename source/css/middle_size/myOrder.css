@@ -7,7 +7,7 @@
     height: 3.5rem;
     /*font-size: 0;*/
     width: 100%;
-    background: white;
+    background: #fff;
 }
 .my_order .nav_list ul{
     width: 100%;
@@ -62,10 +62,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-
-}
-.my_order .order_list .order_num{
-
 }
 .my_order .order_list .order_num span{
     color: #666666;
@@ -76,7 +72,6 @@
 /*.order_item商品信息 包含：图片，描述，单价，和数量*/
 .my_order .order_item{
     display: flex;
-    /*justify-content: space-between;*/
     flex-flow: row nowrap;
     /*justify-content: space-between;/\*/
     width: 100%;
@@ -178,8 +173,6 @@
 /*。myOrder的元素为ionic弹*/
 .myOrder.popup-container .popup{
     background: white;
-    width: 30.65rem;
-    height: 17.6rem;
     border-radius: .5rem;
 }
 
@@ -231,7 +224,7 @@
     display: inline-block;
     color: #333;
     font-size: 1.5rem;
-    margin-top: 7rem;
+    margin-top: 5rem;
 }
 
 .myOrder.popup-container.refund .popup-buttons{

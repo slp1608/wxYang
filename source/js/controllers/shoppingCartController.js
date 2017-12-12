@@ -35,7 +35,7 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         //购物车为空的提示
         emptyShopCarStr : "",
         //控制全选按钮红点 刚进去的时候默认不全选
-        SelectAll:true,
+        SelectAll:false,
         //上拉加载
         loadMore:loadMore ,
         //下拉刷新
@@ -58,64 +58,45 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         var params = {
             userId: 1
         };
-        //$timeout(function () {
-            HttpFactory.getData('/shopCartList',params).then(function (result) {
-                // $scope.loadingOrPopTipsHide();
-                console.log(result);
-                if ( result.length ){
-                    $scope.shoppingCart.isShowInfinite = false;
-                    $scope.shoppingCart.CartList = result;
-                    console.log($scope.shoppingCart)
-                }else {
-                    $scope.shoppingCart.emptyShopCarStr = "您的购物车是空的O(∩_∩)O~";
-                }
-                $scope.$broadcast('scroll.infiniteScrollComplete');
-            },function (err) {
+        HttpFactory.getData('/shopCartList',params).then(function (result) {
+            // $scope.loadingOrPopTipsHide();
+            console.log(result);
+            if ( result.length ){
                 $scope.shoppingCart.isShowInfinite = false;
-                $scope.popTipsShow('获取数据失败');
-            });
-        //},500);
+                $scope.shoppingCart.CartList = result;
+                console.log($scope.shoppingCart)
+            }else {
+                $scope.shoppingCart.emptyShopCarStr = "您的购物车是空的O(∩_∩)O~";
+            }
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        },function (err) {
+            $scope.shoppingCart.isShowInfinite = false;
+            $scope.popTipsShow('获取数据失败');
+        });
     }
 
     // 下拉刷新函数
     function doRefresh() {
         var params = {
-            pageNum: 1,
-            sessid: SESSID
+            // sessid: SESSID
+            userId: 1
         };
-        HttpFactory.getData('/api/ushoppingCart',params).then(function (result) {
-            var resultData = result.shoppingCart;
-            if (resultData.length){
-                $scope.shoppingCart.isShowInfinite = true;
-                $scope.shoppingCart.CartList = resultData;
+        HttpFactory.getData('/shopCartList',params).then(function (result) {
+            if (result.length){
+                $scope.shoppingCart.isShowInfinite = false;
+                $scope.shoppingCart.CartList = result;
             }else {
                 $scope.shoppingCart.emptyShopCarStr = "您的购物车是空的O(∩_∩)O~";
             }
             // goodsIfOutData();
-            more++;
             }).finally(function () {
             $scope.$broadcast('scroll.refreshComplete');
             });
-        $scope.shoppingCart.SelectAll = true;
+        $scope.shoppingCart.SelectAll = false;
         $scope.shoppingCart.CartMoney = 0;
         $scope.shoppingCart.CartCount = 0;
 
     }
-
-
-    // 判断是否失效
-    // function goodsIfOutData() {
-    //     var nowTime = new Date();
-    //     console.log(nowTime)
-    //     for (var s = 0;s<$scope.shoppingCart.CartList.length;s++){
-    //         // console.log(((nowTime / 1000) - (parseFloat($scope.shoppingCart.CartList[s].addTime))) / (60));
-    //         if (((nowTime / 1000) - (parseFloat($scope.shoppingCart.CartList[s].addTime))) / (60) > 5 ){
-    //             $scope.shoppingCart.CartList[s].isHave = false;
-    //         }else {
-    //             $scope.shoppingCart.CartList[s].isHave = true;
-    //         }
-    //     }
-    // }
 
     // 计算总价格和总数量
     function shoppingCartallMoney() {
@@ -123,11 +104,17 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         var CartCount = 0;
         // 选中所有的label标签里的input标签
         var shoppingCheckbox = document.querySelectorAll('.radio>input');
+        console.log("计算总价格和总数量");
+        console.log(shoppingCheckbox);
+        var shoppingCheckboxIndex = 0;
         var CartList = $scope.shoppingCart.CartList;
-        for (var i = 0; i < shoppingCheckbox.length; i++) {
-            if (shoppingCheckbox[i].checked){
-                CartMoney += CartList[i].price * CartList[i].num;
-                CartCount += Number(CartList[i].num);
+        for (var i = 0; i < CartList.length; i++) {
+            if(CartList[i].Status){
+                if (shoppingCheckbox[shoppingCheckboxIndex].checked){
+                    CartMoney += CartList[i].UnitPrice * CartList[i].Num;
+                    CartCount += Number(CartList[i].Num);
+                }
+                shoppingCheckboxIndex++;
             }
         }
         $scope.shoppingCart.CartMoney = CartMoney;
@@ -139,13 +126,14 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         $scope.shoppingCart.SelectAll = !$scope.shoppingCart.SelectAll;
         // 选中所有的label标签里的input标签
         var shoppingCheckbox = angular.element(document.querySelectorAll('.radio>input'));
-        if (!$scope.shoppingCart.SelectAll) {
+        // console.log(shoppingCheckbox);
+        if ($scope.shoppingCart.SelectAll) {
             shoppingCheckbox.attr('checked','true');
         }
         else{  // 如果取消全选的话让所有商品都取消选中
             shoppingCheckbox.attr('checked','');
         }
-        $scope.shoppingCart.selectedArray = $scope.shoppingCart.CartList;
+        // $scope.shoppingCart.selectedArray = $scope.shoppingCart.CartList;
         shoppingCartallMoney();
     }
 
@@ -155,46 +143,44 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         $scope.shoppingCart.SelectAll = true;
         // 判断当所有商品都选中时全选按钮也要被选中
         var shoppingCheckbox = document.querySelectorAll('.radio>input');
-        var ifArray = [];
+        // console.log(shoppingCheckbox);
+        var ifArray = '';
         for (var q = 0;q < shoppingCheckbox.length;q++){
-            ifArray = ifArray.push(shoppingCheckbox[q].checked);
+            ifArray += shoppingCheckbox[q].checked+'&';
         }
-        var arr;
-        for(var o = 0;o < ifArray.length;o++){
-            arr += ifArray[o]+'';
-        }
-        $scope.shoppingCart.SelectAll = arr.indexOf('false') > 0;
-        var t_index = 'a';
-        for(var i = 0;i < $scope.shoppingCart.selectedArray.length;i++){
-            if ($scope.shoppingCart.CartList[index].$$hashKey === $scope.shoppingCart.selectedArray[i].$$hashKey){
-                t_index = i;
-                $scope.shoppingCart.selectedArray.splice(i,1);
-                break;
-            }
-        }
-        if (t_index === 'a') $scope.shoppingCart.selectedArray.push($scope.shoppingCart.CartList[index])
+        // console.log(ifArray);
+        $scope.shoppingCart.SelectAll = ifArray.indexOf('false') < 0;
+        // var t_index = 'a';
+        // for(var i = 0;i < $scope.shoppingCart.selectedArray.length;i++){
+        //     if ($scope.shoppingCart.CartList[index].$$hashKey === $scope.shoppingCart.selectedArray[i].$$hashKey){
+        //         t_index = i;
+        //         $scope.shoppingCart.selectedArray.splice(i,1);
+        //         break;
+        //     }
+        // }
+        // if (t_index === 'a') $scope.shoppingCart.selectedArray.push($scope.shoppingCart.CartList[index])
     }
 
     //去结算的方法
     function goToSettlement() {
+
         if($scope.shoppingCart.selectedArray.length === 0){
             $scope.popTipsShow("您未选择任何商品!");
             return;
         }
-        for (var b = 0;b < $scope.shoppingCart.selectedArray.length;b++){
-            $scope.shoppingCart.selectedArray[b].goodsNum = $scope.shoppingCart.selectedArray[b].num;
-            $scope.shoppingCart.selectedArray[b].is_integral = 0;
-            $scope.shoppingCart.selectedArray[b].goods_id = $scope.shoppingCart.selectedArray[b].g_id;
-
-        }
-        MainData.shopping_car_goodsArray = JSON.stringify($scope.shoppingCart.selectedArray);
-        if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
-            $state.go("tabs.confirmOrder",{goodsArray:'value传值'});
-
-        }else {
-            $state.go("tabs.confirmOrder_personal",{goodsArray:'value传值'});
-
-        }
+        // for (var b = 0;b < $scope.shoppingCart.selectedArray.length;b++){
+        //     $scope.shoppingCart.selectedArray[b].goodsNum = $scope.shoppingCart.selectedArray[b].num;
+        //     $scope.shoppingCart.selectedArray[b].is_integral = 0;
+        //     $scope.shoppingCart.selectedArray[b].goods_id = $scope.shoppingCart.selectedArray[b].g_id;
+        //
+        // }
+        // MainData.shopping_car_goodsArray = JSON.stringify($scope.shoppingCart.selectedArray);
+        // if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
+        //     $state.go("tabs.confirmOrder",{goodsArray:'value传值'});
+        //
+        // }else {
+        //     $state.go("tabs.confirmOrder_personal",{goodsArray:'value传值'});
+        // }
     }
 
     // 前往商品详情
@@ -227,22 +213,23 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
                 onTap:function (e) {
                     // return;
                     var params = {
-                        id: $scope.shoppingCart.CartList[index].id,
-                        sessid: SESSID
+                        ShopCartId: $scope.shoppingCart.CartList[index].ShopCartId,
+                        userId: 1
                     };
-                    HttpFactory.getData("/api/ushoppingCart",params,"DELETE").then(function (result) {
-                        
-                        if (!result.status) {
-                            var shoppingCheckbox = document.querySelectorAll('.radio>input');
+                    console.log(params);
+                    HttpFactory.getData("/DeleteShopCart",params,"POST").then(function (result) {
+                        console.log(result);
+                        if ( result.returnVal === 'success' ) {
+                            // var shoppingCheckbox = document.querySelectorAll('.radio>input');
                             // console.log(shoppingCheckbox[index].checked);
-                            if (shoppingCheckbox[index] && shoppingCheckbox[index].checked){
-                                shoppingCheckbox[index].checked = '';
-                            }
-                            shoppingCartallMoney();
+                            // if (shoppingCheckbox[index] && shoppingCheckbox[index].checked){
+                            //     shoppingCheckbox[index].checked = '';
+                            // }
                             $scope.shoppingCart.CartList.splice(index,1);
-                            $scope.popTipsShow("删除成功");
+                            shoppingCartallMoney();
+                            $scope.popTipsShow(result.msg);
                         }else {
-                            $scope.popTipsShow("删除失败");
+                            $scope.popTipsShow(result.msg);
                         }
                     },function (err) {
                         $scope.popTipsShow("获取数据失败");

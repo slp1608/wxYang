@@ -11,7 +11,7 @@
 
             <div class="selectBtn">
                 <span>
-                    <i ng-if="!shoppingCart.SelectAll"></i>
+                    <i ng-if="shoppingCart.SelectAll"></i>
                 </span>
             </div>
             <span>全选</span>
@@ -21,71 +21,55 @@
         <!--购物车商品展示-->
         <div ng-repeat="shoppinglist in shoppingCart.CartList">
             <!--没有售罄的商品-->
-            <div class="shoppingList" ng-if = "!shoppinglist.isHave">
-
+            <div class="shoppingList" ng-if="shoppinglist.Status">
                 <!--复选框-->
                 <div class="listCheck" ng-click="shoppingCart.ifSelect($index)">
                     <label class="radio"><input name="shoppingList" type="checkbox"><i class="littleRedCount"></i></label>
                 </div>
-
                 <!--商品图片-->
                 <div class="listPic" ng-click="lookGoodDetail($index)">
                     <img ng-src="{{shoppingCart.PicROOT_URL+shoppinglist.id+'/mainPic/'+shoppinglist.Pic}}" alt="">
                 </div>
-
                 <!--商品内容-->
                 <div class="listContent" ng-click="lookGoodDetail($index)">
                     <span>{{shoppinglist.Name}}</span>
                 </div>
-
                 <!--右侧商品操作栏-->
                 <div class="listRightThree">
-
                     <div>￥{{shoppinglist.UnitPrice | number:2}}</div>
                     <div>&times;{{shoppinglist.Num}}</div>
                     <!--删除按钮-->
-
                     <div class="listRightThreeDelt" ng-click="shoppingCart.confirmDelete($index)">
                         <img ng-src="images/wastebin.png" alt="">
                     </div>
                 </div>
-
-
             </div>
 
-
             <!--已经售罄的商品-->
-            <div class="shoppingList shoppingLoseList" ng-if = "shoppinglist.isHave">
-
+            <div class="shoppingList shoppingLoseList" ng-if="!shoppinglist.Status">
                 <!--失效框-->
                 <div class="loseShopping">
                     <div>失效</div>
                 </div>
-
                 <!--商品图片-->
                 <div class="listPic">
-                    <img ng-src="http://www.sunnyshu.cn{{shoppinglist.litpic}}" alt="">
+                    <img ng-src="{{shoppingCart.PicROOT_URL+shoppinglist.id+'/mainPic/'+shoppinglist.Pic}}" alt="">
                 </div>
-
                 <!--商品内容-->
                 <div class="listContent">
-                    <span>{{shoppinglist.title}}</span>
-                    <span class="shoppingRemarks">对不起，该商品已售罄</span>
+                    <span>{{shoppinglist.Name}}</span>
+                    <p class="shoppingRemarks">对不起，该商品已下架</p>
                 </div>
-
-
                 <!--右侧商品操作栏-->
                 <div class="listRightThree">
-                    <div>￥{{shoppinglist.price |number:2}}</div>
-                    <div>&times;{{shoppinglist.num}}</div>
+                    <div>￥{{shoppinglist.UnitPrice | number:2}}</div>
+                    <div>&times;{{shoppinglist.Num}}</div>
                     <div class="listRightThreeDelt" ng-click="shoppingCart.confirmDelete($index)">
                         <a><img ng-src="images/wastebin.png" alt=""></a>
                     </div>
                 </div>
 
-
             </div>
-
 
         </div>
         <ion-infinite-scroll on-infinite="shoppingCart.loadMore()"  distance="5%" ng-if="shoppingCart.isShowInfinite" immediate-check="true"></ion-infinite-scroll>

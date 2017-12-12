@@ -48,10 +48,11 @@
 }
 /*复选框和失效标识*/
 .listCheck,.loseShopping{
-    position: relative;
-    height: 100%;
     flex:none;
     width: 3.45rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .shoppingList .listCheck label{
     line-height: 1.8rem;
@@ -101,8 +102,6 @@
 .shoppingList .loseShopping>div{
     width: 2.8rem;
     line-height: 1.25rem;
-    top: 4.1rem;
-    left: .3rem;
 }
 /*商品图片*/
 .shoppingList .listPic{
@@ -162,10 +161,7 @@
 }
 .shoppingList .listContent .shoppingRemarks{
     font-size: .9rem;
-    bottom: .8rem;
     color: #E80516;
-    position: absolute;
-    left: 0;
 }
 
 /*底部栏*/
@@ -195,7 +191,7 @@
     margin-left: .1rem;
     line-height: .9rem;
 }
-.shoppingCartBottom_right button{
+.shoppingCartBottom_right button.button{
     margin: 0;
     height: 100%;
     background-color:rgba(232,5,22,.8);
