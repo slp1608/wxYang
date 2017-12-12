@@ -4,7 +4,7 @@
 
 angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stateProvider) {
     $stateProvider.state('tabs.goodsDetail',{
-        url:'/goodsDetail/:goods_id/:goods_icon',
+        url:'/goodsDetail/:goods_id',
         cache:false,
         views: {
             'tabs-homePage':{
@@ -15,7 +15,7 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
         }
     });
     $stateProvider.state('tabs.goodsDetail_collection',{
-        url:'/goodsDetail_collection/:goods_id/:goods_icon',
+        url:'/goodsDetail_collection/:goods_id',
         cahce:false,
         views: {
             'tabs-personal':{

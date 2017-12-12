@@ -187,10 +187,12 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
     $scope.lookGoodDetail = function (index) {
         
         if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
-            $state.go('tabs.goodsDetail',{is_integral: '0', goods_id:  $scope.shoppingCart.CartList[index].g_id,goods_icon: $scope.shoppingCart.CartList[index].litpic});
+            console.log('haha');
+            $state.go('tabs.goodsDetail',{goods_id:  $scope.shoppingCart.CartList[index].id});
             $ionicViewSwitcher.nextDirection('forward');
         }else {
-            $state.go('tabs.goodsDetail_collection',{is_integral: '0', goods_id:  $scope.shoppingCart.CartList[index].g_id,goods_icon: $scope.shoppingCart.CartList[index].litpic});
+            console.log('heihei');
+            $state.go('tabs.goodsDetail_collection',{goods_id:  $scope.shoppingCart.CartList[index].id});
             $ionicViewSwitcher.nextDirection('forward');
         }
     };
@@ -220,11 +222,6 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
                     HttpFactory.getData("/DeleteShopCart",params,"POST").then(function (result) {
                         console.log(result);
                         if ( result.returnVal === 'success' ) {
-                            // var shoppingCheckbox = document.querySelectorAll('.radio>input');
-                            // console.log(shoppingCheckbox[index].checked);
-                            // if (shoppingCheckbox[index] && shoppingCheckbox[index].checked){
-                            //     shoppingCheckbox[index].checked = '';
-                            // }
                             $scope.shoppingCart.CartList.splice(index,1);
                             shoppingCartallMoney();
                             $scope.popTipsShow(result.msg);

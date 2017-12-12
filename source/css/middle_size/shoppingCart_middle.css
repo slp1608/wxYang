@@ -1,5 +1,6 @@
 #shoppingCart{
     background-color: rgb(238,238,238);
+    bottom: 108px;
 }
 /*是否全选*/
 .ifSelectAll{
