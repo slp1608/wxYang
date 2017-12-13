@@ -46,7 +46,7 @@ angular.module('cftApp.receiptAddress',[])
         };
         //初始化收货地址数据
         $scope.addressObj = {
-            moredata:false,
+            moredata:true,
             //收货地址列表数据
             adreessListDatas: [],
             //编辑地址的地址对象
@@ -163,14 +163,14 @@ angular.module('cftApp.receiptAddress',[])
             $scope.loadingShow();
             addressParams.province = $scope.addressObj.selectedProvince;
             addressParams.city = $scope.addressObj.selectedCity;
-            addressParams.sessid = SESSID;
+            addressParams.userId  = 1;
             if (addressParams.province == "请选择"){
                 addressParams.province = '';
             }
             if (addressParams.city == "请选择"){
                 addressParams.city = '';
             }
-            if (addressParams.vname == '' ||
+            if (addressParams.name == '' ||
                 addressParams.tel == '' ||
                 addressParams.address == ''){
                 $scope.popTipsShow("请补全地址信息");
@@ -182,6 +182,7 @@ angular.module('cftApp.receiptAddress',[])
 
             }
             $scope.addressObj.closeModal();
+            console.log(isEdit);
             if (isEdit) {
                 // delete addressParams.setdefault;
                 var thisSetdefault = addressParams.setdefault;
@@ -208,10 +209,12 @@ angular.module('cftApp.receiptAddress',[])
             }else {
 
                 $scope.addressObj.dataIsNull = false;
-
-                HttpFactory.getData("/api/uAddress",addressParams,"POST")
+                console.log('toadd');
+                console.log(addressParams);
+                HttpFactory.getData("/AddReceptInfo",addressParams,"POST")
                     .then(function (result) {
-                        if (result.status == "0"){
+                        console.log(result);
+                        if (result.returnVal === 'success'){
                             doRefresh('新增保存');
                         }else {
                             //错误提示
@@ -245,30 +248,21 @@ angular.module('cftApp.receiptAddress',[])
             currentIndex = 1;
             var getData = {
                 success: function (result) {
-                    if (result.status == 0) {
-                        if (result.addressData.length != 0){
-
-                            $scope.addressObj.adreessListDatas = result.addressData;
-                            $scope.addressObj.dataIsNull = false;
-                            if(result.addressData.length >= 10){
-                                $scope.addressObj.moredata = false;
-                            }else {
-                                $scope.addressObj.moredata = true;
-                            }
-                            if (str == "新增保存"){
-                                $scope.loadingOrPopTipsHide();
-                                $scope.popTipsShow("地址保存成功");
-                                if ($scope.addressObj.adreessListDatas.length == 1)
-                                {
-                                    $scope.addressObj.adreessListDatas[0].setdefault = 1;
-                                    changeDefault();
-                                }
-                            }
-
-                        } else {//没有地址，页面提示
-                            $scope.addressObj.dataIsNull = true;
+                    console.log(result);
+                    if (result.length) {
+                        $scope.addressObj.adreessListDatas = result;
+                        $scope.addressObj.dataIsNull = false;
+                        $scope.addressObj.moredata = false;
+                        if (str == "新增保存"){
+                            $scope.loadingOrPopTipsHide();
+                            $scope.popTipsShow("地址保存成功");
+                            //if ($scope.addressObj.adreessListDatas.length == 1)
+                            //{
+                            //    $scope.addressObj.adreessListDatas[0].setdefault = 1;
+                            //    changeDefault();
                         }
-                        currentIndex++;
+                    }else {//没有地址，页面提示
+                        $scope.addressObj.dataIsNull = true;
                     }
                     $scope.$broadcast('scroll.refreshComplete');
                 },
@@ -278,10 +272,9 @@ angular.module('cftApp.receiptAddress',[])
             };
 
             var params = {
-                page: currentIndex,
-                sessid:SESSID
+                userId:1
             };
-            HttpFactory.getData("/api/uAddress",params,"GET")
+            HttpFactory.getData("/receptInfoList",params,"GET")
                 .then(
                     getData.success,
                     getData.error
@@ -290,30 +283,19 @@ angular.module('cftApp.receiptAddress',[])
         //上拉加载
         function loadMore() {
             var params = {
-                page: currentIndex,
-                sessid:SESSID
+                userId:1
             };
             console.log('loadMore');
-            HttpFactory.getData("/api/uAddress",params,"GET").then(function (result) {
+            HttpFactory.getData("/receptInfoList",params).then(function (result) {
                 console.log(result);
-                if (result.status == 0) {
-                    $scope.addressObj.adreessListDatas = $scope.addressObj.adreessListDatas.concat(result.addressData);
-                    if(result.addressData.length == 0){
-                        $scope.addressObj.emptyPromptStr = "您的收货地址为空\(^o^)/~";
-                        $scope.addressObj.dataIsNull = true;
-
-                    }else {
-                        $scope.addressObj.dataIsNull = false;
-                    }
-                    if (result.addressData.length < perPageCount){
-                        $scope.addressObj.moredata = true;
-                    }else {
-                        $scope.addressObj.moredata = false;
-                    }
-                    currentIndex ++;
+                if (result.length) {
+                    $scope.addressObj.adreessListDatas = $scope.addressObj.adreessListDatas.concat(result);
+                    $scope.addressObj.dataIsNull = false;
+                    $scope.addressObj.moredata = false;
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 }else {
-
+                    $scope.addressObj.emptyPromptStr = "您的收货地址为空\(^o^)/~";
+                    $scope.addressObj.dataIsNull = true;
                 }
             },function (err) {
                 $scope.addressObj.moredata = true;
@@ -324,6 +306,7 @@ angular.module('cftApp.receiptAddress',[])
 
         //打开模态
         function openModal(option,list,event) {
+            console.log(option);
             if(option == 'edit'){
                 isEdit = true;
                 event.stopPropagation();
@@ -344,7 +327,7 @@ angular.module('cftApp.receiptAddress',[])
                 $scope.addressObj.selectedCity = '';
                 $scope.addressObj.cities = [];
                 $scope.addressOptionObj = {
-                    vname: '',
+                    name: '',
                     tel: '',
                     province: '',
                     city: '',

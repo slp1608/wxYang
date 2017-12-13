@@ -38,11 +38,8 @@ angular.module('cftApp.confirmOrder',[])
         }
         console.log(JSON.parse($stateParams.goodsArray));
         $scope.confirmObj = {
-            
             //留言文本
             inputMsg: '',
-            //是否是积分商品 0 积分商品
-            is_integral: JSON.parse($stateParams.goodsArray)[0].is_integral ? JSON.parse($stateParams.goodsArray)[0].is_integral : 0,
             //默认地址对象
             defaultAddress: {},
             //是否有默认地址
@@ -52,13 +49,9 @@ angular.module('cftApp.confirmOrder',[])
             //商品总数量
             goodsNum_all:null,
             //图片根地址
-            IconROOTURL: IconROOT_URL,
+            PicROOT_URL: PicROOT_URL,
             //商品总金额
             totalPrice: 0,
-            //积分商品的总积分
-            totalIngegralNum: JSON.parse($stateParams.goodsArray)[0].integral,
-            //用户总积分余额
-            userIntegral: localStorage.getItem("creditNum"),
             //进入收货地址页面
             goReceiptAddress: goReceiptAddress,
             //立即购买
@@ -73,27 +66,20 @@ angular.module('cftApp.confirmOrder',[])
         };
         //计算商品总数量
         function calculateGoodsNum() {
+            var goodsNum_all = null;
             for (var i = 0;i < $scope.confirmObj.goodsArray.length;i++){
-                if ($scope.confirmObj.goodsArray[i].is_integral == 0){
-                    $scope.confirmObj.goodsNum_all += parseInt($scope.confirmObj.goodsArray[i].goodsNum);
-                }else {
-                    $scope.confirmObj.goodsNum_all = 1;
-                }
-
+                goodsNum_all += parseInt($scope.confirmObj.goodsArray[i].goodsNum);
             }
+            $scope.confirmObj.goodsNum_all = goodsNum_all;
         }
         //计算商品总价
         function calculateGoodsPrice() {
             var goodsPrice = null;
             for (var i = 0;i < $scope.confirmObj.goodsArray.length;i++){
-                if ($scope.confirmObj.goodsArray[i].is_integral == 0){
-                    var price_one = $scope.confirmObj.goodsArray[i].shop_price ? $scope.confirmObj.goodsArray[i].shop_price : $scope.confirmObj.goodsArray[i].price;
-                    
-                    goodsPrice += price_one * $scope.confirmObj.goodsArray[i].goodsNum;
-                }
+                var price_one = $scope.confirmObj.goodsArray[i].UnitPrice;
+                goodsPrice += price_one * $scope.confirmObj.goodsArray[i].goodsNum;
             }
             $scope.confirmObj.totalPrice = goodsPrice;
-            
         }
         calculateGoodsNum();
         calculateGoodsPrice();
