@@ -8,7 +8,7 @@
     </div>
     <div class="list_item">
         <label class="address_list_msg" for="address_name">收货人</label>
-        <input type="text" placeholder="姓名" ng-model="addressOptionObj.name" id="address_name">
+        <input type="text" placeholder="姓名" ng-model="addressOptionObj.Name" id="address_name">
     </div>
     <div class="list_item">
         <label class="address_list_msg" for="address_phone">联系电话</label>
@@ -16,17 +16,8 @@
     </div>
     <div class="list_item">
         <label class="address_list_msg">选择地址</label>
-        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('省份')">{{addressObj.selectedProvince ? addressObj.selectedProvince :"请选择省份"}}
-            <!--<select ng-change="addressObj.selectedChange(addressObj.selectedProvince)" ng-model="addressObj.selectedProvince" ng-options="province.name as province.name for province in addressObj.provinces">-->
-                <!--<option value="">请选择</option>-->
-            <!--</select>-->
-        </label>
-
-        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('城市')">{{addressObj.selectedCity ? addressObj.selectedCity :"请选择城市"}}
-            <!--<select ng-model="addressObj.selectedCity" ng-options="city.name as city.name for city in addressObj.cities">-->
-                <!--<option value="">请选择</option>-->
-            <!--</select>-->
-        </label>
+        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('省份')">{{addressObj.selectedProvince ? addressObj.selectedProvince :"请选择省份"}}</label>
+        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('城市')">{{addressObj.selectedCity ? addressObj.selectedCity :"请选择城市"}}</label>
     </div>
     <div class="list_item">
         <label class="address_list_msg" for="address_adr">详细地址</label>

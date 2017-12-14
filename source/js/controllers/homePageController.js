@@ -164,11 +164,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
             success: function (result) {
                 console.log("loadMore success");
                 console.log(result);
-                if (result.length){
-                    $scope.homeObj.noneOfMoreData = false;
-                }else {
-                    $scope.homeObj.noneOfMoreData = true;
-                }
+                (result.length) ? $scope.homeObj.noneOfMoreData=false : $scope.homeObj.noneOfMoreData=true;
                 // if ($scope.homeObj.pageNum == 1)
                 // {
                 //     $scope.sideMenuObj.sortedSecondClassObj = result["cateData"];

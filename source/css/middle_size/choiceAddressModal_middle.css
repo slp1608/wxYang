@@ -21,8 +21,8 @@
 }
 .item-radio .radio-icon{
     position: absolute;
-    left: .1rem;
-    top: -.1rem;
+    left: 2px;
+    top: -3px;
 }
 .address_checkbox .ion-checkmark:before{
     /*font-size: 10rem;*/
@@ -35,10 +35,10 @@
     border-radius: 50%;
 }
 .address_checkbox_div {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 20px;
+    height: 20px;
     position: absolute;
-    top: 1rem;
+    top: 7px;
     border: solid 1px darkgray;
     border-radius: 50%;
 }

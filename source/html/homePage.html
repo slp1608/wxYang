@@ -28,7 +28,7 @@
                 <div class="col col-50 goods_cell" ng-repeat="item in homeObj.goodsDatas track by $index" ng-click="homeObj.goDetail(item)">
 
                     <div class="cell_wrapper">
-                        <div class="goods_cell_icon" style="background-image: url({{homeObj.PicROOT_URL+item.id+'/mainPic/'+item.Pic}})">
+                        <div class="goods_cell_icon" style="background-image: url( {{homeObj.PicROOT_URL+item.id+'/mainPic/'+item.Pic}} )">
                         </div>
                         <div class="goods_cell_bottom">
                             <div class="bottom_des">

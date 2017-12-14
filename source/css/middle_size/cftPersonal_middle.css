@@ -5,7 +5,6 @@
 /*第一部分个人用户信息*/
 .person_content{
     background-color: #eeeeee;
-    font-family: "Microsoft YaHei";
 }
 /*body{*/
     /*background:#eeeeee ;*/
@@ -19,9 +18,7 @@
 }
 /*个人头像盒子*/
 .person_imgBox{
-
     padding-left:1.35rem;
-    width: 24%;
     height:100%;
     display: flex;
     justify-content: center;
@@ -51,7 +48,6 @@
 .person_InfoNameBox>span{
     font-size: 1.2rem;
     color:#333;
-    font-family: "Microsoft YaHei";
 }
 
 /*第二部分 订单与收藏*/
@@ -159,7 +155,6 @@
     align-items: center;
 }
 .person_funBlock_text>span{
-
     font-size: 1.6rem;
     color: #333;
 }

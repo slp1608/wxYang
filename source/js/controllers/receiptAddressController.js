@@ -306,11 +306,14 @@ angular.module('cftApp.receiptAddress',[])
 
         //打开模态
         function openModal(option,list,event) {
+            console.log("打开模态框");
             console.log(option);
             if(option == 'edit'){
                 isEdit = true;
                 event.stopPropagation();
+                console.log(list);
                 $scope.addressOptionObj = list;
+                console.log($scope.addressOptionObj);
                 $scope.addressObj.selectedProvince = list.province;
                 angular.forEach($scope.addressObj.provinces,function (province) {
                     //剔除数组的第一个元素
