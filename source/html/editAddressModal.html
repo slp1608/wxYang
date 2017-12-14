@@ -12,20 +12,20 @@
     </div>
     <div class="list_item">
         <label class="address_list_msg" for="address_phone">联系电话</label>
-        <input type="number" placeholder="联系电话" ng-model="addressOptionObj.tel" id="address_phone">
+        <input type="tel" placeholder="联系电话" ng-model="addressOptionObj.Tel" id="address_phone">
     </div>
     <div class="list_item">
         <label class="address_list_msg">选择地址</label>
-        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('省份')">{{addressObj.selectedProvince ? addressObj.selectedProvince :"请选择省份"}}</label>
-        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('城市')">{{addressObj.selectedCity ? addressObj.selectedCity :"请选择城市"}}</label>
+        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('省份')">{{addressObj.selectedProvince || "请选择省份"}}</label>
+        <label class="item item-input province_list_wrapper" ng-click="addressObj.selectAddressModalShow('城市')">{{addressObj.selectedCity || "请选择城市"}}</label>
     </div>
     <div class="list_item">
         <label class="address_list_msg" for="address_adr">详细地址</label>
-        <input type="text" placeholder="街道门牌，无需重复地区信息" ng-model="addressOptionObj.address" id="address_adr">
+        <input type="text" placeholder="街道门牌，无需重复地区信息" ng-model="addressOptionObj.Address" id="address_adr">
     </div>
     <div class="list_item">
         <label class="address_list_msg" for="address_code">邮政编码</label>
-        <input type="text" placeholder="邮政编码(选填)" ng-model="addressOptionObj.code" id="address_code">
+        <input type="text" placeholder="邮政编码(选填)" ng-model="addressOptionObj.Code" id="address_code">
     </div>
     <div class="last_list" ng-click="addressObj.saveAddress(addressOptionObj)">
         <div>保&nbsp;存</div>
