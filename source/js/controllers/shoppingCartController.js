@@ -163,24 +163,23 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
 
     //去结算的方法
     function goToSettlement() {
-
+        $scope.shoppingCart.selectedArray = $scope.shoppingCart.CartList;
         if($scope.shoppingCart.selectedArray.length === 0){
             $scope.popTipsShow("您未选择任何商品!");
             return;
         }
-        // for (var b = 0;b < $scope.shoppingCart.selectedArray.length;b++){
-        //     $scope.shoppingCart.selectedArray[b].goodsNum = $scope.shoppingCart.selectedArray[b].num;
-        //     $scope.shoppingCart.selectedArray[b].is_integral = 0;
-        //     $scope.shoppingCart.selectedArray[b].goods_id = $scope.shoppingCart.selectedArray[b].g_id;
-        //
-        // }
-        // MainData.shopping_car_goodsArray = JSON.stringify($scope.shoppingCart.selectedArray);
-        // if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
-        //     $state.go("tabs.confirmOrder",{goodsArray:'value传值'});
-        //
-        // }else {
-        //     $state.go("tabs.confirmOrder_personal",{goodsArray:'value传值'});
-        // }
+         for (var b = 0;b < $scope.shoppingCart.selectedArray.length;b++){
+             $scope.shoppingCart.selectedArray[b].goodsNum = $scope.shoppingCart.selectedArray[b].num;
+             $scope.shoppingCart.selectedArray[b].goods_id = $scope.shoppingCart.selectedArray[b].g_id;
+         }
+         MainData.shopping_car_goodsArray = JSON.stringify($scope.shoppingCart.selectedArray);
+         if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
+             console.log('jj');
+             $state.go("tabs.confirmOrder",{goodsArray:'value传值'});
+         }else {
+             console.log('yy');
+             $state.go("tabs.confirmOrder_personal",{goodsArray:'value传值'});
+         }
     }
 
     // 前往商品详情

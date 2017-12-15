@@ -8,9 +8,9 @@
         <div ng-if="confirmObj.hasDefaultAddress" class="default_address_wrapper" ng-click="confirmObj.goReceiptAddress()">
             <img class="addressIMG" ng-src="images/address.png" alt="">
             <div class="default_address_msg">
-                <p class="user_name">收货人：{{confirmObj.defaultAddress.vname}}</p>
+                <p class="user_name">收货人：{{confirmObj.defaultAddress.Name}}</p>
                 <p class="user_address">收货地址：{{confirmObj.defaultAddress.totalAddress}}</p>
-                <span class="user_tel">{{confirmObj.defaultAddress.tel}}</span>
+                <span class="user_tel">{{confirmObj.defaultAddress.Tel}}</span>
             </div>
             <img class="arrowIMG" ng-src="images/numsArrow.png" alt="">
         </div>
@@ -45,23 +45,18 @@
         <div class="order-sendMsg_wrapper order_same_wrapper">
             <img ng-src="images/sendMethod.png" alt="">
             <span>配送方式</span>
-            <span>普通快递</span>
+            <span>顺丰快递</span>
         </div>
         <div class="order_price_wrapper order_same_wrapper order_price">
             <span>商品金额</span>
             <span>{{"￥" + confirmObj.totalPrice}}</span>
         </div>
         <!--普通运费-->
-        <div ng-if="confirmObj.is_integral == 0" class="order_roadPrice_wrapper order_same_wrapper order_price">
+        <div class="order_roadPrice_wrapper order_same_wrapper order_price">
             <span>商品运费</span>
             <span>￥{{confirmObj.freight | number:2}}</span>
         </div>
-        <!--积分运费-->
-        <div ng-if="confirmObj.is_integral == 1" class="order_roadPrice_wrapper order_same_wrapper order_price integral_roadPrice">
-            <span>商品运费</span>
-            <span>￥0</span>
-        </div>
-        <div class="order_buyMethod_wrapper order_same_wrapper" ng-if="confirmObj.is_integral == 0">
+        <div class="order_buyMethod_wrapper order_same_wrapper">
             <span>支付方式</span>
             <div class="wechat_wrapper">
                 <img ng-src="images/wechat.png" alt="">

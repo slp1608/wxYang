@@ -233,7 +233,10 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
         if ($location.path().indexOf("goodsDetail_collection") > -1){
             $state.go("tabs.confirmOrder_personal",{goodsArray:JSON.stringify([$scope.goodsObj.goodsData])});
         }else {
-            $state.go("tabs.confirmOrder",{goodsArray:JSON.stringify([$scope.goodsObj.goodsData])});
+            var goodsData = $scope.goodsObj.goodsData;
+            var PicArr = goodsData.Pic;
+            goodsData.Pic = PicArr[0];
+            $state.go("tabs.confirmOrder",{goodsArray:JSON.stringify([goodsData])});
         }
     }
     //购物车模态窗口相关操作
