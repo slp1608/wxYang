@@ -163,7 +163,24 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
 
     //去结算的方法
     function goToSettlement() {
-        $scope.shoppingCart.selectedArray = $scope.shoppingCart.CartList;
+        // 选中所有的label标签里的input标签
+        var shoppingCheckbox = document.querySelectorAll('.radio>input');
+        console.log("计算总价格和总数量");
+        console.log(shoppingCheckbox);
+        var shoppingCheckboxIndex = 0;
+        var selectedArray = [];
+        var CartList = $scope.shoppingCart.CartList;
+        for (var i = 0; i < CartList.length; i++) {
+            if(CartList[i].Status){
+                if (shoppingCheckbox[shoppingCheckboxIndex].checked){
+                    selectedArray.push(CartList[i]);
+                }
+                shoppingCheckboxIndex++;
+            }
+        }
+        console.log('看一下选中的商品');
+        console.log(selectedArray);
+        $scope.shoppingCart.selectedArray = selectedArray;
         if($scope.shoppingCart.selectedArray.length === 0){
             $scope.popTipsShow("您未选择任何商品!");
             return;

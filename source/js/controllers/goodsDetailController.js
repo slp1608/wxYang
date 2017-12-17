@@ -280,20 +280,16 @@ angular.module('cftApp.goodsDetail',[]).config(['$stateProvider',function ($stat
             return;
         }
         var params = {
-            goods_id: $scope.modal.goodsData.goods_id,
-            num:$scope.collect.val,
-            sessid:SESSID
+            productId: $scope.modal.goodsData.id,
+            num: $scope.collect.val,
+            userId: 1
         };
-        HttpFactory.getData("/api/ushoppingCart",params,"POST").then(function (result) {
-            
-            if (result.status == 0) {
-                
-                user_car_num += 1;
-                $scope.user_Car_Num = user_car_num;
+        HttpFactory.getData("/UpdateShopCart",params,"POST").then(function (result) {
+
+            if ( result.returnVal === 'success' ) {
                 $scope.modal.hide();
                 $scope.popTipsShow("加入购物车成功");
             }else {
-                
                 $scope.popTipsShow("加入购物车失败");
             }
         },function (err) {

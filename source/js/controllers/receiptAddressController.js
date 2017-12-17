@@ -382,31 +382,27 @@ angular.module('cftApp.receiptAddress',[])
                         onTap: function(e) {
                             var id= list.id;
                             //删除收货地址的网络请求
-                            if ($scope.addressObj.adreessListDatas.length == 0){
-                                $scope.addressObj.dataIsNull = true;
-                            }else {
-                                $scope.addressObj.dataIsNull = false;
-                            }
+                            ($scope.addressObj.adreessListDatas.length == 0) ? $scope.addressObj.dataIsNull = true : $scope.addressObj.dataIsNull = false;
                             HttpFactory.getData("/DeleteReceptInfo",{receptInfoId:id},"POST")
                                 .then(function (result) {
                                     console.log(result);
-                                    //if (result.returnVal === 'success'){
-                                    //    //当用户删除的地址就是用户以前选择的地址的时候继续获取默认的
-                                    //    MainData.userSelectAddress = 'continue';
-                                    //    $scope.popTipsShow("删除成功");
-                                    //    //当删除的地址为默认地址的时候 重置成第一个为默认地址
-                                    //    if ($scope.addressObj.adreessListDatas.length && $scope.addressObj.adreessListDatas[index].setdefault == 1){
-                                    //        $scope.addressObj.adreessListDatas.splice(index ,1);
-                                    //        //设置第一个为默认地址
-                                    //        changeDefault();
-                                    //    }else {
-                                    //        $scope.addressObj.adreessListDatas.splice(index ,1);
-                                    //    }
-                                    //
-                                    //}else {
-                                    //    //错误提示
-                                    //    $scope.popTipsShow(result.desc);
-                                    //}
+                                    if (result.returnVal === 'success'){
+                                        //当用户删除的地址就是用户以前选择的地址的时候继续获取默认的
+                                        //MainData.userSelectAddress = 'continue';
+                                        $scope.popTipsShow("删除成功");
+                                        //当删除的地址为默认地址的时候 重置成第一个为默认地址
+                                        //if ($scope.addressObj.adreessListDatas.length && $scope.addressObj.adreessListDatas[index].setdefault == 1){
+                                        //    $scope.addressObj.adreessListDatas.splice(index ,1);
+                                        //    //设置第一个为默认地址
+                                        //    changeDefault();
+                                        //}else {
+                                        //    $scope.addressObj.adreessListDatas.splice(index ,1);
+                                        //}
+
+                                    }else {
+                                        //错误提示
+                                        $scope.popTipsShow(result.msg);
+                                    }
                                 },function (err) {
 
                                 });
