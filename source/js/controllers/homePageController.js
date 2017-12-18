@@ -116,7 +116,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     };
     //模态窗口的立即购买
     $scope.goToConfirmOrder = function () {
-        $scope.modal.goodsData.goodsNum = $scope.collect.val;
+        $scope.modal.goodsData.Num = $scope.collect.val;
         $scope.modal.hide();
         $state.go("tabs.confirmOrder",{goodsArray:JSON.stringify([$scope.modal.goodsData])});
     };

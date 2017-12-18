@@ -190,13 +190,14 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
              $scope.shoppingCart.selectedArray[b].goods_id = $scope.shoppingCart.selectedArray[b].g_id;
          }
          MainData.shopping_car_goodsArray = JSON.stringify($scope.shoppingCart.selectedArray);
-         if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
+        console.log($state.current.name);
+         //if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
              console.log('jj');
              $state.go("tabs.confirmOrder",{goodsArray:'value传值'});
-         }else {
-             console.log('yy');
-             $state.go("tabs.confirmOrder_personal",{goodsArray:'value传值'});
-         }
+         //}else {
+         //    console.log('yy');
+         //    $state.go("tabs.confirmOrder_personal",{goodsArray:'value传值'});
+         //}
     }
 
     // 前往商品详情

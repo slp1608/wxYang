@@ -70,9 +70,9 @@ angular.module('cftApp.confirmOrder',[])
             var totalPrice = 0;
             var freight = 0;
             for (var i = 0;i < $scope.confirmObj.goodsArray.length;i++){
-                goodsNum_all += parseInt($scope.confirmObj.goodsArray[i].goodsNum);
-                totalPrice += $scope.confirmObj.goodsArray[i].UnitPrice * $scope.confirmObj.goodsArray[i].goodsNum;
-                freight += $scope.confirmObj.goodsArray[i].TransPrice;
+                goodsNum_all += parseInt($scope.confirmObj.goodsArray[i].Num);
+                totalPrice += $scope.confirmObj.goodsArray[i].UnitPrice * $scope.confirmObj.goodsArray[i].Num;
+                freight += $scope.confirmObj.goodsArray[i].TransPrice * $scope.confirmObj.goodsArray[i].Num;
             }
             $scope.confirmObj.goodsNum_all = goodsNum_all;
             $scope.confirmObj.totalPrice = totalPrice;
@@ -131,13 +131,17 @@ angular.module('cftApp.confirmOrder',[])
             },300);
         });
 
-        var productIds = [];//存放所有的商品id
-        var productNums = [];//存放所有商品的数量
+        //var productIds = [];//存放所有的商品id
+        //var productNums = [];//存放所有商品的数量
+        var productIds = '';//存放所有的商品id
+        var productNums = '';//存放所有商品的数量
         console.log('hahah');
         console.log($scope.confirmObj.goodsArray);
         for (var i = 0; i < $scope.confirmObj.goodsArray.length;i++){
-            productIds.push($scope.confirmObj.goodsArray[i].id);
-            productNums.push($scope.confirmObj.goodsArray[i].goodsNum);
+            //productIds.push($scope.confirmObj.goodsArray[i].id);
+            //productNums.push($scope.confirmObj.goodsArray[i].Num);
+            productIds += $scope.confirmObj.goodsArray[i].id + ',';
+            productNums += $scope.confirmObj.goodsArray[i].Num + ',';
         }
 
         //获取运费
@@ -163,7 +167,7 @@ angular.module('cftApp.confirmOrder',[])
                 console.log(params);
                 HttpFactory.getData("/SubmitOrder",params,"POST").then(function (result) {
                     console.log('**************************');
-                    console.log('确认购买');
+                    console.log('返回数据');
                     console.log(result);
                     $scope.loadingOrPopTipsHide();
                     //if (result.status == 0){

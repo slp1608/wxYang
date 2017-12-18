@@ -16,6 +16,7 @@ angular.module('cftApp.factories',[]).factory('HttpFactory',['$http','$q',functi
                     withCredentials: true,
                     timeout:20000
                 }).then(function (reslut) {
+                    console.log(reslut);
                     reslut =reslut.data;
                     // reslut = reslut[Object.keys(reslut)[0]];
                     promise.resolve(reslut);
