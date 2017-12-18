@@ -117,14 +117,14 @@ angular.module('cftApp.receiptAddress',[])
             console.log(index);
             console.log(list);
             console.log(event);
-            //if(index == undefined){
-            //    index = 0;
-            //    list = $scope.addressObj.adreessListDatas[0];
-            //}else {
-            //    event.stopPropagation();
-            //    //当用户只是设置默认地址的再回去的时候略过地址改变
-            //    MainData.userSelectAddress = 'skip';
-            //}
+            if(index === undefined){
+               index = 0;
+               list = $scope.addressObj.adreessListDatas[0];
+            }else {
+               event.stopPropagation();
+               //当用户只是设置默认地址的再回去的时候略过地址改变
+               MainData.userSelectAddress = 'skip';
+            }
             if ($scope.addressObj.adreessListDatas.length){
                 var defalutParmas = {
                     receptInfoId: list.id,
@@ -156,7 +156,7 @@ angular.module('cftApp.receiptAddress',[])
             angular.forEach($scope.addressObj.provinces,function (province) {
 
                 //剔除数组的第一个元素
-                if (province.name == selectedProvince)
+                if (province.name === selectedProvince)
                 {
                     $scope.addressObj.cities = province.sub;
                 }
@@ -169,15 +169,15 @@ angular.module('cftApp.receiptAddress',[])
             addressParams.Province = $scope.addressObj.selectedProvince;
             addressParams.City = $scope.addressObj.selectedCity;
             addressParams.userId  = 1;
-            if (addressParams.province == "请选择"){
+            if (addressParams.province === "请选择"){
                 addressParams.province = '';
             }
-            if (addressParams.city == "请选择"){
+            if (addressParams.city === "请选择"){
                 addressParams.city = '';
             }
-            if (addressParams.Name == '' ||
-                addressParams.Tel == '' ||
-                addressParams.Address == ''){
+            if (addressParams.Name === '' ||
+                addressParams.Tel === '' ||
+                addressParams.Address === ''){
                 $scope.popTipsShow("请补全地址信息");
                 return;
             }
@@ -189,9 +189,9 @@ angular.module('cftApp.receiptAddress',[])
             console.log(isEdit);
             if (isEdit) {
                 console.log("现在是修改收货地址");
-                // delete addressParams.setdefault;
-                //var thisSetdefault = addressParams.setdefault;
-                //addressParams.setdefault = '';
+                // delete addressParams.IsDefault;
+                var thisSetdefault = addressParams.IsDefault;
+                addressParams.IsDefault = '';
                 var editParmas = {
                     Name:addressParams.Name,
                     Tel:addressParams.Tel,
@@ -207,8 +207,8 @@ angular.module('cftApp.receiptAddress',[])
                     .then(function (result) {
                         console.log(result);
                         if (result.returnVal === 'success'){
-    //                        addressParams.setdefault = thisSetdefault;
-    //                        MainData.userSelectAddress = addressParams;
+                           addressParams.IsDefault = thisSetdefault;
+                           MainData.userSelectAddress = addressParams;
                             $scope.loadingOrPopTipsHide();
                             //成功提示
                             $scope.popTipsShow("地址修改成功");
@@ -276,13 +276,14 @@ angular.module('cftApp.receiptAddress',[])
                         $scope.addressObj.adreessListDatas = result;
                         $scope.addressObj.dataIsNull = false;
                         $scope.addressObj.moredata = false;
-                        if (str == "新增保存"){
+                        if (str === "新增保存"){
                             $scope.loadingOrPopTipsHide();
                             $scope.popTipsShow("地址保存成功");
-                            //if ($scope.addressObj.adreessListDatas.length == 1)
-                            //{
-                            //    $scope.addressObj.adreessListDatas[0].setdefault = 1;
-                            //    changeDefault();
+                            if ($scope.addressObj.adreessListDatas.length === 1)
+                            {
+                               $scope.addressObj.adreessListDatas[0].IsDefault = 1;
+                               changeDefault();
+                            }
                         }
                     }else {//没有地址，页面提示
                         $scope.addressObj.dataIsNull = true;
@@ -331,7 +332,7 @@ angular.module('cftApp.receiptAddress',[])
         function openModal(option,list,event) {
             console.log("打开模态框");
             console.log(option);
-            if(option == 'edit'){
+            if(option === 'edit'){
                 isEdit = true;
                 event.stopPropagation();
                 console.log(list);
@@ -340,7 +341,7 @@ angular.module('cftApp.receiptAddress',[])
                 $scope.addressObj.selectedProvince = list.Province;
                 angular.forEach($scope.addressObj.provinces,function (province) {
                     //剔除数组的第一个元素
-                    if (province.name == list.province)
+                    if (province.name === list.province)
                     {
                         $scope.addressObj.cities = province.sub;
                     }
@@ -382,7 +383,7 @@ angular.module('cftApp.receiptAddress',[])
                         onTap: function(e) {
                             var id= list.id;
                             //删除收货地址的网络请求
-                            ($scope.addressObj.adreessListDatas.length == 0) ? $scope.addressObj.dataIsNull = true : $scope.addressObj.dataIsNull = false;
+                            ($scope.addressObj.adreessListDatas.length === 0) ? $scope.addressObj.dataIsNull = true : $scope.addressObj.dataIsNull = false;
                             HttpFactory.getData("/DeleteReceptInfo",{receptInfoId:id},"POST")
                                 .then(function (result) {
                                     console.log(result);
@@ -391,13 +392,13 @@ angular.module('cftApp.receiptAddress',[])
                                         //MainData.userSelectAddress = 'continue';
                                         $scope.popTipsShow("删除成功");
                                         //当删除的地址为默认地址的时候 重置成第一个为默认地址
-                                        //if ($scope.addressObj.adreessListDatas.length && $scope.addressObj.adreessListDatas[index].setdefault == 1){
-                                        //    $scope.addressObj.adreessListDatas.splice(index ,1);
-                                        //    //设置第一个为默认地址
-                                        //    changeDefault();
-                                        //}else {
-                                        //    $scope.addressObj.adreessListDatas.splice(index ,1);
-                                        //}
+                                        if ($scope.addressObj.adreessListDatas.length && $scope.addressObj.adreessListDatas[index].IsDefault === 1){
+                                           $scope.addressObj.adreessListDatas.splice(index ,1);
+                                           //设置第一个为默认地址
+                                           changeDefault();
+                                        }else {
+                                           $scope.addressObj.adreessListDatas.splice(index ,1);
+                                        }
 
                                     }else {
                                         //错误提示
