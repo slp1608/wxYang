@@ -449,11 +449,11 @@ angular.module('cftApp.receiptAddress',[])
         //关闭selectModal 命名为$scope.modal.show()是为了配合加盟店的模态
         $scope.modal = {
             hide:function () {
-                if (selectType == "省份"){
+                if (selectType === "省份"){
                     $scope.addressObj.selectedProvince = $scope.napaStores.text;
                     $scope.addressObj.selectedCity = '';
                 }
-                if (selectType == "城市"){
+                if (selectType === "城市"){
                     $scope.addressObj.selectedCity = $scope.napaStores.text;
                 }
                 $scope.selectModal.hide();
@@ -462,10 +462,10 @@ angular.module('cftApp.receiptAddress',[])
         //打开省份和失去的选择模态窗口
         function selectAddressModalShow(str) {
             selectType = str;
-            if (str == "省份"){
+            if (str === "省份"){
                 $scope.napaObj.provinces = $scope.addressObj.provinces;
             }
-            if(selectType == "城市"){
+            if(selectType === "城市"){
                 selectedChange($scope.addressObj.selectedProvince);
                 $scope.napaObj.provinces = $scope.addressObj.cities;
             }

@@ -110,9 +110,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
             }else {
                 $scope.popTipsShow("加入购物车失败");
             }
-        },function (err) {
-
-        });
+        },function (err) {});
     };
     //模态窗口的立即购买
     $scope.goToConfirmOrder = function () {

@@ -44,7 +44,7 @@ angular.module('cftApp.sortedGoods',[])
             
             arrowImg : "images/xiaoArrow.png",
 
-            searchStr : $stateParams.searchStr,
+            searchStr : $stateParams.searchStr
             
         };
         $scope.$on('$ionicView.beforeEnter', function () {
@@ -56,12 +56,12 @@ angular.module('cftApp.sortedGoods',[])
         var params = {
             pageNum : sortedGoodsObj.currentPage,
             searchStr : $stateParams.searchStr,
-            "cate_id[]" : $stateParams.cate_id == '' ? '' : $stateParams.cate_id.split(',')
+            "cate_id[]" : $stateParams.cate_id === '' ? '' : $stateParams.cate_id.split(',')
         };
         console.log(params);
         //下拉刷新
         function doRefresh() {
-            if (params.searchStr == undefined){
+            if (params.searchStr === undefined){
                 params.searchStr = "";
             }
             sortedGoodsObj.currentPage = 1;
@@ -69,25 +69,19 @@ angular.module('cftApp.sortedGoods',[])
             sortedGoodsObj.moredata = false;
             var getData = {
                 success: function (result) {
-                    if (result.status == 0){
-                        if(result["goodsData"].length < perPageCount){
-                            sortedGoodsObj.moredata = true;
-                        }else {
-                            sortedGoodsObj.moredata = false;
-                        }
-                        sortedGoodsObj.goodsDatas = result["goodsData"];
-                        sortedGoodsObj.currentPage++;
-                    }else {
-                    }
-    
+
+                    sortedGoodsObj.moredata = (result.length > 0);
+                    sortedGoodsObj.goodsDatas = result;
+                    sortedGoodsObj.currentPage += 1;
+                    params.pageNum = sortedGoodsObj.currentPage;
+
                     $scope.$broadcast('scroll.refreshComplete');
-    
                 },
                 error: function (err) {
                     
                 }
             };
-            HttpFactory.getData("/api/getGoods",params)
+            HttpFactory.getData("/SearchProduct",params)
                 .then(
                     getData.success,
                     getData.error
@@ -95,29 +89,25 @@ angular.module('cftApp.sortedGoods',[])
         }
         //加载更多
         function loadMore() {
-            
 
-            if (sortedGoodsObj.currentPage == 1){
+            if (sortedGoodsObj.currentPage === 1){
                 setTimeout(function () {
                     var loadMoreData = {
                         success: function (result) {
-                                console.log(result);
-                                if (result.length > 0){
-                                    sortedGoodsObj.moredata = true;
-                                    sortedGoodsObj.noneOfMoreData = true;
-                                }else {
-                                    sortedGoodsObj.moredata = false;
-                                    sortedGoodsObj.noneOfMoreData = false;
-                                }
+                            console.log(result);
+                            if (result.length > 0){
+                                sortedGoodsObj.moredata = true;
+                                sortedGoodsObj.noneOfMoreData = true;
+                                sortedGoodsObj.dataIsNull = false;
+                            }else {
+                                sortedGoodsObj.moredata = false;
+                                sortedGoodsObj.noneOfMoreData = false;
+                                sortedGoodsObj.dataIsNull = true;
+                            }
 
-                                if (result.length == 0){
-                                    sortedGoodsObj.dataIsNull = true;
-                                }else {
-                                    sortedGoodsObj.dataIsNull = false;
-                                }
-                                sortedGoodsObj.goodsDatas = sortedGoodsObj.goodsDatas.concat(result);
-                                sortedGoodsObj.currentPage += 1;
-                                params.pageNum = sortedGoodsObj.currentPage;
+                            sortedGoodsObj.goodsDatas = sortedGoodsObj.goodsDatas.concat(result);
+                            sortedGoodsObj.currentPage += 1;
+                            params.pageNum = sortedGoodsObj.currentPage;
 
                             $scope.$broadcast('scroll.infiniteScrollComplete');
                         },
@@ -145,7 +135,7 @@ angular.module('cftApp.sortedGoods',[])
 
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 },function (err) {
-                    
+
                 })
         }
         
@@ -156,7 +146,7 @@ angular.module('cftApp.sortedGoods',[])
         //当前页搜索
         function goSearch(searchStr) {
             
-            if (searchStr == undefined){
+            if (searchStr === undefined){
                 searchStr = "";
                 
             }
@@ -222,7 +212,7 @@ angular.module('cftApp.sortedGoods',[])
             };
             HttpFactory.getData("/api/ushoppingCart",params,"POST").then(function (result) {
                 
-                if (result.status == 0) {
+                if (result.status === 0) {
                     
                     user_car_num += 1;
                     $scope.user_Car_Num = user_car_num;
@@ -244,7 +234,7 @@ angular.module('cftApp.sortedGoods',[])
             
             HttpFactory.getData("/api/getGoods",paramsObj)
                 .then(function (result) {
-                    if (result.status == 0) {
+                    if (result.status === 0) {
                         $scope.loadingOrPopTipsHide();
                         sortedGoodsObj.goodsDatas = result["goodsData"];
                     }

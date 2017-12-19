@@ -4,7 +4,7 @@
         <div class="search_bar">
             <div class="ctf-search-view search_textFiled">
                 <label class="item item-input">
-                    <input class="cft-textField" ng-model="searchStr" type="text" placeholder="例：大闸蟹">
+                    <input class="cft-textField" ng-model="sortedGoodsObj.searchStr" type="text" placeholder="例：大闸蟹">
                 </label>
                 <button class="ctf-search-btn" style="height: 1.6rem" ng-click="sortedGoodsObj.goSearch(searchStr)"></button>
             </div>
@@ -21,7 +21,7 @@
             </ul>
         </div>
     </ion-header-bar>
-    <ion-content class="sortedGoods_content" style="margin-top: 0">
+    <ion-content class="sortedGoods_content">
         <!--<p class="data_is_null" ng-if="sortedGoodsObj.dataIsNull">没有此类商品哦...</p>-->
         <ion-refresher
                 pulling-text="下拉刷新..."
@@ -33,7 +33,7 @@
 
                 <div class="col col-50 goods_cell" ng-repeat="item in sortedGoodsObj.goodsDatas track by $index" ng-click="sortedGoodsObj.goDetail(item)">
                     <div class="cell_wrapper">
-                        <div class="goods_cell_icon" style="background: url(http://www.shanghairita.com/mall/public/image/{{item.Pic}}) no-repeat center;background-size: contain">
+                        <div class="goods_cell_icon" style="background: url( {{homeObj.PicROOT_URL+item.id+'/mainPic/'+item.Pic}} ">
                         </div>
                         <div class="goods_cell_bottom">
                             <div class="bottom_des">
