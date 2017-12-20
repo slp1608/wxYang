@@ -45,9 +45,9 @@
                 <div class="col">
                     <p class="goods-params" ng-class="{true: 'paramActive', false: 'inParamActive'}[goodsObj.isParamActive]" ng-click="goodsObj.selectParam()">商品参数</p>
                 </div>
-                <div class="col">
-                    <p class="goods-assess" ng-class="{true: 'assessActive', false: 'inAssessActive'}[goodsObj.isAssessActive]" ng-click="goodsObj.selectAssess()"><span>评价</span> ( 81 )</p>
-                </div>
+                <!--<div class="col">-->
+                    <!--<p class="goods-assess" ng-class="{true: 'assessActive', false: 'inAssessActive'}[goodsObj.isAssessActive]" ng-click="goodsObj.selectAssess()"><span>评价</span> ( 81 )</p>-->
+                <!--</div>-->
             </div>
 
             <!--下划线-->
@@ -56,29 +56,29 @@
             <div class="selection-content" ng-switch on="goodsObj.selection">
                 <!--商品详情-->
                 <div ng-switch-when="goodsInfo">
-                    <img ng-src="{{goodsObj.PicROOT_URL+goodsObj.goodsData.id+'/mainPic/'+iconUrl}}" alt="ingo-image" style="width: 100%;" ng-repeat="iconUrl in goodsObj.goodsData.DetailPic">
+                    <img ng-src="{{goodsObj.PicROOT_URL+goodsObj.goodsData.id+'/mainPic/'+iconUrl}}" alt="ingo-image" ng-repeat="iconUrl in goodsObj.goodsData.DetailPic">
                 </div>
                 <!--商品参数-->
                 <div ng-switch-when="goodsParam">
-                    <img ng-src="{{goodsObj.PicROOT_URL+goodsObj.goodsData.id+'/mainPic/'+goodsObj.goodsData.DetailPic[0]}}" style="width: 100%;" alt="param-image">
+                    <img ng-src="{{goodsObj.PicROOT_URL+goodsObj.goodsData.id+'/mainPic/'+goodsObj.goodsData.ParamPic}}" alt="param-image">
                 </div>
                 <!--商品评价列表-->
-                <div ng-switch-when="goodsAssess">
-                    <div class="assess-item">
-                        <div class="assess-head row">
-                            <div class="user-icon" style="background: url('images/meinvTestIcon.png') no-repeat center"></div>
-                            <p>超神Codehehehehhefdasdfdfdf</p>
-                            <div class="assess-stars">
-                                <div class="star assess-redStar" ng-repeat="red in rednums track by $index"></div>
-                                <div class="star assess-grayStar" ng-repeat="gray in graynums track by $index"></div>
-                            </div>
-                        </div>
-                        <div class="text-content">
-                            <p class="assess-text" >世界你好，今日阳光明媚</p>
-                            <p class="assess-time" >2016-12-07</p>
-                        </div>
-                    </div>
-                </div>
+                <!--<div ng-switch-when="goodsAssess">-->
+                    <!--<div class="assess-item">-->
+                        <!--<div class="assess-head row">-->
+                            <!--<div class="user-icon" style="background: url('images/meinvTestIcon.png') no-repeat center"></div>-->
+                            <!--<p>超神Codehehehehhefdasdfdfdf</p>-->
+                            <!--<div class="assess-stars">-->
+                                <!--<div class="star assess-redStar" ng-repeat="red in rednums track by $index"></div>-->
+                                <!--<div class="star assess-grayStar" ng-repeat="gray in graynums track by $index"></div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="text-content">-->
+                            <!--<p class="assess-text" >世界你好，今日阳光明媚</p>-->
+                            <!--<p class="assess-time" >2016-12-07</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </ion-content>
@@ -96,7 +96,7 @@
                     <i class="icon cft-shopcar"></i>
                     购物车
                 </a>
-                <span class="badge badge-assertive" style="position: absolute;top: 0;margin-left: .5rem;font-size: 1rem">{{user_Car_Num}}</span>
+                <!--<span class="badge badge-assertive" style="position: absolute;top: 0;margin-left: .5rem;font-size: 1rem">2{{user_Car_Num}}</span>-->
             </div>
             <div class="col col-60">
                 <div class="row" ng-if="goodsObj.goodsData.StockNum > 0">

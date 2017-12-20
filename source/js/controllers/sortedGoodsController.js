@@ -17,6 +17,7 @@ angular.module('cftApp.sortedGoods',[])
     .controller('sortedGoodsController',['$scope','$stateParams','$state','$ionicSideMenuDelegate','HttpFactory','$ionicViewSwitcher','$ionicLoading','$ionicScrollDelegate','$ionicModal','$rootScope',function ($scope,$stateParams,$state,$ionicSideMenuDelegate,HttpFactory,$ionicViewSwitcher,$ionicLoading,$ionicScrollDelegate,$ionicModal,$rootScope) {
         
         var sortedGoodsObj = $scope.sortedGoodsObj = {
+            PicROOT_URL: PicROOT_URL,
             //价格由高到低排序
             isPriceHeigh : true,
             //是否取消加载动画
@@ -141,7 +142,7 @@ angular.module('cftApp.sortedGoods',[])
         
         //进入商品详情页
         function goDetail(item) {
-            $state.go('tabs.goodsDetail',{is_integral: 0,goods_id: item.goods_id});
+            $state.go('tabs.goodsDetail',{goods_id: item.id});
         }
         //当前页搜索
         function goSearch(searchStr) {
@@ -206,16 +207,15 @@ angular.module('cftApp.sortedGoods',[])
         $scope.addToShoppingCar = function () {
             
             var params = {
-                goods_id: $scope.modal.goodsData.goods_id,
-                num:$scope.collect.val,
-                sessid:SESSID
+                productId: $scope.modal.goodsData.id,
+                num: $scope.collect.val,
+                userId: 1
             };
-            HttpFactory.getData("/api/ushoppingCart",params,"POST").then(function (result) {
-                
-                if (result.status === 0) {
-                    
-                    user_car_num += 1;
-                    $scope.user_Car_Num = user_car_num;
+            HttpFactory.getData("/UpdateShopCart",params,"POST").then(function (result) {
+
+                console.log("返回的数据");
+                console.log(result);
+                if ( result.returnVal === 'success' ) {
                     $scope.modal.hide();
                     $scope.popTipsShow("加入购物车成功");
                 }else {

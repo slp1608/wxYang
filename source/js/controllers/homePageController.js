@@ -94,7 +94,11 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
 
     //点击模态窗口的加入购物车触发的方法
     $scope.addToShoppingCar = function () {
-        
+        if($scope.modal.goodsData.StockNum <= 0){
+            $scope.popTipsShow("抱歉,该商品没有库存了,加入购物车失败!");
+            $scope.modal.hide();
+            return;
+        }
         var params = {
             productId: $scope.modal.goodsData.id,
             num: $scope.collect.val,
@@ -130,7 +134,7 @@ angular.module('cftApp.homePage',[]).config(['$stateProvider',function ($statePr
     function takeShorpping($event,item) {
         $event.stopPropagation();
         $scope.openModal();
-        console.log(item);
+        console.log(PicROOT_URL);
         $scope.modal.goodsData = item;
         $scope.modal.PicROOT_URL = PicROOT_URL;
     }

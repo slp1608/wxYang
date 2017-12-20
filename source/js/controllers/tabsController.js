@@ -22,23 +22,23 @@ angular.module('cftApp.tabs',[])
             //用于标示全局搜索
             isSearch: false,
             //
-            sortedSecondClassObj: {},
+            // sortedSecondClassObj: {},
             //选择全部商品
             selectAll: selectAll,
-            //选择首页一级菜单
-            selectHomeFirstClass: selectHomeFirstClass,
-            //选中首页二级菜单
-            tapedHomeSecondClass: tapedHomeSecondClass,
-            //侧边栏菜单打开时的一些默认配置和操作
-            sideMenuOnOpened: sideMenuOnOpened,
-            //选中筛选一级菜单
-            selectFiterFirstClass: selectFiterFirstClass,
-            //选中筛选二级菜单
-            tapedSortedSecondClass: tapedSortedSecondClass,
+            // //选择首页一级菜单
+            // selectHomeFirstClass: selectHomeFirstClass,
+            // //选中首页二级菜单
+            // tapedHomeSecondClass: tapedHomeSecondClass,
+            // //侧边栏菜单打开时的一些默认配置和操作
+            // sideMenuOnOpened: sideMenuOnOpened,
+            // //选中筛选一级菜单
+            // selectFiterFirstClass: selectFiterFirstClass,
+            // //选中筛选二级菜单
+            // tapedSortedSecondClass: tapedSortedSecondClass,
             //取消按钮
-            cancelOption: cancelOption,
+            // cancelOption: cancelOption,
             //确认按钮
-            sureOption: sureOption
+            // sureOption: sureOption
             //重置侧边栏
             // resetSideMenu: resetSideMenu
         };
@@ -55,19 +55,19 @@ angular.module('cftApp.tabs',[])
         var selectedIDS = [];
 
         //微信jsAPI接入
-        console.log(location);
-        console.log(location.href);
-        console.log(location.href.split('#')[0]);
-         HttpFactory.getData("/api/getSign",{url:location.href.split('#')[0]}).then(function (result) {
-             wx.config({
-                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                 appId: result.appId, // 必填，公众号的唯一标识
-                 timestamp: result.timestamp, // 必填，生成签名的时间戳
-                 nonceStr: result.nonceStr, // 必填，生成签名的随机串
-                 signature: result.signature,// 必填，签名，见附录1
-                 jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage","openLocation","getLocation","scanQRCode","chooseWXPay",'openProductSpecificView'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-             });
-         });
+        // console.log(location);
+        // console.log(location.href);
+        // console.log(location.href.split('#')[0]);
+         // HttpFactory.getData("/api/getSign",{url:location.href.split('#')[0]}).then(function (result) {
+         //     wx.config({
+         //         debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+         //         appId: result.appId, // 必填，公众号的唯一标识
+         //         timestamp: result.timestamp, // 必填，生成签名的时间戳
+         //         nonceStr: result.nonceStr, // 必填，生成签名的随机串
+         //         signature: result.signature,// 必填，签名，见附录1
+         //         jsApiList: ["onMenuShareTimeline","onMenuShareAppMessage","openLocation","getLocation","scanQRCode","chooseWXPay",'openProductSpecificView'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+         //     });
+         // });
          wx.ready(function(){
              // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
              HttpFactory.getData('/api/memberInfo').then(function (result) {
@@ -221,144 +221,6 @@ angular.module('cftApp.tabs',[])
             }
         }
         
-        function selectHomeFirstClass(event,key) {
-            console.log(key);
-            // selectedFirstClassID = key;
-            selectedObj.oneclass = key;
-            
-            selectedIDS = [];
-            selectedIDS.push(key);
-            setSecondClassMenu(key);
-        }
-        function tapedHomeSecondClass(event,item) {
-            
-            selectedObj.secondClass = [];
-            selectedObj.secondClass.push(item.id);
-            selectedIDS.push(item.id);
-            CftStore.setObject("selectedObj",selectedObj);
-            console.log(CftStore.getObject("selectedObj"));
-            $rootScope.hideTabs = true;
-            if (sideMenuObj.is_integral === 0){
-                console.log(selectedObj);
-                $scope.$broadcast("home_sortedView",selectedIDS);
-            }else {
-                $scope.$broadcast("integral_sortedView",selectedIDS);
-            }
-        }
-        //通过一级分类的键获取二级分类数据
-        function setSecondClassMenu(num) {
-            sideMenuObj.headTitle = "二级分类";
-            $scope.sideMenuObj.menuSecondClasses = sideMenuObj.sortedSecondClassObj[num].childData;
-            var secondClasses = angular.element(document.querySelector("#secondClasses")).children();
-            secondClasses.removeClass("active");
-        }
-        
-        //is_integral; 0 普通商品首页 1 积分首页; is_allGoods: 0 全部普通商品 1 全部积分商品
-        function sideMenuOnOpened(is_integral,is_allGoods) {
-            sideMenuObj.is_allGoods = is_allGoods;
-            sideMenuObj.is_integral = is_integral;
-            sideMenuObj.sortedClassKeys = Object.keys(sideMenuObj.sortedSecondClassObj);
-            if (!is_allGoods){
-                console.log("首页or积分首页");
-                sideMenuObj.headTitle = "一级分类";
-            }else {
-                cancelOption();
-                if (sideMenuObj.isSearch){
-                    selectedObj.oneclass = '2';
-                    selectedObj.secondClass = [];
-                    selectedObj.minPrice = '';
-                    selectedObj.maxPrice = '';
-                    CftStore.setObject("selectedObj",selectedObj);
-                }else {
-                    selectedObj = CftStore.getObject("selectedObj");
-                }
-                sideMenuObj.filterObj.minPrice = selectedObj.minPrice;
-                sideMenuObj.filterObj.maxPrice = selectedObj.maxPrice;
-                setSecondClassMenu(selectedObj.oneclass);
-                
-                setTimeout(function () {
-                    
-                    //打开时先获取本地选中对象
-                    setSecondClassMenu(selectedObj.oneclass);
-                    //将所有一级菜单重置
-                    var firstClasses = angular.element(document.getElementById("sortedFirstClass")).children();
-                    firstClasses.removeClass("active");
-                    //设置一级菜单
-                    angular.forEach(firstClasses,function (value,key) {
-                        //转为ng元素
-                        var ngEle = angular.element(value);
-                        
-                        if (ngEle.hasClass(selectedObj.oneclass))
-                            ngEle.addClass("active");
-                        
-                    });
-                    var secondClasses = angular.element(document.getElementById("secondClasses")).children();
-                    secondClasses.removeClass("active");
-                    //设置二级菜单
-                    for (var className in selectedObj.secondClass){
-                        if (selectedObj.secondClass.hasOwnProperty(className)){
-                            console.log("className: "+ className);
-                            angular.forEach(secondClasses,function (value,key) {
-                                var ngEle = angular.element(value);
-                                console.log(ngEle.hasClass(selectedObj.secondClass[Number(className)]));
-                                if (ngEle.hasClass(selectedObj.secondClass[Number(className)])){
-                                    ngEle.addClass("active");
-                                }
-                            });
-                        }
-                    }
-                    
-                    
-                },10);
-            }
-            
-            
-        }
-        
-        
-        //2.全部商品 筛选分类逻辑
-        function selectFiterFirstClass(event,key) {
-            
-            selectedObj.secondClass = [];
-            var firstClasses = angular.element(document.getElementById("sortedFirstClass")).children();
-            firstClasses.removeClass("active");
-            var target = angular.element(event.target);
-            target.addClass("active");
-            setSecondClassMenu(key);
-            //修改本地的一级选中
-            selectedObj.oneclass = key;
-           
-        }
-        
-        function tapedSortedSecondClass(event,item) {
-            var target = angular.element(event.target);
-            if (target.hasClass("active")){
-                target.removeClass("active");
-                selectedObj.secondClass.cftRemove(item.id);
-                
-            }else {
-                console.log(target);
-                target.addClass("active");
-                selectedObj.secondClass.push(item.id);
-            }
-        }
-        function cancelOption() {
-            selectedObj = CftStore.getObject("selectedObj");
-            var secondClasses = angular.element(document.querySelector("#secondClasses")).children();
-            secondClasses.removeClass("active");
-        }
-        function sureOption() {
-            selectedObj.minPrice = sideMenuObj.filterObj.minPrice;
-            selectedObj.maxPrice = sideMenuObj.filterObj.maxPrice;
-            sideMenuObj.isSearch = false;
-            CftStore.setObject("selectedObj",selectedObj);
-            
-            selectedIDS = [];
-            selectedIDS.push(selectedObj.oneclass);
-            selectedIDS = selectedIDS.concat(selectedObj.secondClass);
-            sideMenuObj.filterObj.sortedSelectedIDS = selectedIDS;
-            $scope.$broadcast("sureSorted",sideMenuObj.filterObj);
-        }
 
 
         //全局提示的弹窗

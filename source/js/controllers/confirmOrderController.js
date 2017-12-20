@@ -4,7 +4,7 @@
 angular.module('cftApp.confirmOrder',[])
     .config(['$stateProvider',function ($stateProvider) {
         $stateProvider.state('tabs.confirmOrder',{
-            url: '/confirmOrder/:goodsArray',
+            url: '/confirmOrder/:goodsArray/:isFromCart',
             views: {
                 'tabs-homePage': {
                     templateUrl: 'confirmOrder.html',
@@ -33,8 +33,9 @@ angular.module('cftApp.confirmOrder',[])
 
         //重置用户地址的选择
         MainData.userSelectAddress = null;
-        if ($stateParams.goodsArray == "value传值"){
-            console.log('lall')
+        console.log(MainData);
+        if ($stateParams.goodsArray === "value传值"){
+            console.log('lall');
             $stateParams.goodsArray = MainData.shopping_car_goodsArray;
         }
         console.log(JSON.parse($stateParams.goodsArray));
@@ -58,12 +59,19 @@ angular.module('cftApp.confirmOrder',[])
             //立即购买
             buyNow: buyNow,
             //进入订单详情
-            goToLookOrderDetail:goToLookOrderDetail,
-            confirmOrderModalImg:'images/confirmOrder_ig.png',
-            oid:'',//购买成功或者兑换成功的订单id
-            freight:0//商品运费
+            goToLookOrderDetail: goToLookOrderDetail,
+            confirmOrderModalImg: 'images/confirmOrder_ig.png',
+            oid: '',               //购买成功或者兑换成功的订单id
+            freight: 0,            //商品运费
+            isFromCart: 0         //是否是从购物车过来的
         };
         console.log('确认订单页面');
+        console.log($stateParams);
+
+        if($stateParams.isFromCart){
+            $scope.confirmObj.isFromCart = 1
+        }
+        console.log('是否是从购物车过来的:' + $scope.confirmObj.isFromCart);
         //计算商品 总数量、总价 和 运费
         function calculateNumber() {
             var goodsNum_all = 0;
@@ -160,7 +168,7 @@ angular.module('cftApp.confirmOrder',[])
                     productNums:productNums,               //产品数量数组
                     //disPrice:$scope.confirmObj.freight,            //快递费
                     userId :1,                                        //用户id
-                    isFromCart: 0                                  //是否为购物车提交的订单
+                    isFromCart: $scope.confirmObj.isFromCart                                  //是否为购物车提交的订单
                 };
                 $scope.loadingShow();
                 console.log('确认购买，查看参数');

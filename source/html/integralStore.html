@@ -1,4 +1,4 @@
-<!--积分商城-->
+<!--积分商城   ==> 现在是分类页面  -->
 
 <ion-view>
 
@@ -12,53 +12,87 @@
             </label>
             <button class="ctf-search-btn" style="height: 1.6rem" ng-click="integralObj.goSearch(searchValue)"></button>
         </div>
-        <div class="tabs-icon-top padding-left top-right-menu">
-            <a class="tab-item" ng-click="integralObj.toggleRight()" >
-                <i class="home-right-menu"></i>
-            </a>
-        </div>
+        <!--<div class="tabs-icon-top padding-left top-right-menu">-->
+            <!--<a class="tab-item" ng-click="integralObj.toggleRight()" >-->
+                <!--<i class="home-right-menu"></i>-->
+            <!--</a>-->
+        <!--</div>-->
     </ion-header-bar>
 
-    <ion-content class="home_content">
-
-        <!--source-array="homeObj.slideData"-->
-        <mg-slide-box source-data="integralObj.slideData"></mg-slide-box>
-        <ion-refresher
-                pulling-text="下拉刷新..."
-                on-refresh="integralObj.doRefresh()">
-        </ion-refresher>
-        <div class="goods_list_wrapper">
-            <!--推荐-->
-            <div class="integral_convert"></div>
-
-            <div class="row row-wrap">
-
-                <div class="col col-50 goods_cell" ng-repeat="item in integralObj.goodsData track by $index" ng-click="integralObj.goDetail(item)">
-
-                    <div class="cell_wrapper">
-                        <div class="goods_cell_icon" style="background: url(http://www.sunnyshu.cn{{item.goods_introduction[0]}}) no-repeat center;background-size: contain">
+    <ion-content >
+        <!--<div ng-if="!sideMenuObj.is_allGoods" ng-switch on="sideMenuObj.headTitle">-->
+            <!--<div ng-switch-when="一级分类" class="side_firstClass_wrapper side_classes_wrapper">-->
+                <!--<p class="title">{{sideMenuObj.headTitle}}</p>-->
+        <div style="display: flex">
+            <div class="classes_list" style="width: 30%;">
+                <ul id="homeFirstClasses">
+                    <li menu-close ng-click="integralObj.selectAll($event)">全部商品</li>
+                    <li ng-repeat="key in integralObj.sortedClassKeys" ng-click="integralObj.selectHomeFirstClass($event,key)">{{integralObj.sortedSecondClassObj[key].name}}</li>
+                </ul>
+            </div>
+            <div class="goods_list_wrapper" style="width: 70%;">
+                <div class="row row-wrap" ng-repeat="item in integralObj.goodsDatas track by $index" ng-click="integralObj.goDetail(item)">
+                    <div class="col col-40 goods_cell">
+                        <div class="cell_wrapper">
+                            <div class="goods_cell_icon" style="background-image: url( {{integralObj.PicROOT_URL+item.id+'/mainPic/'+item.Pic}} "></div>
                         </div>
+                    </div>
+                    <div class="col col-60 goods_cell">
                         <div class="goods_cell_bottom">
                             <div class="bottom_des">
-                                <p class="des_title" ng-bind="item.goods_name"></p>
+                                <p class="des_title" ng-bind="item.Name"></p>
                                 <p class="home_goods_price">
-                                    <span class="stamp">￥</span>{{item.integral}}
-                                    <span class="des_prePrice">
-                                    <span class="stamp">￥</span>{{item.market_price}}
-                                    </span>
+                                    <span class="stamp">￥{{item.UnitPrice}}</span>
+                                    <span class="stamp">销量：{{item.SaleNum}}</span>
                                 </p>
                             </div>
-                            <!--立即兑换-->
-                            <button class="convert_btn" ng-if="item.goods_number > 0"  ng-click="integralObj.convertOption($event,item)"></button>
-                            <div class="shopping_btn_none" ng-if="item.goods_number <= 0"></div>
+                            <!--购买-->
+                            <button ng-if="item.StockNum > 0" class="shopping_btn_has" ng-click="homeObj.takeShorpping($event,item)"></button>
+                            <button ng-if="item.StockNum == 0" class="shopping_btn_none" ng-click="homeObj.sellOut($event)" ></button>
                         </div>
                     </div>
                 </div>
+                <ion-infinite-scroll ng-if="!integralObj.noneOfMoreData" on-infinite="integralObj.loadMore()" distance="1%" ></ion-infinite-scroll>
             </div>
         </div>
-        <ion-infinite-scroll ng-if="!integralObj.moredata" on-infinite="integralObj.loadMore()" distance="1%" ></ion-infinite-scroll>
-        <p class="nomore_text" ng-if="integralObj.noneOfMoreData">没有更多商品...</p>
-    </ion-content>
+            <!--</div>-->
+            <!--<div ng-switch-when="二级分类" class="side_secondClass_wrapper side_classes_wrapper">-->
+                <!--<p class="title">{{sideMenuObj.headTitle}}</p>-->
+                <!--<div class="classes_list">-->
+                    <!--<ul>-->
+                        <!--<li menu-close ng-repeat="secondClassItem in sideMenuObj.menuSecondClasses track by $index" ng-click="sideMenuObj.tapedHomeSecondClass($event,secondClassItem)">{{secondClassItem.name}}</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--筛选分类侧边栏-->
+        <!--<div class="filter_classes_wrapper" ng-if="sideMenuObj.is_allGoods">-->
+            <!--<p>筛选分类</p>-->
+            <!--<div class="first_class_wrapper classes_wrapper">-->
+                <!--<p>一级分类</p>-->
+                <!--<ul id="sortedFirstClass">-->
+                    <!--<li class="{{key}}" ng-repeat="key in sideMenuObj.sortedClassKeys" ng-click="sideMenuObj.selectFiterFirstClass($event,key)">{{sideMenuObj.sortedSecondClassObj[key].name}}</li>-->
+                <!--</ul>-->
+            <!--</div>-->
 
+
+            <!--<div class="second_class_wrapper classes_wrapper">-->
+                <!--<p>二级分类</p>-->
+
+                <!--<ul id="secondClasses">-->
+                    <!--<li ng-repeat="secondClassItem in sideMenuObj.menuSecondClasses" class="{{secondClassItem.id}}" ng-click="sideMenuObj.tapedSortedSecondClass($event,secondClassItem)">{{secondClassItem.name}}</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+
+            <!--<div class="price_area classes_wrapper">-->
+                <!--<p>价格区间</p>-->
+                <!--<div class="price_wrapper">-->
+                    <!--<input ng-model="sideMenuObj.filterObj.minPrice" placeholder="最低价" style="text-align: center"/>-->
+                    <!--<div class="row_line"></div>-->
+                    <!--<input ng-model="sideMenuObj.filterObj.maxPrice" placeholder="最高价" style="text-align: center"/>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </ion-content>
 </ion-view>
 

@@ -78,7 +78,6 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
     // 下拉刷新函数
     function doRefresh() {
         var params = {
-            // sessid: SESSID
             userId: 1
         };
         HttpFactory.getData('/shopCartList',params).then(function (result) {
@@ -88,7 +87,6 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
             }else {
                 $scope.shoppingCart.emptyShopCarStr = "您的购物车是空的O(∩_∩)O~";
             }
-            // goodsIfOutData();
             }).finally(function () {
             $scope.$broadcast('scroll.refreshComplete');
             });
@@ -133,7 +131,6 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         else{  // 如果取消全选的话让所有商品都取消选中
             shoppingCheckbox.attr('checked','');
         }
-        // $scope.shoppingCart.selectedArray = $scope.shoppingCart.CartList;
         shoppingCartallMoney();
     }
 
@@ -150,15 +147,6 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         }
         // console.log(ifArray);
         $scope.shoppingCart.SelectAll = ifArray.indexOf('false') < 0;
-        // var t_index = 'a';
-        // for(var i = 0;i < $scope.shoppingCart.selectedArray.length;i++){
-        //     if ($scope.shoppingCart.CartList[index].$$hashKey === $scope.shoppingCart.selectedArray[i].$$hashKey){
-        //         t_index = i;
-        //         $scope.shoppingCart.selectedArray.splice(i,1);
-        //         break;
-        //     }
-        // }
-        // if (t_index === 'a') $scope.shoppingCart.selectedArray.push($scope.shoppingCart.CartList[index])
     }
 
     //去结算的方法
@@ -193,7 +181,7 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         console.log($state.current.name);
          //if ($state.current.name === 'tabs.shoppingCart_fromDetail'){
              console.log('jj');
-             $state.go("tabs.confirmOrder",{goodsArray:'value传值'});
+             $state.go("tabs.confirmOrder",{goodsArray:'value传值',isFromCart:1});
          //}else {
          //    console.log('yy');
          //    $state.go("tabs.confirmOrder_personal",{goodsArray:'value传值'});
@@ -235,6 +223,7 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
                         ShopCartId: $scope.shoppingCart.CartList[index].ShopCartId,
                         userId: 1
                     };
+                    console.log($scope.shoppingCart.CartList[index]);
                     console.log(params);
                     HttpFactory.getData("/DeleteShopCart",params,"POST").then(function (result) {
                         console.log(result);
