@@ -246,13 +246,6 @@ body,.scroll{
     font-size: 2.2rem;
     color: gray;
 }
-/*融云客服页面*/
-div #rong-conversation{
-    left: 0;
-}
-.rongcloud-kefuChat #header{
-    background: #E60012;
-}
 /*加载动画*/
 .selfSpinner svg {
     width: 36px;

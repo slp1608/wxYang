@@ -237,23 +237,6 @@ body,.scroll{
     text-align: center;
     color: gray;
 }
-/*融云客服页面*/
-div #rong-conversation{
-    left: 0;
-}
-/*div#rong-widget-minbtn{*/
-/*width:6rem;*/
-/*height:6rem;*/
-/*}*/
-/*.rongcloud-kefuBtn .rongcloud-people{*/
-/*display: none;*/
-/*}*/
-/*#rong-widget-minbtn{*/
-/*background:url("../../images/service1.png") no-repeat  center/100%;*/
-/*}*/
-.rongcloud-kefuChat #header{
-    background: #E60012;
-}
 /*加载动画*/
 .selfSpinner svg {
     width: 36px;
@@ -266,4 +249,22 @@ div #rong-conversation{
     text-align: center;
     font-size: larger;
     margin-top: 1rem;
+}
+
+
+.class_list_wrapper{
+
+}
+.class_list{
+    background-color: #fff;
+    margin-bottom: .5rem;
+}
+.class_list .goods_cell{
+    background-color: #fff;
+}
+.class_list .goods_cell .cell_wrapper{
+    padding-top: 0;
+}
+.class_list .goods_cell .cell_wrapper .goods_cell_icon{
+    height: 6rem;
 }
