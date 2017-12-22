@@ -18,9 +18,9 @@ angular.module('cftApp.personal',[]).config(['$stateProvider',function ($statePr
     });
     $scope.personal = {
         //用户名
-        userName:localStorage.userName,
+        userName:localStorage.nickName ,
         //用户头像
-        headimgurl:localStorage.headimgurl,
+        headimgurl:localStorage.headImg ,
         //用户积分
         creditNum:localStorage.creditNum ? localStorage.creditNum : 0,
         //进入订单
