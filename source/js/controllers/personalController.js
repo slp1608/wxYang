@@ -22,7 +22,7 @@ angular.module('cftApp.personal',[]).config(['$stateProvider',function ($statePr
         //用户头像
         headimgurl:localStorage.headImg ,
         //用户积分
-        creditNum:localStorage.creditNum ? localStorage.creditNum : 0,
+        // creditNum:localStorage.creditNum ? localStorage.creditNum : 0,
         //进入订单
         showOrder:showOrder,
         //进入收藏

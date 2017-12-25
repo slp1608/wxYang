@@ -78,7 +78,7 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
         console.log(params);
         HttpFactory.getData('/api/Order',params)
             .then(function (result) {
-                if (result.status == 0) {
+                if (result.status === 0) {
                     $scope.$broadcast('scroll.refreshComplete');
                     
                     $scope.loadingOrPopTipsHide();
@@ -102,7 +102,7 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
             .then(function (result) {
                 console.log(result);
                 // return;
-                if (result.status == 0) {
+                if (result.status === 0) {
                     $scope.loadingOrPopTipsHide();
                     $scope.myOrder.orderDatas = $scope.myOrder.orderDatas.concat(result.orderData);
                     // console.log($scope.myOrder.orderDatas);
@@ -142,14 +142,14 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
         var item = angular.element(event.target);
         
         //对数据进行过滤
-        if (item.text() == '全 部'){
+        if (item.text() === '全 部'){
             params.page = 1;
             $scope.myOrder.orderDatas = [];
             $scope.myOrder.moredata = false;
             params.state = '0';
         }
         //改变元素的样式.
-        if (event.currentTarget != event.target){
+        if (event.currentTarget !== event.target){
             list.removeClass('active');
             item.addClass('active');
             params.page = 1;
@@ -200,7 +200,7 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
                     };
                     HttpFactory.getData("/api/Order",params_index,"PATCH").then(function (result) {
                         console.log(result);
-                        if(result.status == 0){
+                        if(result.status === 0){
                             $scope.myOrder.orderDatas[index].state = "6";
                             $scope.popTipsShow("取消成功!");
                         }else {
@@ -245,7 +245,7 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
                     HttpFactory.getData("/api/Order",params,"PATCH")
                         .then(function (result) {
                             console.log(result);
-                            if(result.status == 0){
+                            if(result.status === 0){
                                 $scope.myOrder.orderDatas[index].state = "4";
                                 $scope.popTipsShow("申请成功!");
                             }else {
@@ -280,7 +280,7 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
                     };
                     HttpFactory.getData("/api/Order",params_index,"PATCH").then(function (result) {
                         console.log(result);
-                        if(result.status == 0){
+                        if(result.status === 0){
                             $scope.myOrder.orderDatas[index].state = "3";
                             $scope.popTipsShow("交易完成!");
                         }else {

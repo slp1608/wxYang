@@ -24,7 +24,7 @@ angular.module('cftApp.tabs',[])
             //
             // sortedSecondClassObj: {},
             //选择全部商品
-            selectAll: selectAll,
+            // selectAll: selectAll,
             // //选择首页一级菜单
             // selectHomeFirstClass: selectHomeFirstClass,
             // //选中首页二级菜单
@@ -42,17 +42,17 @@ angular.module('cftApp.tabs',[])
             //重置侧边栏
             // resetSideMenu: resetSideMenu
         };
-        var selectedObj = {
-            oneclass: '2',
-            secondClass: [],
-            minPrice: '',
-            maxPrice: ''
-        };
+        // var selectedObj = {
+        //     oneclass: '2',
+        //     secondClass: [],
+        //     minPrice: '',
+        //     maxPrice: ''
+        // };
         //用户购物车商品数量
-        $scope.user_Car_Num = '';
+        // $scope.user_Car_Num = '';
         //记录打开客服还是扫码
-        var is_KF_scanQRCode = '';
-        var selectedIDS = [];
+        // var is_KF_scanQRCode = '';
+        // var selectedIDS = [];
 
         //微信jsAPI接入
          console.log('tabs');
@@ -93,7 +93,7 @@ angular.module('cftApp.tabs',[])
                      }
                  });
                  wx.onMenuShareTimeline({
-                     title: '羊肉店', // 分享标题
+                     title: '南北鲜羊', // 分享标题
                      link: 'http://www.sunnyshu.cn/sunny/wap/api/memberlogin?c_user=' + result.userid, // 分享链接
                      imgUrl: 'http://www.sunnyshu.cn/sunny/wap/images/logo_share.png', // 分享图标
                      success: function () {
@@ -208,18 +208,18 @@ angular.module('cftApp.tabs',[])
             $state.go("tabs.personal");
         };
         //全部商品
-        function selectAll(event) {
-            sideMenuObj.isSearch = true;
-            $rootScope.hideTabs = true;
-            if (sideMenuObj.is_integral === 0){
-                //广播给 homePage
-                $scope.$broadcast("home_sortedView","");
-            }else {
-                //广播给 integralStore
-                $scope.$broadcast("integral_sortedView","");
-            }
-        }
-        
+        // function selectAll(event) {
+        //     sideMenuObj.isSearch = true;
+        //     $rootScope.hideTabs = true;
+        //     if (sideMenuObj.is_integral === 0){
+        //         //广播给 homePage
+        //         $scope.$broadcast("home_sortedView","");
+        //     }else {
+        //         //广播给 integralStore
+        //         $scope.$broadcast("integral_sortedView","");
+        //     }
+        // }
+        //
 
 
         //全局提示的弹窗
