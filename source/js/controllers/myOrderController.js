@@ -22,7 +22,8 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
         //全部订单信息
         orderDatas:[],
         //状态列表
-        stateInfos: ["未付款","待发货","待收货","交易完成","退款中","已退款","交易关闭"],
+        stateInfos: ["待付款","待发货","待收货","交易完成"],
+        // stateInfos: ["待付款","待发货","待收货","交易完成","退款中","已退款","交易关闭"],
         //存储订单商品信息
         allData:'',
         //取消订单的方法
@@ -38,7 +39,7 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
         //跳转订单详情
         goOrderDetail: goOrderDetail,
         //图片根地址
-        IconRootURL: '',
+        PicROOT_URL: '',
         //申请退款原因
         applyMsg: '',
         //为空的信息
@@ -53,16 +54,14 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
         doRefresh: doRefresh
 
     };
-    var currentPage = 1;
     var orderState = '';
     var params = {
-        page:1,
-        total:10,
-        state:'0',
-        sessid: SESSID
+        pageNum: 1,
+        status: -1,
+        userId: 1
         // type: 1
     };
-    $scope.myOrder.IconRootURL = IconROOT_URL;
+    $scope.myOrder.PicROOT_URL = PicROOT_URL;
     
     //隐藏 tabs
     $scope.$on('$ionicView.beforeEnter', function () {
@@ -74,22 +73,24 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
     }
     //下拉刷新获取订单数据
     function getOrders() {
-        params.page = 1;
+        params.pageNum = 1;
         console.log(params);
-        HttpFactory.getData('/api/Order',params)
+        HttpFactory.getData('/orderList',params)
             .then(function (result) {
-                if (result.status === 0) {
+                if (result) {
                     $scope.$broadcast('scroll.refreshComplete');
                     
                     $scope.loadingOrPopTipsHide();
                     
-                    $scope.myOrder.orderDatas = result.orderData;
+                    $scope.myOrder.orderDatas = result;
                     // $scope.myOrder.emptyMsg = $scope.myOrder.orderDatas.length == 0 ? "您的此类订单为空O(∩_∩)O~" : '';
                     // if (params.page == 1 && $scope.myOrder.orderDatas.length == 0) {
                     //     $scope.myOrder.noMoreDataMsg = ''
                     // }
-                    $scope.myOrder.moredata = (result.orderData.length < 10);
-                    params.page ++;
+                    // $scope.myOrder.moredata = (result.orderData.length < 10);
+                    params.pageNum ++;
+                }else {
+                    $scope.myOrder.moredata = false;
                 }
             },function (err) {
                 
@@ -97,26 +98,27 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
     }
     //上拉加载
     function loadMore() {
+        console.log('loadMore');
         console.log(params);
-        HttpFactory.getData('/api/Order',params)
+        HttpFactory.getData('/orderList',params)
             .then(function (result) {
                 console.log(result);
                 // return;
-                if (result.status === 0) {
+                if (result) {
                     $scope.loadingOrPopTipsHide();
-                    $scope.myOrder.orderDatas = $scope.myOrder.orderDatas.concat(result.orderData);
+                    $scope.myOrder.orderDatas = $scope.myOrder.orderDatas.concat(result);
                     // console.log($scope.myOrder.orderDatas);
                     // $scope.myOrder.noMoreDataMsg = result.orderData.length < perPageCount ? "没有更多订单..." : '';
-                    $scope.myOrder.moredata = (result.orderData.length < 10);
+                    // $scope.myOrder.moredata = (result.orderData.length < 10);
                     // console.log($scope.myOrder.moredata);
                     // $scope.myOrder.emptyMsg = $scope.myOrder.orderDatas.length == 0 ? "您的此类订单为空O(∩_∩)O~" : '';
                     // if (params.page == 1 && $scope.myOrder.orderDatas.length == 0) {
                     //     $scope.myOrder.noMoreDataMsg = ''
                     // }
                     //放最后
-                    params.page ++;
+                    params.pageNum ++;
                 }else {
-                    $scope.myOrder.moredata = true;
+                    $scope.myOrder.moredata = false;
                 }
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             },function (err) {
@@ -124,12 +126,11 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
     }
     //进入订单详情
     function goOrderDetail(orderData) {
-        
         var orderObj = {
             orderData: orderData
         };
         //传参： 订单号
-        $state.go('tabs.orderDetail',{oid: orderData.ordercode});
+        $state.go('tabs.orderDetail',{oid: orderData.OrderNum});
     }
     //点击导航栏菜单
     function navData(event) {
@@ -143,34 +144,34 @@ angular.module('cftApp.myOrder',['ionic','cftApp.orderDetail']).config(['$stateP
         
         //对数据进行过滤
         if (item.text() === '全 部'){
-            params.page = 1;
+            params.pageNum = 1;
             $scope.myOrder.orderDatas = [];
             $scope.myOrder.moredata = false;
-            params.state = '0';
+            params.status = -1;
         }
         //改变元素的样式.
         if (event.currentTarget !== event.target){
             list.removeClass('active');
             item.addClass('active');
-            params.page = 1;
+            params.pageNum = 1;
             $scope.myOrder.orderDatas = [];
             $scope.myOrder.moredata = false;
             // $scope.loadingShow();
             switch (item.text()){
                 case '待付款':
-                    params.state = '7';
+                    params.status = 0;
                     // getOrders("0");
                     break;
                 case '待发货':
-                    params.state = '1';
+                    params.status = 1;
                     // getOrders("1");
                     break;
                 case '待收货':
-                    params.state = '2';
+                    params.status = 2;
                     // getOrders("2");
                     break;
-                case '待评价':
-                    params.state = '3';
+                case '已完成':
+                    params.status = 3;
                     // getOrders("3");
                     break;
                 default:

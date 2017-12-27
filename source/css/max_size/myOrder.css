@@ -4,7 +4,7 @@
 }
 /*导航栏的样式*/
 .my_order .nav_list{
-    height: 4.6rem;
+    /*height: 4.6rem;*/
     /*font-size: 0;*/
     width: 100%;
 
@@ -24,8 +24,8 @@
     width: 25%;
     font-size: 2.2rem;
     box-sizing: border-box;
-    line-height: 3.6rem;
-    height: 2.6rem;
+    line-height: 2.6rem;
+    /*height: 2.6rem;*/
 
 }
 .my_order .nav_list ul li~li{
@@ -52,7 +52,8 @@
     width: 100%;
     background: white;
     margin-top: 1.5rem;
-    padding-top: 1.5rem;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #ddd;
 }
 
 .my_order .order_list .order_num{
@@ -87,13 +88,15 @@
     padding: 0 1.5rem;
 }
 .my_order .order_item+.order_item{
-    margin-top: .5rem;
+    margin-top: .4rem;
 }
 
 .my_order .order_item .order_text{
-    left: 9rem;
+    /*left: 9rem;*/
     display: flex;
-    /*justify-content: space-between;*/
+    margin-top: 1.2rem;
+    justify-content: space-between;
+    flex-grow: 1;
     /*width: 100%;*/
 
 }
@@ -106,21 +109,21 @@
     /*width: 18.75rem;*/
     line-height: 2.8rem;
     font-size: 2.2rem;
-    margin: 1.2rem 10rem 0 0;
     color: #333;
 
 }
 
 .my_order .order_item .price{
     /*line-height: 100%;*/
-    position: absolute;
-    right: 1rem;
+    /*position: absolute;*/
+    /*right: 1rem;*/
     display: flex;
     /*justify-content: center;*/
     flex-flow: column;
     align-items: flex-end;
     color: #333;
-    margin-top: 1.45rem;
+    margin-left: 6px;
+    /*margin-top: 1.45rem;*/
 }
 /*.order_total订单总价和总的数量所在的块*/
 .my_order .order_total{
@@ -145,22 +148,23 @@
 .my_order .order_total{
     line-height: 4.4rem;
     height: 4.4rem;
-}
-.my_order .order_total>span{
-    color: #333;
+    padding-right: 1.6rem;
     font-size: 2.2rem;
-    margin-right: 1.1rem;
 }
-.my_order .order_total>span span{
-    font-size: 2.2rem;
+/*.my_order .order_total>span{*/
+    /*color: #333;*/
+    /*font-size: 2.2rem;*/
+    /*margin-right: 1.1rem;*/
+/*}*/
+.my_order .order_total span{
+    font-size: 2.6rem;
 }
 /*。order_footer按钮所在的块*/
 .my_order .order_footer{
     text-align: right;
     width: 100%;
-    font-size: 0;
-    height: 6rem;
-    padding-right: 1.15rem;
+    /*height: 6rem;*/
+    padding-right: 1.6rem;
 }
 .my_order .order_footer .btn{
     outline: none;
@@ -168,7 +172,7 @@
     background: transparent;
     color: #666;
     font-size: 2.2rem;
-    margin: 1rem 0 1rem 1.15rem;
+    margin: 0 0 1rem 1.2rem;
     border-radius: .2rem;
     width: 14rem;
     height: 4rem;

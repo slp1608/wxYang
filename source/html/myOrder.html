@@ -6,7 +6,7 @@
                 <li>待付款</li>
                 <li>待发货</li>
                 <li>待收货</li>
-                <!--<li>待评价</li>-->
+                <li>已完成</li>
             </ul>
         </div>
     </ion-header-bar>
@@ -15,56 +15,34 @@
                 pulling-text="下拉刷新..."
                 on-refresh="myOrder.doRefresh()">
         </ion-refresher>
-        <div style="height: .1rem"></div>
         <!--<p class="order_emptyMsg" ng-if="!myOrder.orderDatas.length">{{myOrder.emptyMsg}}</p>-->
         <div class="order_list" ng-click="myOrder.goOrderDetail(order)" ng-repeat="order in myOrder.orderDatas">
             <div class="order_num">
-                <span>订单编号&nbsp;{{order.OrderCode}}</span>
-                <span>{{myOrder.OrderStateName}}</span>
+                <span>订单编号&nbsp;{{order.OrderNum}}</span>
+                <span>{{ myOrder.stateInfos[order.OrderStatus] }}</span>
             </div>
-            <div class="order_item" ng-repeat="order_item in order.goodsData">
-                <img ng-src="{{myOrder.IconRootURL + order_item.Pic[0]}}">
+            <div class="order_item" ng-repeat="order_item in order.ProductArr">
+                <img ng-src="{{myOrder.PicROOT_URL +order_item.ProductId+'/mainPic/'+order_item.Pic}}">
                 <div class="order_text">
-                    <p>{{order_item.Name}}</p>
+                    <p>{{order_item.ProductName}}</p>
                     <div class="price">
-                        <span style="color: black">¥{{order_item.UnitPrice}}</span>
+                        <span>¥{{order_item.ProductUnitPrice}}</span>
                         <!--<span class="span_origin">¥{{order_item.market_price}}</span>-->
-                        <span>×{{order_item.Num}}</span>
+                        <span>×{{order_item.ProductNum}}</span>
                     </div>
                 </div>
             </div>
-            <!--<div ng-if="order.type == 1" class="order_item">-->
-                <!--<img ng-src="{{myOrder.IconRootURL + order.goods_introduction[0]}}">-->
-                <!--<div class="order_text">-->
-                    <!--<p>{{order.goods_name}}</p>-->
-                    <!--<div class="price">-->
-                        <!--<span>¥{{order.integral}}</span>-->
-                        <!--<span class="span_origin">¥{{order.goods_price}}</span>-->
-                        <!--<span>×{{1}}</span>-->
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="order_total">
-                <span>共{{order.totalNum}}件商品&nbsp;合计：
-                    <span>¥{{order.totalPrice}}</span>
-                    ( 含运费：{{order.disPrice}} )
-                </span>
+                共 {{order.TotalNum}} 件商品  合计：<span>¥{{order.PayPrice}}</span>  (含运费：{{order.Freight}})
             </div>
-            <!--<div ng-if="order.type == 1" class="order_total">-->
-                <!--<span>共{{1}}件商品&nbsp;合计：-->
-                    <!--<span>{{order.integral}} 积分</span>-->
-                    <!--( 含运费：{{0}} )-->
-                <!--</span>-->
-            <!--</div>-->
-            <div class="order_footer" ng-if="order.OrderState===1">
+            <div class="order_footer" ng-if="order.OrderStatus===0">
                 <button class="btn" ng-click="myOrder.cancelBill($event,$index)">取消订单</button>
                 <button class="btn lone" ng-click="myOrder.payment(order,$event)">付款</button>
             </div>
-            <div class="order_footer" ng-if="order.OrderState===2">
+            <div class="order_footer" ng-if="order.OrderStatus===1">
                 <button class="btn lone" ng-click="myOrder.refund($event,$index)">申请退款</button>
             </div>
-            <div class="order_footer" ng-if="order.state=='3'">
+            <div class="order_footer" ng-if="order.OrderStatus==2">
                 <button class="btn" ng-click="myOrder.refund($event,$index)">申请退款</button>
                 <button class="btn lone" ng-click="myOrder.confirm($event,$index)">确认收货</button>
             </div>

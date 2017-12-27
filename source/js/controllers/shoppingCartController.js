@@ -51,7 +51,6 @@ angular.module('cftApp.shoppingCart',['ionic']).config(['$stateProvider',functio
         //去结算的方法
         goToSettlement:goToSettlement
     };
-
     console.log("shoppingCart");
     // 上拉加载函数
     function loadMore() {

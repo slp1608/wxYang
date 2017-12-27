@@ -1,20 +1,18 @@
 /*适配小于750px的屏幕*/
 .my_order{
-    background: rgb(238,238,238);
+    background: #eee;
 }
 /*导航栏的样式*/
 .my_order .nav_list{
     height: 3.5rem;
-    /*font-size: 0;*/
     width: 100%;
-    background: #fff;
 }
 .my_order .nav_list ul{
     width: 100%;
     height: 100%;
     display: flex;
     font-size: 1.2rem;
-    padding: .45rem 0;
+    /*padding: .45rem 0;*/
     /*border-bottom:1px solid;*/
 }
 .my_order .nav_list ul li{
@@ -50,7 +48,9 @@
     width: 100%;
     background: white;
     margin-top: 1rem;
-    padding-top: 1rem;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #ddd;
+    /*padding-top: 1rem;*/
 }
 
 .my_order .order_list .order_num{
@@ -80,13 +80,15 @@
     padding: 0 1rem;
 }
 .my_order .order_item+.order_item{
-    margin-top: .5rem;
+    margin-top: .2rem;
 }
 
 .my_order .order_item .order_text{
-    left: 9rem;
+    /*left: 9rem;*/
     display: flex;
-    /*justify-content: space-between;*/
+    margin-top: 1.2rem;
+    justify-content: space-between;
+    flex-grow: 1;
     /*width: 100%;*/
 
 }
@@ -96,24 +98,24 @@
     margin: .7rem 1.05rem .9rem 0;
 }
 .my_order .order_item p{
-    width: 18.75rem;
+    /*width: 18.75rem;*/
     line-height: 1.5rem;
     font-size: 1.2rem;
-    margin: 1.2rem 0 0 0;
+    /*margin: 1.2rem 0 0 0;*/
     color: #333;
 
 }
 
 .my_order .order_item .price{
     /*line-height: 100%;*/
-    position: absolute;
-    right: 1rem;
+    /*position: absolute;*/
+    /*right: 1rem;*/
     display: flex;
     /*justify-content: center;*/
     flex-flow: column;
     align-items: flex-end;
     color: #333;
-    margin-top: 1.45rem;
+    margin-left: 4px;
 }
 /*.order_total订单总价和总的数量所在的块*/
 .my_order .order_total{
@@ -138,22 +140,24 @@
 .my_order .order_total{
     line-height: 3.45rem;
     height: 3.45rem;
-}
-.my_order .order_total>span{
-    color: #333;
     font-size: 1.1rem;
-    margin-right: 1.1rem;
+    padding-right: 1rem;
 }
-.my_order .order_total>span span{
+/*.my_order .order_total>span{*/
+    /*color: #333;*/
+    /*margin-right: 1.1rem;*/
+/*}*/
+.my_order .order_total span{
     font-size: 1.3rem;
+    color: #ff4401;
 }
 /*。order_footer按钮所在的块*/
 .my_order .order_footer{
     text-align: right;
     width: 100%;
     font-size: 0;
-    height: 4.3rem;
-    padding-right: 1.15rem;
+    /*height: 4.3rem;*/
+    padding-right: 1rem;
 }
 .my_order .order_footer .btn{
     outline: none;
@@ -161,10 +165,10 @@
     background: transparent;
     color: #666;
     font-size: 1.2rem;
-    margin: 1rem 0 1rem 1.15rem;
+    margin: 0 0 .8rem 1.2rem;
     border-radius: .2rem;
     width: 7.8rem;
-    height: 2.3rem;
+    height: 2.2rem;
 }
 .my_order .order_footer .btn.lone{
     border-color: #EA1E2D;
